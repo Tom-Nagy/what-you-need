@@ -1,1 +1,4 @@
 {"rule":"MISSING_GENITIVE","sentence":"^\\QGitpod development Variables\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfavicon.io For generating the favicon.\\E$"}
+{"rule":"MANY_NN","sentence":"^\\QUserAccount :left_right_arrow: Review: Many to One\nA UserAccount can be related to many Review, but a Review can be related to one UserAccount.\\E$"}
+{"rule":"FILE_EXTENSIONS_CASE","sentence":"^\\QThen Amazon Web Services (or AWS), and more specifically s3 (simple storage service) will be set up in order to host all static files (css, js, images).\\E$"}

@@ -13,3 +13,17 @@ Procfile
 gunicorn
 dyno
 collectstatic
+GitPod
+Autoprefixer
+prefixer
+Balsamiq
+io
+TinyPNG
+Squoosh
+BeFunky
+Lucichart
+Jinja
+templating
+UserAccount
+OrderIssue
+OrderLineItem

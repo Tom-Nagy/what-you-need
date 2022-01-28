@@ -17,7 +17,7 @@ Visit the live Website : **[What You Need :arrow_right:](https://WEBSITE-NAME.he
   * [Add Media folder to our bucket](#Add-Media-folder-to-our-bucket)
   * [Final Steps](#Final-Steps)
 
-This project was developed on [GitPod Workspaces IDE](https://www.gitpod.io/) (Integrated Development Environment) committed and pushed to GitHub, to [my Repository](https://github.com/Tom-Nagy/what-you-need) using GitPod Command Line Interface (CLI) with [Git version control](https://git-scm.com/).
+This project is developed on [GitPod Workspaces IDE](https://www.gitpod.io/) (Integrated Development Environment) committed and pushed to [GitHub](https://github.com), to [my Repository](https://github.com/Tom-Nagy/what-you-need) using GitPod Command Line Interface (CLI) with [Git version control](https://git-scm.com/).
 
 :warning: Never share sensible and private information as they are confidential and could put the security of your data, database and website at risk.
 
@@ -86,7 +86,7 @@ To Fork a repository take the following steps :
 * A requirements.txt file was created in the main project folder. This file tells what applications and dependencies are required to run the application. When you have created/cloned/forked the project, it is import to run this command in the CLI:
   * ``pip3 install -r requirements.txt`` This will make sure to install all the apps requirements for the project.
 
-* Side note: During development whenever a package/dependency is installed with ``pip3 install <name of the package>`` on the project, the following command is ran in the CLI :
+* Side note: During development whenever a package/dependency is installed with ``pip3 install <name of the package>`` on the project, the following command is run in the CLI :
   * ``pip3 freeze > requirements.txt`` This is to make sure we update all the apps requirements in requirements.txt for local deployment or for future live deployment.
 
 * You will need to run the migration in order to create the database from the models. Run the following commands in the CLI:
@@ -96,7 +96,7 @@ To Fork a repository take the following steps :
 * The command to run the project locally (port: 8000):
   * ``python3 manage.py runserver``
 
-* This Project was build with the Django framework, a very powerful and extensive open source project. You can find documentation in the [official django repo](https://github.com/django/django).
+* This Project was build with the Django framework, a very powerful and extensive open source project. You can find documentation in the [official Django repo](https://github.com/django/django).
 
 The next step is the live deployment of the website :arrow_double_down:
 
@@ -108,9 +108,9 @@ The next step is the live deployment of the website :arrow_double_down:
 
 ### Create the Heroku app
 
-1. Create an account or Login:
-    * [Sing up](https://signup.heroku.com/login)
-    * [Login](https://id.heroku.com/login)
+1. Create an account or Login
+    * You can sign up to Heroku with the following link: [Sing up to Heroku](https://signup.heroku.com/login)
+    * You can log in to Heroku with the following link: [Login to Heroku](https://id.heroku.com/login)
 
 2. Click on Create a new app
 
@@ -145,7 +145,7 @@ The next step is the live deployment of the website :arrow_double_down:
 11. Go to what-you-need > settings.py (root folder) and import dj_database_url by typing ``import dj_database_url`` at the top of the file.
 
 12. Then still in settings.py, down in the Database settings, comment out the default database configuration:
-    * ![Default config](documentation/deployment/default-config-commented-out.png)
+    * ![Default config](documentation/deployment/default-database-commented-out.png)
 
 13. Replace the default database with a call to *dj_database_url.parse* and give it the database URL from Heroku.
     * ![Replace databases](documentation/deployment/replace-databases.png)
@@ -218,7 +218,7 @@ The next step is the live deployment of the website :arrow_double_down:
 
 ### Set up AWS s3 to host our static files and images
 
-Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple storage service) which is a cloud-based storage service that will allow us to store static files and images for the project.
+Now we will set up Amazon Web Services ([AWS](https://aws.amazon.com/)) s3 (simple storage service) which is a cloud-based storage service that will allow us to store static files and images for the project.
 
 1. Navigate to [AWS Amazon](https://aws.amazon.com/), create an account and sign in.
 
@@ -235,7 +235,7 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
     * Enter some default values for the index document (index.html) and for the error document(error.html) as we won't use them for this project.
     * Click save changes.
 
-4. Navigate to the **Permission** tab.
+4. Navigate to the **Permissions** tab.
 
    1. Scroll down to **Cross-origin resource sharing (CORS)** and click edit.
     * Paste the following code to set up the required access between our Heroku app and this s3 bucket and click save changes.
