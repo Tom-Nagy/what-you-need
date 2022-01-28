@@ -48,7 +48,7 @@ Visit the live Website : **[What You Need :arrow_right:](website link)**
 
 What You Need is an MVP(Model View Project) build for educational purposes that promotes green and healthy homes and offices.
 
-In this year 2022 we can observe a shift in lifestyles needs and organisation. People that use to spend most of their time at work, now work part or full-time from home.
+In this year 2022 we can observe a shift in lifestyles needs and organization. People that use to spend most of their time at work, now work part or full-time from home. And in general people are more aware of their direct environment.
 
 One of today's challenges is mental health. People are more conscious about it, and they are looking for ways to improve their mental health. They want to feel good or better about themselves and about what they do.
 
@@ -148,19 +148,19 @@ The website will use well known and popular font that are used online in order t
 #### Icons
 
 * Some Font Awesome icons will be part of the website for better UX.
-* The [logo](app/static/images/logo/logo.png) and [favicon](app/static/images/favicon/favicon.ico) are the same image and use the color scheme of the website.
+* The [logo](documentation/logo/logo.png) and [favicon](documentation/favicon/favicon.ico) are the same image and use the color scheme of the website.
 
-![logo](images/logo/logo.png)
+![logo](documentation/logo/logo.png)
 
 #### Colors
 
-![Color palette](colours-theme.png)
+![Color palette](documentation/colour-scheme/colours-theme.png)
 
 The colours chosen for the website are simple and joyful. They are based on the psychology behind colours ([colour affects](http://www.colour-affects.co.uk/psychological-properties-of-colours), [London Image Institute](https://londonimageinstitute.com/how-to-empower-yourself-with-color-psychology/)).
 
 [Adobe Color](https://color.adobe.com) was used to build the colour scheme, compatibility and accessibility. The color scheme and swatches are said color-blind safe.
 
-![Color accessibility](colours-accessibility.png)
+![Color accessibility](documentation/colour-scheme/colours-accessibility.png)
 
 #### Images
 
@@ -181,31 +181,31 @@ No audio or video will be integrated at the moment.
 
 ### Wireframes
 
-![Site map](README-images/wireframes/site-map.png)
+![Site map](documentation/wireframes/site-map.png)
 
-* [Home page](README-images/wireframes/home.pdf)
-* [About page](README-images/wireframes/about.pdf)
-* [Contact page](README-images/wireframes/contact.pdf)
-* [Terms and Conditions of use page](README-images/wireframes/t-c.pdf)
-* [Sign-in page](README-images/wireframes/signin.pdf)
-* [create an account page](README-images/wireframes/create-account.pdf)
-* [Products page](README-images/wireframes/products.pdf)
-* [Product details page](README-images/wireframes/product-details.pdf)
-* [Search page](README-images/wireframes/search.pdf)
-* [Orders history page](README-images/wireframes/orders-history.pdf)
-* [Order details page](README-images/wireframes/order-details.pdf)
-* [Order issue page](README-images/wireframes/order-issue.pdf)
-* [Account details page](README-images/wireframes/account-details.pdf)
-* [Wishlist page](README-images/wireframes/wishlist.pdf)
-* [Bag page](README-images/wireframes/bag.pdf)
-* [Checkout page](README-images/wireframes/checkout.pdf)
-* [Add product page](README-images/wireframes/add-product.pdf)
-* [Add category page](README-images/wireframes/add-category.pdf)
-* [Error page](README-images/wireframes/error-page.pdf)
+* [Home page](documentation/wireframes/home.pdf)
+* [About page](documentation/wireframes/about.pdf)
+* [Contact page](documentation/wireframes/contact.pdf)
+* [Terms and Conditions of use page](documentation/wireframes/t-c.pdf)
+* [Sign-in page](documentation/wireframes/signin.pdf)
+* [create an account page](documentation/wireframes/create-account.pdf)
+* [Products page](documentation/wireframes/products.pdf)
+* [Product details page](documentation/wireframes/product-details.pdf)
+* [Search page](documentation/wireframes/search.pdf)
+* [Orders history page](documentation/wireframes/orders-history.pdf)
+* [Order details page](documentation/wireframes/order-details.pdf)
+* [Order issue page](documentation/wireframes/order-issue.pdf)
+* [Account details page](documentation/wireframes/account-details.pdf)
+* [Wishlist page](documentation/wireframes/wishlist.pdf)
+* [Bag page](documentation/wireframes/bag.pdf)
+* [Checkout page](documentation/wireframes/checkout.pdf)
+* [Add product page](documentation/wireframes/add-product.pdf)
+* [Add category page](documentation/wireframes/add-category.pdf)
+* [Error page](documentation/wireframes/error-page.pdf)
 
 For the full version:
 
-* [What You Need website](README-images/wireframes/what-you-need.pdf)
+* [What You Need website](documentation/wireframes/what-you-need.pdf)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -255,7 +255,7 @@ To build this project, I use Django framework with the Jinja templating language
 
 ## Flowchart
 
-![Website flowchart](README-images/design/flowchart.png)
+![Website flowchart](documentation/data-design/flowchart.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -269,7 +269,7 @@ The database design used is a relational database.
 * For **Production**, Postgres is used. It is the database provided by Heroku when deploying the website live.
 
 Below is a representation of the database used for this project.
-![Database Design](README-images/design/database-design.png)
+![Database Design](documentation/data-design/database-design.png)
 
 ### Database Structure
 

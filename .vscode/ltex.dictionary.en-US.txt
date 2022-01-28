@@ -1,0 +1,15 @@
+colour
+colours
+json
+url
+dj
+collecstatic
+GetObject
+aws
+allauth
+storages
+django-storages
+Procfile
+gunicorn
+dyno
+collectstatic

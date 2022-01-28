@@ -1,0 +1,1 @@
+{"rule":"MISSING_GENITIVE","sentence":"^\\QGitpod development Variables\\E$"}

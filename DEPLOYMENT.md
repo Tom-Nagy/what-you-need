@@ -112,8 +112,7 @@ The next step is the live deployment of the website :arrow_double_down:
     * [Sing up](https://signup.heroku.com/login)
     * [Login](https://id.heroku.com/login)
 
-2. Click on Create a new app:
-    * ![Create a new app](app/static/images/README-images/DEPLOYMENT-images/create-new-app.png)
+2. Click on Create a new app
 
 3. Fill up the form:
     * Make sure to give a unique name to your app.
@@ -126,12 +125,12 @@ The next step is the live deployment of the website :arrow_double_down:
 5. Navigate to the Resources tab.
 
 6. In Add-ons, type Heroku Postgres and select it from the list.
-    * ![Select Postgres](select-postgres.png)
+    * ![Select Postgres](documentation/deployment/select-postgres.png)
 
 7. A pop-up appears to select a plan. Select **Hobby Dev - Free**.
-    * ![Free plan Postgres](free-postgres.png)
+    * ![Free plan Postgres](documentation/deployment/free-postgres.png)
 
-8. Now you need to save your current database and load it into a db.json file by tyiping in the CLI of your IDE:
+8. Now you need to save your current database and load it into a db.json file by typing in the CLI of your IDE:
     * ``python3 manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json``
     * This will be the data that you will upload to Postgres. Note that you can use a different filename than "db", and it will then be ``<YOUR FILENAME>.json``
 
@@ -146,12 +145,12 @@ The next step is the live deployment of the website :arrow_double_down:
 11. Go to what-you-need > settings.py (root folder) and import dj_database_url by typing ``import dj_database_url`` at the top of the file.
 
 12. Then still in settings.py, down in the Database settings, comment out the default database configuration:
-    * ![Default config](default-config-commented-out.png)
+    * ![Default config](documentation/deployment/default-config-commented-out.png)
 
 13. Replace the default database with a call to *dj_database_url.parse* and give it the database URL from Heroku.
-    * ![Replace databases](replace-databases.png)
+    * ![Replace databases](documentation/deployment/replace-databases.png)
     * You can either get it from your config variables in your Heroku app settings tab, or from the command line by typing Heroku config.
-      * ![Database url Heroku](database-url-heroku.png)
+      * ![Database url Heroku](documentation/deployment/database-url-heroku.png)
 
 14. Run migrations by typing in the CLI:
     * ``Python3 manage.py migrate`` This will apply all the migrations and get the database all set up.
@@ -160,18 +159,18 @@ The next step is the live deployment of the website :arrow_double_down:
     * ``python3 manage.py loaddata db.json``
     * Note that if you used a different file name you need to replace "db" by your file name like so: ``<YOUR FILENAME>.json``
 
-16. Create a superuser to log-in with by typing in the CLI:
+16. Create a superuser to log in with by typing in the CLI:
     * ``python3 manage.py createsuperuser``
     * Enter a Username, email address and password to complete.
 
 17. In settings.py Remove the Heroku database config and uncomment the original so your database url doesn't end up in version control.
     * The Database settings should be reverted to the way it was:
-    * ![Revert Database](revert-database.png)
+    * ![Revert Database](documentation/deployment/revert-database.png)
     * :warning: The Heroku DATABASE_URL should never be public and stay secret. So do not commit your work before you removed the Heroku DATABASE_URL from your file.
 
 18. Now to set up the database depending on the environment (Live on Heroku: -version control/production- or locally on your IDE: -development-); we add an if statement that will set the database to connect to **SQLite** if run locally or set to **Postgres** if run on Heroku.
     * In settings.py your database settings should look like this now:
-    * ![Environment database settings](environ-database-settings.png)
+    * ![Environment database settings](documentation/deployment/environ-database-settings.png)
 
 19. Now we need to install gunicorn, which will act as our web server. Type in the CLI:
     * ``pip3 install gunicorn``
@@ -184,7 +183,7 @@ The next step is the live deployment of the website :arrow_double_down:
 
 21. Add ``ALLOWED_HOSTS = ['<YOUR APP NAME>.herokuapp.com', 'localhost']`` in settings.py.
     * Add the host name of your Heroku app and localhost, so it still works on your IDE.
-    * ![Allowed hosts](allowed-hosts.png)
+    * ![Allowed hosts](documentation/deployment/allowed-hosts.png)
 
 22. Temporarily disable collectstatic in Heroku.
     * Log-in to Heroku in the CLI by typing:
@@ -195,23 +194,23 @@ The next step is the live deployment of the website :arrow_double_down:
       * ``heroku git:remote -a < HEROKU APP NAME >``, the CLI will prompt ``set git remote heroku to <your heroku git url>``
 
     * Using Heroku config set, type in the CLI :``heroku config:set DISABLE_COLLECTSTATIC=1``so that Heroku will not try to collect static files when we deploy.
-      * This command creates a new var in heroku as shown below:
-      * ![Disable collecstatic](disable-collecstatic.png)
+      * This command creates a new var in Heroku as shown below:
+      * ![Disable collecstatic](documentation/deployment/disable-collecstatic.png)
 
     * Add, commit and push your changes to GitHub.
 
     * Push your work to Heroku by typing: ``git push heroku main``
       * Note that here the “main/master” branch is called “main”. You can check your main branch name in the settings of your repository on GitHub.
 
-23. Create and add a secret key to the config vars of the heroku app in the settings tab. You can generate one by looking up [Django secret key generator online](https://miniwebtool.com/django-secret-key-generator/)
-    * ![Secret key](heroku-secret-key.png)
+23. Create and add a secret key to the config vars of the Heroku app in the settings tab. You can generate one by looking up [Django secret key generator online](https://miniwebtool.com/django-secret-key-generator/)
+    * ![Secret key](documentation/deployment/heroku-secret-key.png)
 
 24. In settings.py change configuration for secret key and debug to separate development to production:
     * ``SECRET_KEY = os.environ.get('SECRET_KEY', '')``
     * ``DEBUG = 'DEVELOPMENT' in os.environ``
     * This is so debug is true in development environment, but false in production.
-    * You will need to add Variables to your own project either in an env.py file or in your IDE variables like in GitPod:
-    * ![GitPod variables](gitpod-variables.png)
+    * You will need to add Variables to your own project either in an env.py file or in your IDE variables like in Gitpod:
+    * ![Gitpod variables](documentation/deployment/gitpod-variables.png)
 
 25. Add, commit and push your changes to GitHub.
 
@@ -221,13 +220,13 @@ The next step is the live deployment of the website :arrow_double_down:
 
 Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple storage service) which is a cloud-based storage service that will allow us to store static files and images for the project.
 
-1. Navigate to https://aws.amazon.com/, create an account and sign in.
+1. Navigate to [AWS Amazon](https://aws.amazon.com/), create an account and sign in.
 
 2. Navigate or look for "s3 Scalable Storage in the Cloud" and create a new bucket used to store our files.
     * To be consistent I recommend naming the bucket the same as your project name on Heroku.
     * Choose the closest region to you.
     * Uncheck "Block all public access" and acknowledge that the bucket will be public.
-      * ![AWS public access](aws-public-access.png)
+      * ![AWS public access](documentation/deployment/aws-public-access.png)
     * Click create bucket and your bucket will be created.
 
 3. Navigate to your bucket and go to the **Properties** tab.
@@ -266,11 +265,11 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
       * Copy the ARN (Amazon Resource Name) from the "*aws Edit bucket policy*" tab and paste it into the ARN input box. It consists of ``arn:aws:s3:::<your aws bucket name>``
       * Click "Add Statement".
       * The statements should be similar to the following:
-        * ![AWS policy](aws-policy.png)
+        * ![AWS policy](documentation/deployment/aws-policy.png)
       * Click "Generate Policy".
       * Copy the code snippet provided and paste it in the bucket policy editor replacing the default one.
       * Before to click save we need to modify the resource key because we want to allow access to all resources in this bucket. So we need to add a slash star (``/*``) at the end of the resource key as shown below:
-        * ![Resource access](resource-access.png)
+        * ![Resource access](documentation/deployment/resource-access.png)
       * Click save changes.
 
     3. Got to **Object Ownership** and click edit.
@@ -283,7 +282,7 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
 
 5. Now the s3 bucket is ready to go, but to access it, we need to create a user. To do This we will use a service called IAM (Identity and Access Management).
     1. Navigate to services or to the search bar, look for and select **IAM**
-      * ![AWS IAM](aws-iam.png)
+      * ![AWS IAM](documentation/deployment/aws-iam.png)
       * first we will create a group for our user to live in.
       * Then we will create an access policy giving the group access to the s3 bucket we created.
       * Finally, we will assign the user to the group, so it can use the policy to access all our files.
@@ -296,7 +295,7 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
       * Click on create policy.
       * Select the JSON tab and click on the import managed policy link. This way we will import one that AWS has pre-built for full access to s3.
       * Search for s3, select "AmazonS3FullAccess" and click import.
-      * ![AWS IAM policy](aws-iam-policy.png)
+      * ![AWS IAM policy](documentation/deployment/aws-iam-policy.png)
       * We don't actually want to allow full access to everything; we only want to allow full access to our new bucket and everything within it.
       * So get the bucket ARN from your s3 bucket and paste it in resource replacing its ``*`` value.
         * Navigate to services and open s3 from the "recently visited" in a different tab to get your bucket ARN by clicking on your project bucket under the properties tab.
@@ -323,7 +322,7 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
         * We are now redirected to the policies page, and we can see that the policy was created.
       * Now we will attach the policy to the group we just created.
         * Navigate to user groups and select the group for your project.
-        * Click on the Permissons tab.
+        * Click on the Permissions tab.
         * Click on Add Permissions and select Attach Policies.
         * Search for the policy that we just created (It should be on the top of the list, otherwise use the search bar) and select it.
         * Scroll down and click Add Permission.
@@ -336,12 +335,12 @@ Now we will set up Amazon Web Services([AWS](https://aws.amazon.com/)) s3(simple
       * Click on "Next: Permissions".
       * Select the group we just created that has the policy attached and click next until you create the user as we have nothing else to add.
 
-:warning: Now download the CSV file which will contain the users access key and secret access key which we'll use to authenticate them from our Django app.
+:warning: Now download the CSV file which will contain the users access key and secret access key which we'll use to authenticate them from our Django app.  
 **:warning:It is very important you download and save this CSV because once we have gone through this process we CANNOT DOWNLOAD THEM AGAIN. :no_entry:**
 
 ### Connect Django to s3
 
-1. Back to your IDE, we will need to install boto3 and django-staorages.
+1. Back to your IDE, we will need to install boto3 and django-storages.
     * Type in the CLI: ``pip3 install boto3``, and ``pip3 install django-storages``.
     * Freeze the packages with ``pip3 freeze > requirements.txt``.
     * We need to add storages to our installed apps.
@@ -452,7 +451,7 @@ Now you can remove/delete the ``DISABLE_COLLECTSTATIC`` variable from the list o
   * Then repeat the first steps and login to admin, go to email addresses.
 * Click on your email address and mark it as **verified** and **primary**.
 * Click save.
-* You have now successfully register and can logout and login into the website.
+* You have now successfully register and can log out and login into the website.
 
 2. Set up Stripe with Heroku.
 
@@ -480,12 +479,12 @@ Now you can remove/delete the ``DISABLE_COLLECTSTATIC`` variable from the list o
 
 :warning: Make sure that the name of your variables in Heroku correspond to the name of the variable used in the stripe set up section of settings.py of your project.
 
-![Stripe variables](stripe-vars.png)
+![Stripe variables](documentation/deployment/stripe-vars.png)
 
-:pushpin: Note that for development, you should have all those variables stored safely somewhere too. For example in the variable settings of your GitPod.  
+:pushpin: Note that for development, you should have all those variables stored safely somewhere too. For example in the variable settings of your Gitpod.  
 As well, you should create a Webhook endpoint for development since it will be a different url.
 
-![Gitpod development Variables](gitpod-dev-vars.png)
+![Gitpod development Variables](documentation/deployment/gitpod-dev-vars.png)
 
 ### Email set up with Django
 
