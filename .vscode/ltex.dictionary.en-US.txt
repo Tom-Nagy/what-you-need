@@ -39,3 +39,6 @@ lang
 doctype
 ie
 crossorigin
+btn
+categorised
+organisation
