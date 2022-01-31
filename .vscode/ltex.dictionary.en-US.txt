@@ -27,3 +27,15 @@ templating
 UserAccount
 OrderIssue
 OrderLineItem
+endblock
+corejs
+corecss
+endif
+postloadjs
+href
+charset
+http-equiv
+lang
+doctype
+ie
+crossorigin
