@@ -42,3 +42,9 @@ crossorigin
 btn
 categorised
 organisation
+nav-home-btn
+aria-labelledby
+nav-btn-profile
+dropup
+fas
+nav-btn-search
