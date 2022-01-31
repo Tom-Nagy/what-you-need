@@ -419,6 +419,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Content
 
+Home page photo by [Kelsey Brown](https://unsplash.com/@kelseybrownart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/collections/z3tT15aKtnE/ms4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
+
 [W3schools](https://www.w3schools.com/)  
 
 [W3docs](https://www.w3docs.com/)
