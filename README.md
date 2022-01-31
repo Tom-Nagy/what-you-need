@@ -390,24 +390,26 @@ Please see [TESTING.md](TESTING.md).
 
 ## Deployment
 
-Deployment information are published in a separate file for better readability.
+Deployment information are published in a separate file for better readability.  
+Please see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 This project is developed on [Gitpod Workspaces IDE](https://www.gitpod.io/) (Integrated Development Environment) committed and pushed to [GitHub](https://github.com), to [my Repository](https://github.com/Tom-Nagy/what-you-need) using Gitpod Command Line Interface (CLI) with [Git version control](https://git-scm.com/).
 
 The project is deployed on Heroku using Postgres database and linked to s3 bucket cloud service on AWS (Amazon Wed Services) for hosting the media and image files.
 
-Please see [DEPLOYMENT.md](DEPLOYMENT.md).
+### Deployment content
 
-* [Get Started](DEPLOYMENT.md#Get-Started)
-  * [Cloning](DEPLOYMENT.md#Cloning)
-  * [Forking](DEPLOYMENT.md#Forking)
-  * [Installations and dependencies](DEPLOYMENT.md#Installations-and-dependencies)
-* [Live Deployment](DEPLOYMENT.md#Live-Deployment)
-  * [Create the Heroku app](DEPLOYMENT.md#Create-the-Heroku-app)
-  * [Set up AWS s3 to host our static files and images](DEPLOYMENT.md#Set-up-AWS-s3-to-host-our-static-files-and-images)
-  * [Connect Django to s3](DEPLOYMENT.md#Connect-Django-to-s3)
-  * [Add Media folder to our bucket](DEPLOYMENT.md#Add-Media-folder-to-our-bucket)
-  * [Final Steps](DEPLOYMENT.md#Final-Steps)
+* [DEPLOYMENT.md](DEPLOYMENT.md)
+  * [Get Started](DEPLOYMENT.md#Get-Started)
+    * [Cloning](DEPLOYMENT.md#Cloning)
+    * [Forking](DEPLOYMENT.md#Forking)
+    * [Installations and dependencies](DEPLOYMENT.md#Installations-and-dependencies)
+  * [Live Deployment](DEPLOYMENT.md#Live-Deployment)
+    * [Create the Heroku app](DEPLOYMENT.md#Create-the-Heroku-app)
+    * [Set up AWS s3 to host our static files and images](DEPLOYMENT.md#Set-up-AWS-s3-to-host-our-static-files-and-images)
+    * [Connect Django to s3](DEPLOYMENT.md#Connect-Django-to-s3)
+    * [Add Media folder to our bucket](DEPLOYMENT.md#Add-Media-folder-to-our-bucket)
+    * [Final Steps](DEPLOYMENT.md#Final-Steps)
 
 ## Bugs
 
