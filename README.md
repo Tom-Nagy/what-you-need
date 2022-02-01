@@ -68,6 +68,8 @@ This creates a market opportunity for helping customers improving their workspac
 In response to this demand, **What You Need** online shop offers a wide variety of plants. From the most delicate plants to the most indestructible. Customer can browse the website catalog by sorting or searching for specific categories, deals and plants.  
 Registered and logged in customer will benefit of the full functionalities of the website including save items into a wishlist, ratings products and leaving reviews as well as reviewing their past order and making request about an order with ease and confidence. Registered customer will have exclusive access to specially selected plants. So get what you need today!
 
+As a site owner you can manage your products. You can add, delete and update products. You have the option to make a product on sale, and it will be populated added to the relevant category. As well the availability of stock is automated and products will be available to buy only if in stock. The product management page will display the products out of stock as well as the products within that reach a critical stock in order for you to keep track of your inventory and place an order if necessary.
+
 ### Developer and Business Goals
 
 * Develop a viable e-commerce web application.
