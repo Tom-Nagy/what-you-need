@@ -58,7 +58,7 @@ Visit the live Website : **[What You Need :arrow_right:](website link)**
 
 What You Need is an MVP(Model View Project) build for educational purposes that promotes green and healthy homes and offices.
 
-In this year 2022 we can observe a shift in lifestyles needs and organization. People that use to spend most of their time at work, now work part or full-time from home. And in general people are more aware of their direct environment.
+In this year 2022 we can observe a shift in lifestyles needs and organisation. People that use to spend most of their time at work, now work part or full-time from home. And in general people are more aware of their direct environment.
 
 One of today's challenges is mental health. People are more conscious about it, and they are looking for ways to improve their mental health. They want to feel good or better about themselves and about what they do.
 
@@ -66,7 +66,7 @@ Research prove that plants and natural elements provide a positive impact on peo
 This creates a market opportunity for helping customers improving their workspace and home. At the same time, the e-commerce market is expanding with more people using the web to get what they need every day.
 
 In response to this demand, **What You Need** online shop offers a wide variety of plants. From the most delicate plants to the most indestructible. Customer can browse the website catalog by sorting or searching for specific categories, deals and plants.  
-Registered and logged in customer will benefit of the full functionalities of the website including save items into a wishlist, ratings products and leaving reviews as well as reviewing their past order and making request about an order their orders with ease and confidence and accessing community accessible only plants. So get what you need today!
+Registered and logged in customer will benefit of the full functionalities of the website including save items into a wishlist, ratings products and leaving reviews as well as reviewing their past order and making request about an order with ease and confidence. Registered customer will have exclusive access to specially selected plants. So get what you need today!
 
 ### Developer and Business Goals
 
@@ -280,6 +280,9 @@ The database design used is a relational database.
 
 Below is a representation of the database used for this project.
 ![Database Design](documentation/data-design/database-design.png)
+
+* The Category model **must** have a name, friendly name and a boolean field for registered user and the other fields are optional.
+* The Product model **must** have a category, name, friendly_name ................................................. 
 
 ### Database Structure
 

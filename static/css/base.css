@@ -42,6 +42,10 @@ a {
     background-color: #03a65a;
 }
 
+.nav-icons {
+    color: #0d0d0d;
+}
+
 .dropup .dropdown-toggle::after,
 .dropdown-toggle::after {
     display: none;
