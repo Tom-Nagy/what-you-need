@@ -40,21 +40,28 @@
     <title>What You Need {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
+        <!-- Maybe remove the logo altogether ???????????????????
         <header>
             <div class="container">
                 <div class="row justify-content-start">
                     <div class="col">
                         <a href="{% url 'home' %}" class="main-logo" aria-label="Link to the home page.">
-                            <img src="{% static 'logo/logo.png' %}" alt="What you need logo."
-                            title="Link to the home page." height="40" width="40" />
+                            <img src="{% static 'images/logo.png' %}" alt="What you need logo."
+                            title="Link to the home page." height="62" width="62" />
                         </a>
                     </div>
                 </div>
             </div>
-        </header>
+        </header> -->
         
         {% if messages %}
             <div class="message-container"></div>
+        {% endif %}
+
+        {% include 'includes/sorting-menu.html' %}
+
+        {% if sorting_options %}
+
         {% endif %}
 
         {% block content %}
@@ -64,118 +71,7 @@
         {% endblock %}
 
         <!-- Nav bar-->
-        <nav>
-            <div class="container fixed-bottom mb-3">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-10 col-l-8">
-                        <ul class="list-inline list-unstyled text-center my-0 navigation-menu-container">
-                            <!-- Home -->
-                            <li class="list-inline-item dropup">
-                                <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home" data-toggle="dropdown" aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-home"></i></div>
-                                        <p class="my-0 small">Home</p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-menu-home">
-                                    <a href="{% url 'home' %}" aria-label="Link to home landing page." class="dropdown-item nav-link">Home</a>
-                                    <a href="#" aria-label="Link to home  page about us section." class="dropdown-item nav-link">About us</a>
-                                    <a href="#" aria-label="Link to home page contact us section." class="dropdown-item nav-link">Contact us</a>
-                                    <a href="#" aria-label="Link to home page terms and conditions section." class="dropdown-item nav-link">Ts & Cs</a>
-                                </div>
-                            </li>
-                            <!-- Profile -->
-                            <li class="list-inline-item dropup">
-                                <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile" data-toggle="dropdown" aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-user"></i></div>
-                                        <p class="my-0 small">Profile</p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-menu-profile">
-                                    {% if request.user.is_authenticated %}
-                                        {% if request.user.is_superuser %}
-                                            <a href="#" class="dropdown-item nav-link">Product Management</a>
-                                        {% endif %}
-                                        <a href="#" class="dropdown-item nav-link">Account details</a>
-                                        <a href="#" class="dropdown-item nav-link">Order history</a>
-                                        <a href="#" class="dropdown-item nav-link">My wishlist</a>
-                                        <a href="#" class="dropdown-item nav-link">Logout</a>
-                                    {% else %}
-                                        <a href="#" class="dropdown-item nav-link">Sign in</a>
-                                        <a href="#" class="dropdown-item nav-link">Create an account</a>
-                                    {% endif %}
-                                </div>
-                            </li>
-                            <!-- Bag -->
-                            <li class="list-inline-item">
-                                <a href="#" class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-shopping-bag"></i></div>
-                                        <p class="my-0 small">
-                                            {% if grand_total %}
-                                            ${{ grand_total|floatformat:2 }}
-                                            {% else %}
-                                            Empty
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                            <!-- Search -->
-                            <li class="list-inline-item dropup">
-                                <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search" data-toggle="dropdown" aria-expanded="false">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-search"></i></div>
-                                        <p class="my-0 small">Search</p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-menu-search">
-                                    <!-- Search categories options -->
-                                    <div class="row">
-                                        {% if categories %}
-                                            {% for category in categories %}
-                                                <div class="col-4">
-                                                    <div class="card w-100">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">category.friendly_name</h4>
-                                                            <!-- {% static 'category/{{category.name}}.png' %} -->
-                                                            <img src="..." class="card-img" alt="...">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
-                                        {% endif %}
-                                    </div>
-                                    <!-- All products button -->
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-                                            <a href="#" class="btn rounded" aria-label="Link to the all products page.">See all products</a>
-                                        </div>
-                                    </div>
-                                    <!-- Search bar -->
-                                    <div class="row justify-content-center">
-                                        <div class="col-10">
-                                            <form method="GET" action="">
-                                                <div class="input-group w100">
-                                                    <input type="text" name="q" placeholder="Search for what you need"
-                                                    class="form-control rounded">
-                                                    <div class="input-group-append">
-                                                        <button class="form-control btn rounded" type="submit">
-                                                            <span class="icon"><i class="fas fa-search"></i></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        {% include 'includes/nav-bar.html' %}
 
 
 

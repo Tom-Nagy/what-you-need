@@ -6,6 +6,7 @@ body {
     font-family: 'Lato', sans-serif;
     color: #0d0d0d;
     background-color: #f2f2f2;
+    padding-top: 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,12 +39,19 @@ a {
 }
 
 .navigation-menu-container {
-    background-color: blue;
+    background-color: #03a65a;
 }
 
 .dropup .dropdown-toggle::after,
-.dropup .dropdown-toggle::after {
+.dropdown-toggle::after {
     display: none;
     content: none;
+}
+
+/* search menu */
+
+.categories-container{
+    min-width: 80vh;
+    min-height: 80vh;
 }
 
