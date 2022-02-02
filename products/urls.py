@@ -1,4 +1,4 @@
-''' Urls configuration for the home app '''
+''' Urls configuration for the products app '''
 
 from django.urls import path
 from . import views
@@ -6,5 +6,5 @@ from . import views
 
 # empty path to indicate the root url
 urlpatterns = [
-    path('', views.index, name='home'),
+    path('', views.all_products, name='products'),
 ]

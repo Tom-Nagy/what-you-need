@@ -1,3 +1,5 @@
+''' Admin configuration and registration for Products app '''
+
 from django.contrib import admin
 from .models import Product, Category
 

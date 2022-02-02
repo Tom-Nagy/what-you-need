@@ -27,15 +27,14 @@ a {
     -moz-user-select: none;
     -webkit-user-select: none;
 
-    /* text-decoration: none;
-    text-align: center; */
+    text-decoration: none;
     cursor: pointer;
 }
 
 /* navigation menu */
 
 .footer-container {
-    height: 60px;
+    height: 85px;
 }
 
 .navigation-menu-container {
