@@ -15,9 +15,11 @@ class Category(models.Model):
     for_registered_user = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        ''' String method to return the name of the category '''
+        return str(self.name)
 
     def get_friendly_name(self):
+        ''' Return the friendly name of the category '''
         return self.friendly_name
 
 
@@ -44,4 +46,5 @@ class Product(models.Model):
     on_sale = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        ''' String method to return the name of the Product '''
+        return str(self.name)
