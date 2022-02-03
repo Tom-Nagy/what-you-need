@@ -3,10 +3,10 @@ html {
 }
 
 body {
+    position: relative;
     font-family: 'Lato', sans-serif;
     color: #0d0d0d;
     background-color: #f2f2f2;
-    padding-top: 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,14 +31,30 @@ a {
     cursor: pointer;
 }
 
-/* navigation menu */
+/* Logo */
 
-.footer-container {
-    height: 85px;
+.logo-container-lg {
+    background-color: #03a65a;
 }
+
+.main-logo-sm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 15px;
+    background-color: #f2f2f2;
+}
+
+
+
+/* navigation menu */
 
 .navigation-menu-container {
     background-color: #03a65a;
+}
+
+.navigation-menu-container-lg {
+    background-color: #fff;
 }
 
 .nav-icons {
@@ -53,8 +69,52 @@ a {
 
 /* search menu */
 
-.categories-container{
-    min-width: 80vh;
+.search-dropdown-container-sm {
+    /* position: absolute; */
+    /* top: 100%; */
+    /* left: 0; */
+    z-index: 1000;
+    /* display: none; */
+    float: left;
+    min-width: 60vh;
     min-height: 80vh;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
 }
 
+/* Titles */
+
+.main-title {
+    margin-top: 15px;
+}
+
+/* Footer */
+
+.footer-container {
+    height: 85px;
+}
+
+
+/* --------------------------------------- Media queries */
+
+@media (min-width: 720px) {
+    .main-title {
+        margin-top: 85px;
+    }
+
+    .home-page-header{
+        position: relative;
+    }
+    .home-page-internal-links {
+        position: absolute;
+        transform: translateY(-120px);
+    }
+}

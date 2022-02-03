@@ -424,8 +424,65 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Content
 
-Home page photo by [Kelsey Brown](https://unsplash.com/@kelseybrownart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/collections/z3tT15aKtnE/ms4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+* From [depositphotos](https://depositphotos.com/)
+  * Home page photo:
+    * By vectordreamsmachine [House flowers indoor floriculture round pattern vector illustration. Nature home decoration gardening. Indoor plants in flowerpot beauty decorative flora. Cozy succulent foliage exotic garden — Vector](https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html)
+
+  * Potted plant pictures for product images: 
+    * By Igor_Vkv [Houseplant Ficus Elastica — Photo](https://depositphotos.com/116944292/stock-photo-houseplant-ficus-elastica.html)
+    * By maxim1717 [Gloxinia on a white background — Photo](https://depositphotos.com/152370622/stock-photo-gloxinia-on-a-white-background.html)
+    * By wildman [Beautiful red poinsettia plant isolated on white — Photo](https://depositphotos.com/5599174/stock-photo-beautiful-red-poinsettia-plant-isolated.html)
+    * By wildman [Window plant "Nephrolepis exaltata" — Photo](https://depositphotos.com/5045073/stock-photo-window-plant-nephrolepis-exaltata.html)
+    * By wildman [Window plant "Syngonium podophyllum" — Photo](https://depositphotos.com/4481094/stock-photo-window-plant-syngonium-podophyllum.html)
+    * [Cyclamen plant — Photo](https://depositphotos.com/4494293/stock-photo-cyclamen-plant.html)
+    * By wildman [Home plant begonia on white background — Photo](https://depositphotos.com/4478061/stock-photo-home-plant-begonia-on-white.html)
+    * By olesiabilkei [Family of young potted citrus plants isolated on white. top view — Photo](https://depositphotos.com/13550647/stock-photo-family-of-young-potted-citrus.html)
+    * By Tamara_k [Rubber plant (ficus), isolated on white — Photo](https://depositphotos.com/6311132/stock-photo-rubber-plant-ficus-isolated-on.html)
+
+* Potted plant photo by [Kelsey Brown](https://unsplash.com/@kelseybrownart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/collections/z3tT15aKtnE/ms4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+* From [stock adobe](https://stock.adobe.com):
+  * Potted plant pictures for product images:
+    * By fotoslaz (dieffenbachia camilla) [Green houseplant isolated](https://stock.adobe.com/ie/images/green-houseplant-isolated/169438030?prev_url=detail)  
+    * By taviphoto [Ulmus parvifolia, chinese elm in training](https://stock.adobe.com/ie/images/ulmus-parvifolia-chinese-elm-in-training/291330158?prev_url=detail)
+    * By Grafvision [Viola wittrockiana flowers](https://stock.adobe.com/ie/images/viola-wittrockiana-flowers/383430009?prev_url=detail)
+    * By Grafvision [Cyclamen curly chrysanthemum flower](https://stock.adobe.com/ie/images/cyclamen-curly-chrysanthemum-flower/382197293?prev_url=detail)
+    * By Yurii [palm tree in a pot](https://stock.adobe.com/ie/images/palm-tree-in-a-pot/226757428?prev_url=detail)
+    * By Yurii [palm trees in a pot](https://stock.adobe.com/ie/images/palm-trees-in-a-pot/214633879?prev_url=detail)
+    * By Yurii [schefflera arboricola in pot](https://stock.adobe.com/ie/images/schefflera-arboricola-in-pot/222473486?prev_url=detail)
+    * By Yurii [Buxus sempervirens in pot](https://stock.adobe.com/ie/images/buxus-sempervirens-in-pot/220679914?prev_url=detail)
+    * By Yurii [small coconut tree in a pot](https://stock.adobe.com/ie/images/small-coconut-tree-in-a-pot/227054457?prev_url=detail)
+    * By Yurii [Chlorophytum in a black pot isolated on white background](https://stock.adobe.com/ie/images/chlorophytum-in-a-black-pot-isolated-on-white-background/367125088?prev_url=detail)
+    * By Yurii [Monstera in a clay pot on a white background](https://stock.adobe.com/ie/images/monstera-in-a-clay-pot-on-a-white-background/312225408?prev_url=detail)
+    * By Yurii [mandarin Tree with Fruit](https://stock.adobe.com/ie/images/mandarin-tree-with-fruit/386949158?prev_url=detail)
+    * By Yurii [Croton in pot. Exotic plants](https://stock.adobe.com/ie/images/croton-in-pot-exotic-plants/222477856?prev_url=detail)
+    * By Yurii [Exotic plants in pot Tradescantia zebrina](https://stock.adobe.com/ie/images/exotic-plants-in-pot-tradescantia-zebrina/269200300?prev_url=detail)
+    * By Yurii [Spathiphyllum in pot](https://stock.adobe.com/ie/images/spathiphyllum-in-pot/220117988?prev_url=detail)
+    * By Yurii [cactus in pot](https://stock.adobe.com/ie/images/cactus-in-pot/223147114?prev_url=detail)
+    * By Maryana Volkova [Violet oxalis house plant and grey ceramic pot on the wooden table](https://stock.adobe.com/ie/images/violet-oxalis-house-plant-and-grey-ceramic-pot-on-the-wooden-table/281903357?prev_url=detail)
+    * By Flower Studio [Thuja occidentalis danica isolated on white background. Coniferous trees](https://stock.adobe.com/ie/images/thuja-occidentalis-danica-isolated-on-white-background-coniferous-trees/182904788?prev_url=detail)
+    * By ozmen [Tomato plant with flowers in bucket isolated on white background](https://stock.adobe.com/ie/images/tomato-plant-with-flowers-in-bucket-isolated-on-white-background/231847030?prev_url=detail)
+    * By de_nise [Zimmerpflanzen - Peperomia](https://stock.adobe.com/ie/images/zimmerpflanzen-peperomia/283407365?prev_url=detail)
+    * By M. Schuppich [Sedum morganianum](https://stock.adobe.com/ie/images/sedum-morganianum/101795426?prev_url=detail)
+    * By womue [Rosa Alpenveilchen](https://stock.adobe.com/ie/images/rosa-alpenveilchen/132134525?prev_url=detail)
   
+  * For exclusive category image:
+    * By Raman Maisei [Female hand hold a plant with a growing young shoot or sprout. Vintage engraving stylized drawing. Vector illustration](https://stock.adobe.com/ie/images/female-hand-hold-a-plant-with-a-growing-young-shoot-or-sprout-vintage-engraving-stylized-drawing-vector-illustration/437456996?prev_url=detail)
+  
+  * For indoor category image
+    * By artinspiring [Plants on shelf](https://stock.adobe.com/ie/images/plants-on-shelf/180623652?prev_url=detail)
+  
+  * For outdoor category image
+    * By Good Studio [Female cartoon character watering berry and vegetable plants growing in pots and planters isolated on white background](https://stock.adobe.com/ie/images/female-cartoon-character-watering-berry-and-vegetable-plants-growing-in-pots-and-planters-isolated-on-white-background/202905867?prev_url=detail)
+  
+  * For newly added category image
+    * By Raman Maisei [A plant with a growing young shoot or sprout in a pot, standing on the table. Vintage engraving stylized drawing. Vector illustration](https://stock.adobe.com/ie/images/a-plant-with-a-growing-young-shoot-or-sprout-in-a-pot-standing-on-the-table-vintage-engraving-stylized-drawing-vector-illustration/437022287?prev_url=detail)
+
+  * For special deals category image
+    * By bsd studio [Seed money linear icon](https://stock.adobe.com/ie/images/seed-money-linear-icon/249294371?prev_url=detail)
+
+  * For best seller category image
+    * By erix_ultrasonic [Recommended Thumbs up with a Star Logo Vector Icon Illustration](https://stock.adobe.com/ie/images/recommended-thumbs-up-with-a-star-logo-vector-icon-illustration/295457576?prev_url=detail)
 
 [W3schools](https://www.w3schools.com/)  
 

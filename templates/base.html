@@ -21,7 +21,8 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet">
-            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="shortcut icon" type="image/jpg" href="{% static 'images/favicon.ico' %}" />
     {% endblock %}
     
     {% block extra_css %}
@@ -40,19 +41,25 @@
     <title>What You Need {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
-        <!-- Maybe remove the logo altogether ???????????????????
         <header>
-            <div class="container">
-                <div class="row justify-content-start">
+            <!-- small screen header -->
+            <div class="container d-block d-md-none">
+                <div class="row">
                     <div class="col">
-                        <a href="{% url 'home' %}" class="main-logo" aria-label="Link to the home page.">
-                            <img src="{% static 'images/logo.png' %}" alt="What you need logo."
-                            title="Link to the home page." height="62" width="62" />
+                        <a href="{% url 'home' %}" class="main-logo-sm" aria-label="Link to the home page.">
+                            <!-- Illustration by vectordreamsmachine,
+                            (https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html) -->
+                            <img src="{% static 'images/logo.jpg' %}" alt="What you need logo."
+                            title="Link to the home page." height="30" width="30" />
                         </a>
                     </div>
                 </div>
             </div>
-        </header> -->
+            <!-- large screen header -->
+            <div class="container d-none d-md-block fixed-top mb-3">
+                {% include 'includes/nav-bar-lg.html' %}
+            </div>
+        </header>
         
         {% if messages %}
             <div class="message-container"></div>
@@ -70,11 +77,12 @@
         {% block page_footer %}
         {% endblock %}
 
-        <!-- Nav bar-->
-        {% include 'includes/nav-bar.html' %}
-
-
-
+        <footer>
+            <!-- Nav bar-->
+            <div class="d-block d-md-none">
+                {% include 'includes/nav-bar-sm.html' %}
+            </div>
+        </footer>
 
         {% block postloadjs %}
         {% endblock %}

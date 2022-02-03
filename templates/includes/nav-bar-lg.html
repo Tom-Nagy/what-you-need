@@ -1,0 +1,121 @@
+{% load static %}
+<nav class="navbar navigation-menu-container-lg">
+    <a href="{% url 'home' %}" class="navbar-brand" aria-label="Link to the home page.">
+        <!-- Illustration by vectordreamsmachine,
+        (https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html) -->
+        <img src="{% static 'images/logo.jpg' %}" alt="What you need logo."
+        title="Link to the home page." height="62" width="62" />
+        
+    </a>
+        <ul class="list-inline list-unstyled text-center my-0 flex-fill">
+            <!-- Home -->
+            <li class="list-inline-item nav-item dropdown mr-5">
+                <a href="#" role="button" class="nav-btn-home  nav-link dropdown-toggle" id="dropdown-menu-home-lg" data-toggle="dropdown" 
+                aria-expanded="false">
+                    <div class="text-center nav-icons">
+                        <div><i class="fas fa-home"></i></div>
+                        <p class="my-0 small">Home</p>
+                    </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-menu-home-lg">
+                    <a href="{% url 'home' %}" aria-label="Link to home landing page." 
+                    class="dropdown-item">Home</a>
+                    <a href="{% url 'home' %}#about-us" aria-label="Link to home  page about us section." 
+                    class="dropdown-item">About us</a>
+                    <a href="{% url 'home' %}#contact-us" aria-label="Link to home page contact us section." 
+                    class="dropdown-item">Contact us</a>
+                    <a href="{% url 'home' %}#terms-and-conditions" aria-label="Link to home page terms and conditions section." 
+                    class="dropdown-item">Ts & Cs</a>
+                </div>
+            </li>
+            <!-- Profile -->
+            <li class="list-inline-item nav-item dropdown mr-5">
+                <a href="#" role="button" class="nav-btn-profile nav-link dropdown-toggle" id="dropdown-menu-profile-lg" data-toggle="dropdown" 
+                aria-expanded="false">
+                    <div class="text-center nav-icons">
+                        <div><i class="fas fa-user"></i></div>
+                        <p class="my-0 small">Profile</p>
+                    </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-menu-profile-lg">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a href="#" class="dropdown-item">Product Management</a>
+                        {% endif %}
+                        <a href="#" class="dropdown-item">Account details</a>
+                        <a href="#" class="dropdown-item">Order history</a>
+                        <a href="#" class="dropdown-item">My wishlist</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Sign in</a>
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Create an account</a>
+                    {% endif %}
+                </div>
+            </li>
+            <!-- Bag -->
+            <li class="list-inline-item nav-item mr-5">
+                <a href="#" class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
+                    <div class="text-center nav-icons">
+                        <div><i class="fas fa-shopping-bag"></i></div>
+                        <p class="my-0 small">
+                            {% if grand_total %}
+                            ${{ grand_total|floatformat:2 }}
+                            {% else %}
+                            Empty
+                            {% endif %}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <!-- Search -->
+            <li class="list-inline-item nav-item dropdown">
+                <a href="#" role="button" class="nav-btn-search nav-link dropdown-toggle" id="dropdown-menu-search-lg" data-toggle="dropdown" 
+                aria-expanded="false">
+                    <div class="text-center nav-icons">
+                        <div><i class="fas fa-search"></i></div>
+                        <p class="my-0 small">Search</p>
+                    </div>
+                </a>
+                <div class="dropdown-menu search-dropdown-container-lg" aria-labelledby="dropdown-menu-search-lg">
+                    <!-- Search bar -->
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <form method="GET" action="">
+                                <div class="input-group w100">
+                                    <input type="text" name="q" placeholder="Search for what you need"
+                                    class="form-control rounded">
+                                    <div class="input-group-append">
+                                        <button class="form-control btn rounded" type="submit">
+                                            <span class="icon"><i class="fas fa-search"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Search categories options -->
+                    <div class="row categories-container">
+                        {% if categories %}
+                            {% for category in categories %}
+                                <div class="col-4">
+                                    <div class="card w-100">
+                                        <div class="card-body">
+                                            <h4 class="card-title">category.friendly_name</h4>
+                                            <!--  static 'category/{{category.name}}.png'  -->
+                                            <img src="..." class="card-img" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <!-- All products button -->
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <a href="#" class="btn rounded" aria-label="Link to the all products page.">See all products</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</nav>

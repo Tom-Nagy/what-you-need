@@ -5,7 +5,7 @@
     <div class="container h-100">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">What You Need</h1>
+                <h1 class="text-center main-title">What You Need</h1>
             </div>
         </div>
         <div class="row mb-2">
@@ -15,11 +15,12 @@
                 <a href="#terms-and-conditions" class="text-muted" aria-label="Link to the Terms and Conditions of Use section"> Ts & Cs</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- Photo by <a href="https://unsplash.com/@kelseybrownart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kelsey Brown</a> on <a href="https://unsplash.com/collections/z3tT15aKtnE/ms4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
-                <img src="{% static 'images/home-image.jpg' %}" class="mx-auto d-block d-md-none" alt="Potted plant." height="182" width="180">
-                <img src="{% static 'images/home-image.jpg' %}" class="mx-auto d-none d-md-block" alt="Potted plant." height="320" width="320">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <!-- Illustration by vectordreamsmachine,
+                    (https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html) -->
+                <img src="{% static 'images/home-photo.jpg' %}" class="mx-auto img-fluid d-block" alt="Illustration of plants in round pattern" 
+                height="300" width="300">
                 <p class="lead text-center mx-auto">
                     We offer a wide variety of potted plants. From the most delicate flora to the most indestructible.</br>
                     <b>Find What you need today!</b>
@@ -38,8 +39,8 @@
         <div class="row">
             <div class="col-12">
                 <!-- About us -->
-                <a id="about-us"></a>
-                <h3>About us</h3>
+                
+                <h3 class="home-page-header">About us<a id="about-us" class="home-page-internal-links"></a></h3>
                 <p>
                     What You Need online shop offers a wide variety of plants. From the most delicate plants to the
                     most indestructible. Customer can browse the website catalog by sorting or searching for specific
@@ -54,12 +55,12 @@
             </div>
             <div class="col-12">
                 <!-- Contact us from -->
-                <a id="contact-us"></a>
+                <a id="contact-us" class="home-page-internal-links"></a>
                 <h3>Contact us</h3>
             </div>
             <!-- Terms and Conditions -->
             <div class="col-12">
-                <a id="terms-and-conditions"></a>
+                <a id="terms-and-conditions" class="home-page-internal-links"></a>
                 <h3>Terms and Conditions of use</h3>
                 <p>
                     This is the privacy notice of What You Need: ("we", "our", or "us").
@@ -147,21 +148,21 @@
                 </p>
             </div>
         </div>
-        <!-- Footer -->
+    </div>
+    <!-- Footer -->
+    <div class="container">
         <div class="row">
-            <div class="col-12">
-                <footer>
-                    <div class="copyright">
-                        <p class="text-muted small text-center">
-                            <i class="far fa-copyright" aria-hidden="true"></i> For educational purposes.
-                        </p>
-                    </div>
-                    <div class="footer-links text-center">
-                    <a href="#" rel="noopener" target="_blank" aria-label="Link to Pinterest.ie.">
-                        <i class="fab fa-pinterest-p" aria-hidden="true" title="###"></i>
-                    </a>
-                    </div>
-                </footer>
+            <div class="col-12 text-center">
+                <div class="copyright d-inline-block">
+                    <p class="text-muted small text-center">
+                        <i class="far fa-copyright" aria-hidden="true"></i> For educational purposes.
+                    </p>
+                </div>
+                <div class="footer-social-media-links text-center d-inline-block">
+                <a href="#" rel="noopener" target="_blank" aria-label="Link to Pinterest.ie.">
+                    <i class="fab fa-pinterest-p" aria-hidden="true" title="###"></i>
+                </a>
+                </div>
             </div>
         </div>
     </div>
