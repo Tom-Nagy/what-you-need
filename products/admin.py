@@ -7,16 +7,17 @@ from .models import Product, Category
 class ProductAdmin(admin.ModelAdmin):
     ''' Customise the admin Product interface '''
     list_display = (
-        'category',
         'name',
+        'category',
         'quantity',
         'price',
         'on_sale',
         'rating',
+        'date_added',
         'image',
     )
 
-    ordering = ('category',)
+    ordering = ('name', 'category',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
