@@ -80,12 +80,12 @@
                     <!-- Search bar -->
                     <div class="row justify-content-center">
                         <div class="col-10">
-                            <form method="GET" action="">
+                            <form method="GET" action="{% url 'products' %}">
                                 <div class="input-group w100">
-                                    <input type="text" name="q" placeholder="Search for what you need"
+                                    <input type="text" name="q" placeholder="Search for what you need"  aria-label="Search" 
                                     class="form-control rounded">
                                     <div class="input-group-append">
-                                        <button class="form-control btn rounded" type="submit">
+                                        <button class="btn rounded" type="submit">
                                             <span class="icon"><i class="fas fa-search"></i></span>
                                         </button>
                                     </div>

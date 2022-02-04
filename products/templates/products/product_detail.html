@@ -32,6 +32,11 @@
                                             <i class="fas fa-star"></i>
                                         </p>
                                     </div>
+                                    {% if product.scientific_name %}
+                                        <div class="col-12 text-left">
+                                            <span class="text-muted">{{ product.scientific_name }}</span>
+                                        </div>
+                                    {% endif %}
                                     <div class="col-12 text-left">
                                         <span><strong>€ {{ product.price }}</strong></span>
                                     </div>
@@ -41,8 +46,12 @@
                                         <p class="card-text">
                                             {{ product.description }}<br>
                                         </p>
-                                        <p class="card-text">Height: {{ product.height }} cms</p>
-                                        <p class="card-text">Diameter: {{ product.diameter }} cms</p>
+                                        {% if product.height %}
+                                            <p class="card-text">Height: {{ product.height }} cms</p>
+                                        {% endif %}
+                                        {% if product.diameter %}
+                                            <p class="card-text">Diameter: {{ product.diameter }} cms</p>
+                                        {% endif %}
                                         {% if product.quantity == 0 %}
                                             <p class="card-text">
                                                 <span class="badge badge-pill badge-danger badge-product-quantity">
