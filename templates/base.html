@@ -41,6 +41,7 @@
     <title>What You Need {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
+        <!-- Header with logo only on small screen and navbar on large screen -->
         <header>
             <!-- small screen header -->
             <div class="container d-block d-md-none">
@@ -60,28 +61,36 @@
                 {% include 'includes/nav-bar-lg.html' %}
             </div>
         </header>
-        
+
+        <!-- Push the page content down -->
+        <div class="container header-container d-none d-md-block">
+            <div class="row">
+                <div class="col"></div>
+            </div>
+        </div>
+
         {% if messages %}
             <div class="message-container"></div>
         {% endif %}
 
-        {% block page_header %}
-        {% endblock %}
-
         {% include 'includes/sorting-menu.html' %}
 
         {% if sorting_options %}
-
+            {% include 'includes/sorting-menu.html' %}
         {% endif %}
 
         {% block content %}
         {% endblock %}
-        
-        {% block page_footer %}
-        {% endblock %}
+
+        <!-- Push the page content up -->
+        <div class="container header-container d-block d-md-none">
+            <div class="row">
+                <div class="col"></div>
+            </div>
+        </div>
 
         <footer>
-            <!-- Nav bar-->
+            <!-- Nav bar for small screen -->
             <div class="d-block d-md-none">
                 {% include 'includes/nav-bar-sm.html' %}
             </div>

@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    min-height: 100vh;
     position: relative;
     font-family: 'Lato', sans-serif;
     color: #0d0d0d;
@@ -118,7 +119,7 @@ a {
         margin-top: 160px;
     }
 
-    .home-page-header{
+    .home-page-headings{
         position: relative;
     }
     .home-page-internal-links {
