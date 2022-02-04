@@ -65,6 +65,9 @@
             <div class="message-container"></div>
         {% endif %}
 
+        {% block page_header %}
+        {% endblock %}
+
         {% include 'includes/sorting-menu.html' %}
 
         {% if sorting_options %}

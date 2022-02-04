@@ -107,6 +107,9 @@ a {
     height: 85px;
 }
 
+.header-container {
+    height: 130px;
+}
 
 /* --------------------------------------- Media queries */
 
