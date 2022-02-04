@@ -1,20 +1,72 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                {{ products }}
-            </div>
+            {% for product in products %}
+                <div class="col-12 col-md-6 p-3">
+                    <div class="card h-100 card-products">
+                        <div class="row no-gutters">
+                            <div class="col-12 text-center">
+                                {% if product.image.url %}
+                                    <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="{{ MEDIA_URL }}noi-mage.jpg" alt="{{ product.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <div class="row no-gutters">
+                                        <div class="col-8">
+                                            <h5 class="card-title">{{ product.name }}</h5>
+                                            <span><strong>€ {{ product.price }}</strong></span>
+                                        </div>
+                                        <div class="col-4">
+                                            <p>
+                                                {% if product.rating %}
+                                                    <span>{{ product.rating }}</span>
+                                                {% else %}
+                                                    <span><small class="text-muted">No rating</small></span>
+                                                {% endif %}
+                                                <i class="fas fa-star"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-12">
+                                            <p class="card-text">{{ product.description }}</p>
+                                            {% if product.quantity == 0 %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-danger">Out of stock</span>
+                                                    <span class="card-text my-0"><small class="text-muted">It will be back in stock soon</small></span>
+                                                </p>
+                                            {% elif product.quantity <= 5 %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-warning">Only {{ product.quantity }} left</span>
+                                                </p>
+                                            {% else %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-success">In stock</span>
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col 12">
+                                <button>Buy now</button>
+                                <button>Add to bag</button>
+                                <a href="#" type="button" title="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

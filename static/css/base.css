@@ -115,9 +115,6 @@ a {
 /* --------------------------------------- Media queries */
 
 @media (min-width: 720px) {
-    .main-title {
-        margin-top: 160px;
-    }
 
     .home-page-headings{
         position: relative;

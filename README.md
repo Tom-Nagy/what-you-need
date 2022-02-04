@@ -428,7 +428,7 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
   * Home page photo:
     * By vectordreamsmachine [House flowers indoor floriculture round pattern vector illustration. Nature home decoration gardening. Indoor plants in flowerpot beauty decorative flora. Cozy succulent foliage exotic garden — Vector](https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html)
 
-  * Potted plant pictures for product images: 
+  * Potted plant pictures for product images:
     * By Igor_Vkv [Houseplant Ficus Elastica — Photo](https://depositphotos.com/116944292/stock-photo-houseplant-ficus-elastica.html)
     * By maxim1717 [Gloxinia on a white background — Photo](https://depositphotos.com/152370622/stock-photo-gloxinia-on-a-white-background.html)
     * By wildman [Beautiful red poinsettia plant isolated on white — Photo](https://depositphotos.com/5599174/stock-photo-beautiful-red-poinsettia-plant-isolated.html)
@@ -469,20 +469,23 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
   * For exclusive category image:
     * By Raman Maisei [Female hand hold a plant with a growing young shoot or sprout. Vintage engraving stylized drawing. Vector illustration](https://stock.adobe.com/ie/images/female-hand-hold-a-plant-with-a-growing-young-shoot-or-sprout-vintage-engraving-stylized-drawing-vector-illustration/437456996?prev_url=detail)
   
-  * For indoor category image
+  * For indoor category image:
     * By artinspiring [Plants on shelf](https://stock.adobe.com/ie/images/plants-on-shelf/180623652?prev_url=detail)
   
-  * For outdoor category image
+  * For outdoor category image:
     * By Good Studio [Female cartoon character watering berry and vegetable plants growing in pots and planters isolated on white background](https://stock.adobe.com/ie/images/female-cartoon-character-watering-berry-and-vegetable-plants-growing-in-pots-and-planters-isolated-on-white-background/202905867?prev_url=detail)
   
-  * For newly added category image
+  * For newly added category image:
     * By Raman Maisei [A plant with a growing young shoot or sprout in a pot, standing on the table. Vintage engraving stylized drawing. Vector illustration](https://stock.adobe.com/ie/images/a-plant-with-a-growing-young-shoot-or-sprout-in-a-pot-standing-on-the-table-vintage-engraving-stylized-drawing-vector-illustration/437022287?prev_url=detail)
 
-  * For special deals category image
+  * For special deals category image:
     * By bsd studio [Seed money linear icon](https://stock.adobe.com/ie/images/seed-money-linear-icon/249294371?prev_url=detail)
 
-  * For best seller category image
+  * For best seller category image:
     * By erix_ultrasonic [Recommended Thumbs up with a Star Logo Vector Icon Illustration](https://stock.adobe.com/ie/images/recommended-thumbs-up-with-a-star-logo-vector-icon-illustration/295457576?prev_url=detail)
+
+  * For no pictures available:
+    * By Kiselov [No Image Available icon. Missing image sign or no picture for web site or mobile app. Vector symbol](https://stock.adobe.com/ie/images/no-image-available-icon-missing-image-sign-or-no-picture-for-web-site-or-mobile-app-vector-symbol/429424279?prev_url=detail)
 
 [W3schools](https://www.w3schools.com/)  
 

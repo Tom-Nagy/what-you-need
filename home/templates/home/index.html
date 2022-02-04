@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="container h-100">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center main-title">What You Need</h1>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center">
-                    <a href="#" class="btn rounded" aria-label="Link to the all products page.">Find What You Need</a>
+                    <a href="{% url 'products' %}" class="btn rounded" aria-label="Link to the all products page.">Find What You Need</a>
                 </h2>
             </div>
         </div>
