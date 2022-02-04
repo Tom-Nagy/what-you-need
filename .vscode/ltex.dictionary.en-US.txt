@@ -49,3 +49,6 @@ dropup
 fas
 nav-btn-search
 elif
+d-md-block
+navbar
+truncatechars

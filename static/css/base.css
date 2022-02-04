@@ -1,3 +1,5 @@
+/* ------------------------------------ Main content config */
+
 html {
     min-height: 100%;
 }
@@ -34,10 +36,6 @@ a {
 
 /* Logo */
 
-.logo-container-lg {
-    background-color: #03a65a;
-}
-
 .main-logo-sm {
     position: absolute;
     top: 0;
@@ -48,7 +46,7 @@ a {
 
 
 
-/* navigation menu */
+/* ------------------------------------------- Navigation menu */
 
 .navigation-menu-container {
     background-color: #03a65a;
@@ -110,6 +108,26 @@ a {
 
 .header-container {
     height: 130px;
+}
+
+/* ----------------------------------------- all_products card */
+
+.card-products {
+    /* card container */
+}
+.card-products-images {
+    /* card images */
+}
+
+.card-products-description {
+    /* max-height: 60px; */
+}
+
+/* ----------------------------------------- product_detail card */
+
+.badge-product-quantity {
+    color: #0d0d0d;
+    font-weight: bold;
 }
 
 /* --------------------------------------- Media queries */
