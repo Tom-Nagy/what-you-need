@@ -94,17 +94,19 @@
                         </div>
                     </div>
                     <!-- Search categories options -->
-                    <div class="row categories-container">
+                    <div class="row categories-container-lg">
                         {% if categories %}
-                            {% for category in categories %}
+                            {% for cat in categories %}
                                 <div class="col-4">
-                                    <div class="card w-100">
-                                        <div class="card-body">
-                                            <h4 class="card-title">category.friendly_name</h4>
-                                            <!--  static 'category/{{category.name}}.png'  -->
-                                            <img src="..." class="card-img" alt="...">
+                                    <a href="{% url 'products' %}?category={{ cat.name }}" 
+                                    aria-label="Link to {{ cat.friendly_name }} category.">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h4 class="card-title">{{ cat.friendly_name }}</h4>
+                                                <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             {% endfor %}
                         {% endif %}
