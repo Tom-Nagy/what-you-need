@@ -45,16 +45,20 @@
                         <a href="#" class="dropdown-item">Account details</a>
                         <a href="#" class="dropdown-item">Order history</a>
                         <a href="#" class="dropdown-item">My wishlist</a>
-                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
+                        class="dropdown-item">Logout</a>
                     {% else %}
-                        <a href="{% url 'account_login' %}" class="dropdown-item">Sign in</a>
-                        <a href="{% url 'account_signup' %}" class="dropdown-item">Create an account</a>
+                        <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                        class="dropdown-item">Sign in</a>
+                        <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                        class="dropdown-item">Create an account</a>
                     {% endif %}
                 </div>
             </li>
             <!-- Bag -->
             <li class="list-inline-item nav-item mr-5">
-                <a href="#" class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
+                <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
+                class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
                     <div class="text-center nav-icons">
                         <div><i class="fas fa-shopping-bag"></i></div>
                         <p class="my-0 small">

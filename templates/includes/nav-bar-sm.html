@@ -38,16 +38,20 @@
                                 <a href="#" class="dropdown-item nav-link">Account details</a>
                                 <a href="#" class="dropdown-item nav-link">Order history</a>
                                 <a href="#" class="dropdown-item nav-link">My wishlist</a>
-                                <a href="{% url 'account_logout' %}" class="dropdown-item nav-link">Logout</a>
+                                <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
+                                class="dropdown-item nav-link">Logout</a>
                             {% else %}
-                                <a href="{% url 'account_login' %}" class="dropdown-item nav-link">Sign in</a>
-                                <a href="{% url 'account_signup' %}" class="dropdown-item nav-link">Create an account</a>
+                                <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                                class="dropdown-item nav-link">Sign in</a>
+                                <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                                class="dropdown-item nav-link">Create an account</a>
                             {% endif %}
                         </div>
                     </li>
                     <!-- Bag -->
                     <li class="list-inline-item">
-                        <a href="#" class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
+                        <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
+                        class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
                             <div class="text-center nav-icons">
                                 <div><i class="fas fa-shopping-bag"></i></div>
                                 <p class="my-0 small">
