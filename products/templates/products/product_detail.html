@@ -40,6 +40,12 @@
                                     <div class="col-12 text-left">
                                         <span><strong>€ {{ product.price }}</strong></span>
                                     </div>
+                                    {% if product.category %}
+                                        <div class="col-12 text-left">
+                                            <a href="{% url 'products' %}?category={{ product.category.name }}" 
+                                            aria-label="Link to {{ product.category.friendly_name }} category." class="">{{ product.category.friendly_name }}</a>
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="row no-gutters">
                                     <div class="col-12">

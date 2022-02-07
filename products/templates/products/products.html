@@ -5,13 +5,29 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                {% if category_selected %}
-                    <h3 class="mx-auto text-center">{{ category_selected }}</h3>
+                <!-- Category and sorting display -->
+                {% if current_category %}
+                    {% for c in current_category %}
+                        <h3 class="mx-auto text-center">
+                            {{ c.friendly_name }} 
+                            <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
+                        </h3>
+                    {% endfor %}
                 {% else %}
-                    <h3 class="mx-auto text-center">All Plants</h3>
+                    <h3 class="mx-auto text-center">
+                        All Plants 
+                        <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
+                    </h3>
                 {% endif %}
             </div>
             {% if products %}
+                <!-- Products count -->
+                <div class="col-12">
+                    <span class="badge badge-info">
+                        {{ products|length }} plants{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                    </span>
+                </div>
+                <!-- Products display -->
                 {% for product in products %}
                     <div class="col-12 col-md-6 p-3">
                         <div class="card h-100 card-products">
@@ -42,6 +58,13 @@
                                             <div class="col-12 text-left">
                                                 <span><strong>€ {{ product.price }}</strong></span>
                                             </div>
+                                            {% if product.category %}
+                                                <div class="col-12 text-left">
+                                                    <a href="{% url 'products' %}?category={{ product.category.name }}" 
+                                                    aria-label="Link to {{ product.category.friendly_name }} category." class="">
+                                                    {{ product.category.friendly_name }}</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                         <div class="row no-gutters">
                                             <div class="col-12">
@@ -95,4 +118,19 @@
             {% endif %}
         </div>
     </div>
+    <!-- Back to the top button -->
+    <div class="scroll-to-top">
+        <a href="#" id="back-to-top-link">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#back-to-top-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+    </script>
 {% endblock %}
