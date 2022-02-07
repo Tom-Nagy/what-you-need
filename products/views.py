@@ -11,16 +11,32 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     category_selected = None
-# Shoud render categories in the home context. ????????????????????
+    sort = None
+    direction = None
+
     if request.GET:
+
+        # Sorting products
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
         # Search by category functionality
         if 'category' in request.GET:
             category_selected = request.GET['category']
-            print(category_selected)
-            products = products.filter(category__name__in=category_selected)
-            print(products)
+            products = products.filter(category__name=category_selected)
             # category_selected = Category.objects.filter(
-            #                     name__in=category_selected)
+            #                      name=category_selected)
+            print(category_selected)
 
         # Search bar functionality
         if 'q' in request.GET:
@@ -35,10 +51,13 @@ def all_products(request):
                           description__icontains=query)
             products = products.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'products': products,
         # 'search_term': query,
         'category_selected': category_selected,
+        'current_sorting': current_sorting,
     }
     return render(request, 'products/products.html', context)
 

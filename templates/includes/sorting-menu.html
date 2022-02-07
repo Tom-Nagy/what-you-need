@@ -9,11 +9,16 @@
                 </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown-menu-sorting">
-                <a href="#" aria-label="Sort items by rating from high to low." class="dropdown-item">By rating</a>
-                <a href="#" aria-label="Sort items by price from low to hight." class="dropdown-item">By price: low to high</a>
-                <a href="#" aria-label="Sort items by price from high to low." class="dropdown-item">By price: high to low</a>
-                <a href="#" aria-label="Sort items by name from A to Z." class="dropdown-item">By name: A to Z</a>
-                <a href="#" aria-label="Sort items by name from Z to A." class="dropdown-item">By name: Z to A</a>
+                <a href="{% url 'products' %}?sort=rating&direction=desc" aria-label="Sort items by rating from high to low." 
+                class="dropdown-item">By rating</a>
+                <a href="{% url 'products' %}?sort=price&direction=asc" aria-label="Sort items by price from low to high." 
+                class="dropdown-item">By price: low to high</a>
+                <a href="{% url 'products' %}?sort=price&direction=desc" aria-label="Sort items by price from high to low." 
+                class="dropdown-item">By price: high to low</a>
+                <a href="{% url 'products' %}?sort=name&direction=asc" aria-label="Sort items by name from A to Z." 
+                class="dropdown-item">By name: A to Z</a>
+                <a href="{% url 'products' %}?sort=name&direction=desc" aria-label="Sort items by name from Z to A." 
+                class="dropdown-item">By name: Z to A</a>
             </div>
         </li>
     </ul>

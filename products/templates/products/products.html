@@ -4,78 +4,95 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            {% for product in products %}
-                <div class="col-12 col-md-6 p-3">
-                    <div class="card h-100 card-products">
-                        <div class="row no-gutters">
-                            <div class="col-12 text-center">
-                                {% if product.image.url %}
-                                    <img class="img-fluid card-products-images" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
-                                {% endif %}
-                            </div>
-                            <div class="col-12">
-                                <div class="card-body">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <h5 class="card-title">{{ product.name }}</h5>
+            <div class="col-12">
+                {% if category_selected %}
+                    <h3 class="mx-auto text-center">{{ category_selected }}</h3>
+                {% else %}
+                    <h3 class="mx-auto text-center">All Plants</h3>
+                {% endif %}
+            </div>
+            {% if products %}
+                {% for product in products %}
+                    <div class="col-12 col-md-6 p-3">
+                        <div class="card h-100 card-products">
+                            <div class="row no-gutters">
+                                <div class="col-12 text-center">
+                                    {% if product.image.url %}
+                                        <img class="img-fluid card-products-images" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    {% else %}
+                                        <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-12">
+                                    <div class="card-body">
+                                        <div class="row no-gutters">
+                                            <div class="col">
+                                                <h5 class="card-title">{{ product.name }}</h5>
+                                            </div>
+                                            <div class="col">
+                                                <p class="text-right">
+                                                    {% if product.rating %}
+                                                        <span>{{ product.rating }}</span>
+                                                    {% else %}
+                                                        <span><small class="text-muted">No rating</small></span>
+                                                    {% endif %}
+                                                    <i class="fas fa-star"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-12 text-left">
+                                                <span><strong>€ {{ product.price }}</strong></span>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <p class="text-right">
-                                                {% if product.rating %}
-                                                    <span>{{ product.rating }}</span>
+                                        <div class="row no-gutters">
+                                            <div class="col-12">
+                                                <p class="card-text card-products-description">
+                                                    {{ product.description|truncatechars:180 }}<br>
+                                                    <a href="{% url 'product_detail' product.id %}" class="btn btn-small btn-primary">more details</a>
+                                                </p>
+                                                {% if product.quantity == 0 %}
+                                                    <p class="card-text">
+                                                        <span class="badge badge-pill badge-danger badge-product-quantity"
+                                                        >Out of stock</span>
+                                                        <span class="card-text my-0"><small class="text-muted">
+                                                            It will be back in stock soon</small></span>
+                                                    </p>
+                                                {% elif product.quantity <= 5 %}
+                                                    <p class="card-text">
+                                                        <span class="badge badge-pill badge-warning badge-product-quantity">
+                                                            Only {{ product.quantity }} left</span>
+                                                    </p>
                                                 {% else %}
-                                                    <span><small class="text-muted">No rating</small></span>
+                                                    <p class="card-text">
+                                                        <span class="badge badge-pill badge-success badge-product-quantity">
+                                                            In stock</span>
+                                                    </p>
                                                 {% endif %}
-                                                <i class="fas fa-star"></i>
-                                            </p>
-                                        </div>
-                                        <div class="col-12 text-left">
-                                            <span><strong>€ {{ product.price }}</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-12">
-                                            <p class="card-text card-products-description">
-                                                {{ product.description|truncatechars:180 }}<br>
-                                                <a href="{% url 'product_detail' product.id %}" class="btn btn-small btn-primary">more details</a>
-                                            </p>
-                                            {% if product.quantity == 0 %}
-                                                <p class="card-text">
-                                                    <span class="badge badge-pill badge-danger badge-product-quantity"
-                                                    >Out of stock</span>
-                                                    <span class="card-text my-0"><small class="text-muted">
-                                                        It will be back in stock soon</small></span>
-                                                </p>
-                                            {% elif product.quantity <= 5 %}
-                                                <p class="card-text">
-                                                    <span class="badge badge-pill badge-warning badge-product-quantity">
-                                                        Only {{ product.quantity }} left</span>
-                                                </p>
-                                            {% else %}
-                                                <p class="card-text">
-                                                    <span class="badge badge-pill badge-success badge-product-quantity">
-                                                        In stock</span>
-                                                </p>
-                                            {% endif %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button class="m-1">Buy now</button>
-                                <button class="m-1">Add to bag</button>
-                                <a class="m-1" href="#" type="button" title="Add to wishlist">
-                                    <i class="far fa-heart"></i>
-                                </a>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="m-1">Buy now</button>
+                                    <button class="m-1">Add to bag</button>
+                                    <a class="m-1" href="#" type="button" title="Add to wishlist">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p class="text-center mx-auto">
+                        OoOps !!! There is nothing growing here...
+                    </p>
+                    <a href="{% url 'home' %}" aria-label="link to home page" class="btn btn-large">Back home</a>
+                    <a href="{% url 'products' %}" aria-label="link to home page" class="btn btn-large">Back to the garden</a>
                 </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -58,3 +58,4 @@ category-card-heading-sm
 img-fluid
 search-dropdown-container-sm
 img
+mx-auto
