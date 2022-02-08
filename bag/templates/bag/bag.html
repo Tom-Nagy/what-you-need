@@ -3,68 +3,53 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="mx-auto text-center">Shopping bag</h3>
-            </div>
-            <div class="col-12">
-                <p>
-                    Every 3 products purchase one is on us!<br>
-                    Get {{ free_product_threshold }} more plants to get one Free.
-
-                </p>
-
-            </div>
-            {% if bag_items %}
-                <!-- Products count -->
+        {% if bag_items %}
+            <div class="row">
                 <div class="col-12">
-                    <span class="badge badge-info">There is {{ products|length }} plants in your bag</span>
+                    <h3 class="mx-auto text-center">Shopping bag</h3>
                 </div>
-                <!-- Products display -->
-                {% for product in products %}
-                    <div class="col-12 col-md-6 p-3">
-                        <div class="card h-100 card-products">
+                <div class="col-12">
+                    <p>
+                        Every 3 products purchase one is on us!<br>
+                        Get {{ free_product_threshold }} more plants to get one Free.
+                    </p>
+                </div>
+            </div>
+            <!-- Products count -->
+            <div class="row">
+                <div class="col-12">
+                    <span class="badge badge-info">
+                        {% if product_count > 1 %}
+                            There are {{ product_count }} plants
+                        {% else %}
+                            There is {{ product_count }} plant
+                        {% endif %} in your bag
+                    </span>
+                </div>
+            </div>
+            <!-- Products display -->
+            <div class="row">
+                <div class="col-12 col-md-6 p-3">
+                    {% for item in bag_items %}
+                        <div class="card mb-3 card-products">
                             <div class="row no-gutters">
-                                <div class="col-12 text-center">
-                                    {% if product.image.url %}
-                                        <img class="img-fluid card-products-images" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                <div class="col-4 text-center mt-1">
+                                    {% if item.product.image.url %}
+                                        <img class="img-fluid card-products-images" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                     {% else %}
-                                        <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                        <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}">
                                     {% endif %}
                                 </div>
-                                <div class="col-12">
+                                <div class="col-8">
                                     <div class="card-body">
                                         <div class="row no-gutters">
-                                            <div class="col">
-                                                <h5 class="card-title">{{ product.name }}</h5>
-                                            </div>
-                                            <div class="col">
-                                                <p class="text-right">
-                                                    {% if product.rating %}
-                                                        <span>{{ product.rating }}</span>
-                                                    {% else %}
-                                                        <span><small class="text-muted">No rating</small></span>
-                                                    {% endif %}
-                                                    <i class="fas fa-star"></i>
-                                                </p>
+                                            <div class="col-12">
+                                                <h5 class="card-title">{{ item.product.name }}</h5>
                                             </div>
                                             <div class="col-12 text-left">
-                                                <span><strong>€ {{ product.price }}</strong></span>
+                                                <span><strong>€ {{ item.product.price }}</strong></span>
                                             </div>
-                                            {% if product.category %}
-                                                <div class="col-12 text-left">
-                                                    <a href="{% url 'products' %}?category={{ product.category.name }}" 
-                                                    aria-label="Link to {{ product.category.friendly_name }} category." class="">
-                                                    {{ product.category.friendly_name }}</a>
-                                                </div>
-                                            {% endif %}
-                                        </div>
-                                        <div class="row no-gutters">
                                             <div class="col-12">
-                                                <p class="card-text card-products-description">
-                                                    {{ product.description|truncatechars:180 }}<br>
-                                                    <a href="{% url 'product_detail' product.id %}" class="btn btn-small btn-primary">more details</a>
-                                                </p>
                                                 {% if product.quantity == 0 %}
                                                     <p class="card-text">
                                                         <span class="badge badge-pill badge-danger badge-product-quantity"
@@ -88,26 +73,104 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row no-gutters">
+                                <div class="col-8">
+                                    <form class="form" action="{% url 'add_to_bag' item.product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" 
+                                                        min="1" max="{{ item.product.quantity }}" 
+                                                        data-item_id="{{ item.product.id }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <button class="m-1" type="submit" name="delete" data-item_id="{{ item.product.id }}">
+                                                            <span class="icon">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-4">
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button class="m-1" type="submit" name="add_to_wishlist" data-item_id="{{ item.product.id }}">
+                                            move to wishlist
+                                        </button>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
                                 <div class="col-12">
-                                    <button class="m-1">Buy now</button>
-                                    <button class="m-1">Add to bag</button>
-                                    <a class="m-1" href="#" type="button" title="Add to wishlist">
-                                        <i class="far fa-heart"></i>
-                                    </a>
+                                    <p class="mx-auto text-left mb-1">
+                                        <small class="text-muted ml-1">Subtotal: € {{ item.product_subtotal }}</small>
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                    {% endfor %}
+                </div>
+                <div class="col-12 col-md-6 sticky-top">
+                    <div class="table-responsive">
+                        <p><small class="text-muted">Order summary</small></p>
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in bag_items %}
+                                    <tr>
+                                        <td>{{ item.product.name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>€ {{ item.product.price }}</td>
+                                        <td>€ {{ item.product_subtotal }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                {% endfor %}
-            {% else %}
+                    <div class="float-right w-50">
+                        <hr class="mb-1">
+                        <hr class="mt-1">
+                        <p>Bag total: € {{ total }}</p>
+                        <p>Delivery cost: € {{ delivery_cost|floatformat:2 }}</p>
+                        <p>Discount: € 
+                            {% if discount %}
+                                {{ discount|floatformat:2 }}
+                            {% else %}
+                                0 <span class="badge badge-warning">Get more items and the cheapest is on us!</span>
+                            {% endif %}
+                        </p>
+                        <p><strong>Grand total: € {{ grand_total|floatformat:2 }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
                 <div class="col-12 text-center">
                     <p class="text-center mx-auto">There is nothing in your basket...</p>
                     <a href="{% url 'home' %}" aria-label="link to home page" class="btn btn-large">Back home</a>
                     <a href="{% url 'products' %}" aria-label="link to home page" class="btn btn-large">Back to the garden</a>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
     <!-- Back to the top button -->
     <div class="scroll-to-top">

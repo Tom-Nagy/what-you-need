@@ -34,11 +34,12 @@ def bag_contents(request):
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
-            'products_price_list': products_price_list,
             'product_subtotal': product_subtotal,
         })
 
-    # Get a list of product price(s) to discount.
+    # Every 3 items purchase the least expensive is offered.
+    # Get the list of product prices and return a list of prices to discount 
+    # and number of items to purchase for the next discount.
     if product_count % 3 == 0 and product_count != 0:
         free_products_count = int(product_count / 3)
         # Sorted() method from [venpa](https://stackoverflow.com/questions/
@@ -53,12 +54,19 @@ def bag_contents(request):
         free_product_threshold = 3 - (
                                 product_count - (free_products_count * 3))
 
+    # Calculate the total discount
+    discount = 0
+    for prod in free_products:
+        discount += Decimal(prod)
+
+    # Calculate delivery cost and grand total
     delivery_cost = total * Decimal(settings.DELIVERY_COST / 100)
-    grand_total = total = delivery_cost
+    grand_total = total + delivery_cost - discount
 
     print(f'product count : {product_count}')
     print(f'free threshold : {free_product_threshold}')
     print(f'free products : {free_products}')
+    print(f'discount : {discount}')
 
     context = {
         'bag_items': bag_items,
@@ -66,6 +74,7 @@ def bag_contents(request):
         'product_count': product_count,
         'delivery_cost': delivery_cost,
         'free_products': free_products,
+        'discount': discount,
         'grand_total': grand_total,
         'free_product_threshold': free_product_threshold,
     }

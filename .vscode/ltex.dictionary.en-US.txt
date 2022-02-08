@@ -60,3 +60,8 @@ search-dropdown-container-sm
 img
 mx-auto
 csrf
+th
+thead
+tbody
+td
+floatformat
