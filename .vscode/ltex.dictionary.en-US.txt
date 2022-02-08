@@ -59,3 +59,4 @@ img-fluid
 search-dropdown-container-sm
 img
 mx-auto
+csrf

@@ -422,6 +422,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Code
 
+* For sorting a list and returning a list:
+  * With the answer of venpa from [Stackoverflow post](https://stackoverflow.com/questions/22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
+
 ### Content
 
 * From [depositphotos](https://depositphotos.com/)
