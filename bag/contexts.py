@@ -16,7 +16,7 @@ def bag_contents(request):
     total = 0
     product_count = 0
     free_products_count = 0
-    free_products_list = []
+    products_price_list = []
     free_products = []
     free_product_threshold = 0
     bag = request.session.get('bag', {})
@@ -26,29 +26,39 @@ def bag_contents(request):
         total += quantity * product.price
         product_count += quantity
         product_subtotal = quantity * product.price
+        for prices in range(quantity):
+            products_price_list.append(str(product.price))
+        products_price_list.sort()
 
         bag_items.append({
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
-            'product_subtotal': product_subtotal
+            'products_price_list': products_price_list,
+            'product_subtotal': product_subtotal,
         })
 
     # Get a list of product price(s) to discount.
     if product_count % 3 == 0 and product_count != 0:
         free_products_count = int(product_count / 3)
-        for items in bag_items:
-            free_products_list += items.price
-        free_products_list.sort()
-        for product_prices in range(free_products_count):
-            free_products += free_products_list.pop([0])
+        # Sorted() method from [venpa](https://stackoverflow.com/questions/
+        # 22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
+        free_products = sorted(products_price_list)[:free_products_count]
+        free_product_threshold = 3
     elif product_count < 3:
         free_product_threshold = 3 - product_count
     else:
-        free_product_threshold = product_count - (int(product_count / 3) * 3)
+        free_products_count = int(product_count / 3)
+        free_products = sorted(products_price_list)[:free_products_count]
+        free_product_threshold = 3 - (
+                                product_count - (free_products_count * 3))
 
     delivery_cost = total * Decimal(settings.DELIVERY_COST / 100)
     grand_total = total = delivery_cost
+
+    print(f'product count : {product_count}')
+    print(f'free threshold : {free_product_threshold}')
+    print(f'free products : {free_products}')
 
     context = {
         'bag_items': bag_items,
