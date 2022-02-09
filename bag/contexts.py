@@ -63,11 +63,6 @@ def bag_contents(request):
     delivery_cost = total * Decimal(settings.DELIVERY_COST / 100)
     grand_total = total + delivery_cost - discount
 
-    print(f'product count : {product_count}')
-    print(f'free threshold : {free_product_threshold}')
-    print(f'free products : {free_products}')
-    print(f'discount : {discount}')
-
     context = {
         'bag_items': bag_items,
         'total': total,

@@ -191,6 +191,14 @@ a {
     font-weight: bold;
 }
 
+/* form input quantity feedback */
+.input-qty-feedback {
+    display: none;
+    position: absolute;
+    top: -25px;
+    left: 0;
+}
+
 /* --------------------------------------- Media queries */
 
 @media (min-width: 720px) {

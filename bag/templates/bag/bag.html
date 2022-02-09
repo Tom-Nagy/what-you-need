@@ -122,6 +122,7 @@
                         </div>
                     {% endfor %}
                 </div>
+                <!-- Order summary and total -->
                 <div class="col-12 col-md-6 sticky-top">
                     <div class="table-responsive">
                         <p><small class="text-muted">Order summary</small></p>
@@ -155,7 +156,7 @@
                             {% if discount %}
                                 {{ discount|floatformat:2 }}
                             {% else %}
-                                0 <span class="badge badge-warning">Get more items and the cheapest is on us!</span>
+                                0 <span class="badge badge-warning">Get {{ free_product_threshold }} more items and the cheapest is on us!</span>
                             {% endif %}
                         </p>
                         <p><strong>Grand total: € {{ grand_total|floatformat:2 }}</strong></p>
