@@ -27,8 +27,7 @@ def bag_contents(request):
         product_count += quantity
         product_subtotal = quantity * product.price
         for prices in range(quantity):
-            products_price_list.append(str(product.price))
-        products_price_list.sort()
+            products_price_list.append(float(product.price))
 
         bag_items.append({
             'item_id': item_id,
@@ -36,6 +35,7 @@ def bag_contents(request):
             'product': product,
             'product_subtotal': product_subtotal,
         })
+    products_price_list.sort()
 
     # Every 3 items purchase the least expensive is offered.
     # Get the list of product prices and return a list of prices to discount 
@@ -62,6 +62,12 @@ def bag_contents(request):
     # Calculate delivery cost and grand total
     delivery_cost = total * Decimal(settings.DELIVERY_COST / 100)
     grand_total = total + delivery_cost - discount
+
+    # print(f'product count : {product_count}')
+    # print(f'free threshold : {free_product_threshold}')
+    # print(f'product price list : {products_price_list}')
+    # print(f'free products : {free_products}')
+    # print(f'discount : {discount}')
 
     context = {
         'bag_items': bag_items,

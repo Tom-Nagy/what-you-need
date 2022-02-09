@@ -422,8 +422,11 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Code
 
+* For hiding element after a period of time:
+  * Credit to zzzzBov from [stackoverflow](https://stackoverflow.com/questions/4127527/how-to-show-div-for-10-seconds-and-then-hide-it)
+
 * For sorting a list and returning a list:
-  * With the answer of venpa from [Stackoverflow post](https://stackoverflow.com/questions/22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
+  * Credit to venpa from [Stackoverflow post](https://stackoverflow.com/questions/22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
 
 ### Content
 

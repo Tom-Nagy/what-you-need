@@ -11,7 +11,11 @@
                 <div class="col-12">
                     <p>
                         Every 3 products purchase one is on us!<br>
-                        Get {{ free_product_threshold }} more plants to get one Free.
+                        {% if product_count < 3 %}
+                            Get {{ free_product_threshold }} more plants to have one Free.
+                        {% else %}
+                            Get {{ free_product_threshold }} more plants and have another one Free.
+                        {% endif %}
                     </p>
                 </div>
             </div>
@@ -29,9 +33,9 @@
             </div>
             <!-- Products display -->
             <div class="row">
-                <div class="col-12 col-md-6 p-3">
-                    {% for item in bag_items %}
-                        <div class="card mb-3 card-products">
+                {% for item in bag_items %}
+                    <div class="col-12 col-md-6 p-3">
+                        <div class="card mb-3 h-100 card-products">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center mt-1">
                                     {% if item.product.image.url %}
@@ -50,17 +54,17 @@
                                                 <span><strong>€ {{ item.product.price }}</strong></span>
                                             </div>
                                             <div class="col-12">
-                                                {% if product.quantity == 0 %}
+                                                {% if item.product.quantity == 0 %}
                                                     <p class="card-text">
                                                         <span class="badge badge-pill badge-danger badge-product-quantity"
                                                         >Out of stock</span>
                                                         <span class="card-text my-0"><small class="text-muted">
                                                             It will be back in stock soon</small></span>
                                                     </p>
-                                                {% elif product.quantity <= 5 %}
+                                                {% elif item.product.quantity <= 5 %}
                                                     <p class="card-text">
                                                         <span class="badge badge-pill badge-warning badge-product-quantity">
-                                                            Only {{ product.quantity }} left</span>
+                                                            Only {{ item.product.quantity }} left</span>
                                                     </p>
                                                 {% else %}
                                                     <p class="card-text">
@@ -75,33 +79,58 @@
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-8">
-                                    <form class="form" action="{% url 'add_to_bag' item.product.id %}" method="POST">
+                                    <!-- {% url 'add_to_bag' item.product.id %} -->
+                                    <form class="form" action="" method="POST">
                                         {% csrf_token %}
-                                        <div class="form-row">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" 
-                                                        min="1" max="{{ item.product.quantity }}" 
-                                                        data-item_id="{{ item.product.id }}">
+                                        <div class="form-group">
+                                            <div class="row no-gutters">
+                                                <div class="col-8">
+                                                    <div class="input-group h-100">
+                                                        <div class="input-group-prepend">
+                                                            <button class="decrement-qty" 
+                                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-minus"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <input class="form-control-sm qty_input h-100" id="id_qty_{{ item.item_id }}" 
+                                                            type="number" name="quantity" data-item_id="{{ item.item_id }}"
+                                                            value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}">
+                                                        <div class="input-qty-feedback" id="too_high_qty_{{ item.item_id }}">
+                                                            <small class="badge badge-warning">
+                                                                We dont have that many! max = {{ item.product.quantity }}
+                                                            </small>
+                                                        </div>
+                                                        <div class="input-qty-feedback" id="too_small_qty_{{ item.item_id }}">
+                                                            <small class="badge badge-warning">
+                                                                That is too little! min = 1
+                                                            </small>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <button class="increment-qty"
+                                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-plus"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <button class="m-1" type="submit" name="delete" data-item_id="{{ item.product.id }}">
-                                                            <span class="icon">
-                                                                <i class="far fa-trash-alt"></i>
-                                                            </span>
-                                                        </button>
-                                                    </div>
+                                                <div class="col-4">
+                                                    <!-- Delete product -->
+                                                    <button class="m-1" type="submit" name="delete" data-item_id="{{ item.item_id }}">
+                                                        <span class="icon">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </span>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         </div>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </form>
                                 </div>
+                                <!-- move to wishlist -->
                                 <div class="col-4">
                                     <form action="" method="POST">
                                         {% csrf_token %}
@@ -120,10 +149,11 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                    <div class="col w-100"></div>
+                {% endfor %}
                 <!-- Order summary and total -->
-                <div class="col-12 col-md-6 sticky-top">
+                <div class="col-12 col-md-6">
                     <div class="table-responsive">
                         <p><small class="text-muted">Order summary</small></p>
                         <table class="table table-hover table-sm">
@@ -182,10 +212,11 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-<script type="text/javascript">
-$('#back-to-top-link').click(function(e) {
-window.scrollTo(0,0)
-})
-</script>
+    {{ block.super }}
+    {% include 'products/includes/quantity_input_script.html' %}
+    <script type="text/javascript">
+        $('#back-to-top-link').click(function(e) {
+        window.scrollTo(0,0)
+        })
+    </script>
 {% endblock %}
