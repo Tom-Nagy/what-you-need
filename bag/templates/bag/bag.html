@@ -1,24 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 
 {% block content %}
     <div class="container">
-        {% if bag_items %}
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="mx-auto text-center">Shopping bag</h3>
-                </div>
-                <div class="col-12">
-                    <p>
-                        Every 3 products purchase one is on us!<br>
-                        {% if product_count < 3 %}
-                            Get {{ free_product_threshold }} more plants to have one Free.
-                        {% else %}
-                            Get {{ free_product_threshold }} more plants and have another one Free.
-                        {% endif %}
-                    </p>
-                </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mx-auto text-center">Shopping bag</h3>
             </div>
+            <div class="col-12">
+                <p>
+                    Every 3 products purchase one is on us!<br>
+                    {% if product_count == 0 %}
+                        Get {{ free_product_threshold }} plants to have one Free.
+                    {% elif product_count < 3 %}
+                        Get {{ free_product_threshold }} more plants to have one Free.
+                    {% else %}
+                        Get {{ free_product_threshold }} more plants and have another one Free.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% if bag_items %}
             <!-- Products count -->
             <div class="row">
                 <div class="col-12">
@@ -39,9 +42,11 @@
                             <div class="row no-gutters">
                                 <div class="col-4 text-center mt-1">
                                     {% if item.product.image.url %}
-                                        <img class="img-fluid card-products-images" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                        <img class="img-fluid card-products-images" 
+                                            src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                     {% else %}
-                                        <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}">
+                                        <img class="img-fluid card-products-images" 
+                                            src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}">
                                     {% endif %}
                                 </div>
                                 <div class="col-8">
@@ -79,15 +84,15 @@
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-8">
-                                    <!-- {% url 'add_to_bag' item.product.id %} -->
-                                    <form class="form" action="" method="POST">
+                                    <!-- Quantity form -->
+                                    <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <div class="row no-gutters">
                                                 <div class="col-8">
                                                     <div class="input-group h-100">
                                                         <div class="input-group-prepend">
-                                                            <button class="decrement-qty" 
+                                                            <button class="decrement-qty" type="submit" 
                                                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                                 <span>
                                                                     <i class="fas fa-minus"></i>
@@ -96,7 +101,17 @@
                                                         </div>
                                                         <input class="form-control-sm qty_input h-100" id="id_qty_{{ item.item_id }}" 
                                                             type="number" name="quantity" data-item_id="{{ item.item_id }}"
-                                                            value="{{ item.quantity }}" min="1" max="{{ item.product.quantity }}">
+                                                            value="{{ item.quantity }}" 
+                                                            min="1" max="{{ item.product.quantity| calc_max_value:item.quantity }}">
+                                                        <div class="input-group-append">
+                                                            <button class="increment-qty" type="submit"
+                                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                                <span>
+                                                                    <i class="fas fa-plus"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Quantity feedback messages -->
                                                         <div class="input-qty-feedback" id="too_high_qty_{{ item.item_id }}">
                                                             <small class="badge badge-warning">
                                                                 We dont have that many! max = {{ item.product.quantity }}
@@ -107,19 +122,11 @@
                                                                 That is too little! min = 1
                                                             </small>
                                                         </div>
-                                                        <div class="input-group-append">
-                                                            <button class="increment-qty"
-                                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                                <span>
-                                                                    <i class="fas fa-plus"></i>
-                                                                </span>
-                                                            </button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <!-- Delete product -->
-                                                    <button class="m-1" type="submit" name="delete" data-item_id="{{ item.item_id }}">
+                                                    <button class="m-1" name="delete" data-item_id="{{ item.item_id }}">
                                                         <span class="icon">
                                                             <i class="far fa-trash-alt"></i>
                                                         </span>
@@ -205,18 +212,41 @@
     </div>
     <!-- Back to the top button -->
     <div class="scroll-to-top">
-    <a href="#" id="back-to-top-link">
-    <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-    </a>
+        <a href="#" id="back-to-top-link">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
     </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
-    {% include 'products/includes/quantity_input_script.html' %}
+    {% include 'bag/includes/quantity_input_and_update_bag_script.html' %}
+    <!-- Handle the back to top link -->
     <script type="text/javascript">
         $('#back-to-top-link').click(function(e) {
         window.scrollTo(0,0)
         })
     </script>
+
+    <!-- <script type="text/javascript">
+        // Update quantity on click
+        // $('.update-btn').click(function(e) {
+        //     let form = $(this).prev('.update-form');
+        //     form.submit();
+        // });
+        
+        // Remove item and reload on click
+        $('.remove-item').click(function(e) {
+            let csrfToken = "{{ csrf_token }}";
+            let itemId = $(this).attr('id').split('remove_')[1]; // to get the second part of the split
+            let size = $(this).data('product_size');
+            let url = `/bag/remove/${itemId}/`;
+            let data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+
+            $.post(url, data)
+                .done(function() {
+                    location.reload();
+            });
+        });
+    </script> -->
 {% endblock %}
