@@ -88,3 +88,7 @@ prev
 newInput
 minValue
 stackoverflow
+newValue
+quantityInput
+submitQuantityForm
+

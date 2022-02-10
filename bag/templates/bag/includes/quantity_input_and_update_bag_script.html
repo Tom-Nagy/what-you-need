@@ -1,5 +1,28 @@
 <script type="text/javascript">
 
+    // Get the form relevant to thte product and submit.
+    function submitQuantityForm(quantityInput) {
+        let form = quantityInput.closest('.update-form');
+        form.submit();
+    }
+
+    // Disable +/- buttons outside 1 and max value range
+    function handleEnableDisable(itemId) {
+        let currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        let maxValue = parseInt($(`#id_qty_${itemId}`).attr('max'));
+        let minusDisabled = currentValue < 2;
+        let plusDisabled = currentValue >= maxValue;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    let allQtyInputs = $('.qty_input');
+    for(let i=0; i < allQtyInputs.length; i++) {
+        let itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
     // Listen to changes on the input box to enable/disable buttons
     // Set the value to min or max depending on input after giving feedback
     $('.qty_input').change(function() {
@@ -7,29 +30,48 @@
         let currentInput = $(this)
         let currentValue = parseInt($(`#id_qty_${itemId}`).val());
         let maxValue = parseInt($(`#id_qty_${itemId}`).attr('max'));
-        if ( currentValue > maxValue ){
-            let quantityFeedback = $(`#too_high_qty_${itemId}`);
-            quantityFeedback.show();
-            // Credit to zzzzBov for hiding element after a period of time 
-            // [stackoverflow](https://stackoverflow.com/questions/4127527/how-to-show-div-for-10-seconds-and-then-hide-it)
-            setTimeout(function(){
-                quantityFeedback.hide();
-            }, 4000);
-            // The value shown is different than the real value ???????????????
-            currentInput.val(maxValue);
-            handleEnableDisable(itemId);
+        let newValue;
+        var quantityFeedback;
 
+        if ( currentValue > maxValue ){
+            quantityFeedback = $(`#too_high_qty_${itemId}`);
+            newValue = maxValue;
         } else if ( currentValue <= 0 ) {
-            let quantityFeedback = $(`#too_small_qty_${itemId}`);
-            quantityFeedback.show();
-            setTimeout(function(){
-                quantityFeedback.hide();
-            }, 4000);
-            currentInput.val(1);
-            handleEnableDisable(itemId);
+            quantityFeedback = $(`#too_small_qty_${itemId}`);
+            newValue = 1;
         }
-        let form = $(this).closest('.update-form');
-        form.submit();
+        currentInput.val(newValue);
+        handleEnableDisable(itemId);
+
+        quantityFeedback.show();
+        setTimeout(function(){
+            quantityFeedback.hide();
+        }, 4000);
+
+        submitQuantityForm(currentInput);
     });
 
+    // Increment product quantity
+    $('.increment-qty').click(function(e) {
+        e.preventDefault();
+        let closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        let currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue + 1);
+        let itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+
+        submitQuantityForm(closestInput);
+    });
+
+    // Decrement product quantity
+    $('.decrement-qty').click(function(e) {
+        e.preventDefault();
+        let closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        let currentValue = parseInt($(closestInput).val());
+        $(closestInput).val(currentValue - 1);
+        let itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+
+        submitQuantityForm(closestInput);
+    });
 </script>

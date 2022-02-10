@@ -1,4 +1,4 @@
-''' Custom template filter '''
+''' Custom template filter for shopping bag '''
 from django import template
 
 register = template.Library()

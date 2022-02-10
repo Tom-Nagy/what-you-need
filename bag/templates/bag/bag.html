@@ -92,7 +92,7 @@
                                                 <div class="col-8">
                                                     <div class="input-group h-100">
                                                         <div class="input-group-prepend">
-                                                            <button class="decrement-qty" type="submit" 
+                                                            <button class="decrement-qty" 
                                                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                                 <span>
                                                                     <i class="fas fa-minus"></i>
@@ -104,7 +104,7 @@
                                                             value="{{ item.quantity }}" 
                                                             min="1" max="{{ item.product.quantity| calc_max_value:item.quantity }}">
                                                         <div class="input-group-append">
-                                                            <button class="increment-qty" type="submit"
+                                                            <button class="increment-qty"
                                                                 data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                                                 <span>
                                                                     <i class="fas fa-plus"></i>
