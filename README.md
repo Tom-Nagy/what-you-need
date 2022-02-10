@@ -418,6 +418,14 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ## Bugs
 
+* Expected result:
+  * When selecting a quantity for a product by entering value in the selector input (not using buttons), if the value entered is superior to the quantity of the product (quantity available), the value should be set to maximum quantity available.
+  This feature is handle by javascript in products/templates/products/include/quantity_input_script.html
+* Bug:
+  * The quantity return to the selector input is equal to the max quantity - 1.
+* Fix:
+  * return set the new value after the handleEnableDisable function is called and outside the if statement.
+
 ## Credits
 
 ### Code

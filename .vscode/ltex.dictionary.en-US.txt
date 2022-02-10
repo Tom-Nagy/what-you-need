@@ -80,3 +80,11 @@ allQtyInputs
 currentInput
 quantityFeedback
 setTimeout
+scrollTo
+javascript
+btn-large
+table-sm
+prev
+newInput
+minValue
+stackoverflow
