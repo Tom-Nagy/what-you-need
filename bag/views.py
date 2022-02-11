@@ -24,11 +24,20 @@ def add_to_bag(request, item_id):
             bag[item_id] += quantity
             product.quantity -= quantity
             product.save()
+            messages.success(request,
+                             f'Added {quantity} more {product.name}'
+                             'to your bag')
         else:
             bag[item_id] = quantity
             product.quantity -= quantity
             product.save()
-            messages.success(request, f'Added {product.name} to your bag')
+            messages.success(request,
+                             f'{quantity} {product.name} added to your bag')
+    else:
+        messages.error(request,
+                       f'The quantity selected for {product.name}'
+                       'is not available')
+        return redirect(redirect_url)
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -50,7 +59,9 @@ def adjust_bag(request, item_id):
     if item_id in list(bag.keys()):
         bag_item_quantity = bag[item_id]
     else:
-        print('this item is not in the bag')
+        messages.error(request,
+                       'It seems that this item is not in your bag \
+                       If you need assistance, please contact us')
         redirect(reverse('view_bag'))
 
     if requested_quantity < bag_item_quantity:
@@ -58,12 +69,22 @@ def adjust_bag(request, item_id):
         product.quantity += dif_qty
         product.save()
         bag[item_id] = requested_quantity
+        messages.success(request,
+                         f'Quantity for {product.name}'
+                         f' changed to {requested_quantity}')
     elif requested_quantity > bag_item_quantity:
         dif_qty = requested_quantity - bag_item_quantity
         if available_quantity >= dif_qty:
             product.quantity -= dif_qty
             product.save()
             bag[item_id] = requested_quantity
+            messages.success(request,
+                             f'Quantity for {product.name}'
+                             f' changed to {requested_quantity}')
+        else:
+            messages.error(request,
+                           f'The quantity selected for {product.name}'
+                           ' is not available')
 
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
@@ -80,15 +101,19 @@ def remove_from_bag(request, item_id):
         if item_id in list(bag.keys()):
             bag_item_quantity = bag[item_id]
         else:
-            print('this item is not in the bag')
+            messages.error(request,
+                           'It seems that this item is not in your bag \
+                           If you need assistance, please contact us')
             redirect(reverse('view_bag'))
 
         product.quantity += bag_item_quantity
         product.save()
         bag.pop(item_id)
 
+        messages.success(request, f'{product.name} removed from bag')
         request.session['bag'] = bag
         return HttpResponse(status=200)
 
     except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)

@@ -213,6 +213,12 @@ a {
     height: 2px;
 }
 
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 /* --------------------------------------- Media queries */
 
 @media (min-width: 720px) {

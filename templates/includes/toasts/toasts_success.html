@@ -7,6 +7,69 @@
         </button>
     </div>
     <div class="toast-body bg-white">
-        {{ message }}
+        <div class="row">
+            <div class="col">
+                {{ message }}
+                <hr class="mt-1 mb-3">
+            </div>
+        </div>
+        {% if grand_total and not on_profile_page %}
+            <!-- Products count -->
+            <div class="row">
+                <div class="col-12">
+                    <span class="badge badge-info">
+                        {% if product_count > 1 %}
+                            There are {{ product_count }} plants
+                        {% else %}
+                            There is {{ product_count }} plant
+                        {% endif %} in your bag
+                    </span>
+                </div>
+            </div>
+            <div class="bag-notification-wrapper">
+                {% for item in bag_items %}
+                    <div class="row">
+                        <div class="col-3 my-1">
+                            {% if item.product.image.url %}
+                                <img class="img-fluid card-products-images" 
+                                    src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else %}
+                                <img class="img-fluid card-products-images" 
+                                    src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="col-9">
+                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                            <P class="my-0">€ {{ item.product.price }}</P>
+                            <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr class="mb-1 w-100">
+                    <hr class="mt-1 w-100">
+                    {% if discount %}
+                        <p class="my-0">Discount: € {{ discount|floatformat:2 }}</p>
+                    {% endif %}
+                    
+                    {% if product_count == 0 %}
+                        <p class="my-0 badge badge-warning">Get {{ free_product_threshold }} plants to have one Free.</p>
+                    {% elif product_count < 3 %}
+                        <p class="my-0 badge badge-warning">Get {{ free_product_threshold }} more plants to have one Free.</p>
+                    {% else %}
+                        <p class="my-0 badge badge-warning">Get {{ free_product_threshold }} more plants and have another one Free.</p>
+                    {% endif %}
+                    <p><strong>Total: € {{ grand_total|floatformat:2 }}</strong></p>
+                    <a href="{% url 'view_bag' %}" class="btn">
+                        <span class="text-uppercase">Checkout</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
