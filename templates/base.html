@@ -77,7 +77,25 @@
         </div>
 
         {% if messages %}
-            <div class="message-container"></div>
+            <div class="message-container">
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        <!-- error level -->
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toasts_error.html' %}
+                        <!-- warning level -->
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toasts_warning.html' %}
+                        <!-- success level -->
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toasts_success.html' %}
+                        <!-- info -->
+                        {% else %}
+                            {% include 'includes/toasts/toasts_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
         {% endif %}
 
         {% include 'includes/sorting-menu.html' %}
@@ -104,6 +122,10 @@
         </footer>
 
         {% block postloadjs %}
+        <script type="text/javascript">
+            // Display toasts messages
+            $('.toast').toast('show');
+        </script>
         {% endblock %}
 
 
