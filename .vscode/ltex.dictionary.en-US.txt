@@ -92,3 +92,6 @@ newValue
 quantityInput
 submitQuantityForm
 
+displayFeedback
+csrfmiddlewaretoken
+csrfToken

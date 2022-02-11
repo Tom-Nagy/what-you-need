@@ -42,13 +42,10 @@ def adjust_bag(request, item_id):
     requested_quantity = int(request.POST.get('quantity'))
     available_quantity = product.quantity
     bag = request.session.get('bag', {})
-    print(bag)
-    print(bag.items())
     bag_item_quantity = 0
 
     if item_id in list(bag.keys()):
         bag_item_quantity = bag[item_id]
-
     else:
         print('this item is not in the bag')
         redirect(reverse('view_bag'))
@@ -67,3 +64,28 @@ def adjust_bag(request, item_id):
 
     request.session['bag'] = bag
     return redirect(reverse('view_bag'))
+
+
+def remove_from_bag(request, item_id):
+    ''' Remove item from the bag '''
+
+    try:
+        product = get_object_or_404(Product, pk=item_id)
+        bag = request.session.get('bag', {})
+        bag_item_quantity = 0
+
+        if item_id in list(bag.keys()):
+            bag_item_quantity = bag[item_id]
+        else:
+            print('this item is not in the bag')
+            redirect(reverse('view_bag'))
+
+        product.quantity += bag_item_quantity
+        product.save()
+        bag.pop(item_id)
+
+        request.session['bag'] = bag
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        return HttpResponse(status=500)

@@ -33,7 +33,6 @@
             }, 4000);
             // The value shown is different than the real value ???????????????
             currentInput.val(maxValue + 1);
-            console.log(currentInput.val());
             handleEnableDisable(itemId);
         } else if ( currentValue <= 0 ) {
             let quantityFeedback = $(`#too_small_qty_${itemId}`);
@@ -42,6 +41,9 @@
                 quantityFeedback.hide();
             }, 4000);
             currentInput.val(1);
+            handleEnableDisable(itemId);
+        } else {
+            currentInput = currentValue;
             handleEnableDisable(itemId);
         }
     });

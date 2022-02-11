@@ -92,13 +92,13 @@
                                 </div>
                             </div>
                             <div class="row no-gutters">
-                                <div class="col-8">
+                                <div class="col-4">
                                     <!-- Quantity form -->
                                     <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <div class="row no-gutters">
-                                                <div class="col-8">
+                                                <div class="col-12">
                                                     <div class="input-group h-100">
                                                         <div class="input-group-prepend">
                                                             <button class="decrement-qty" 
@@ -131,25 +131,21 @@
                                                                 That is too little! min = 1
                                                             </small>
                                                         </div>
-                                                        <div class="input-qty-feedback" id="not_int_qty_{{ item.item_id }}">
-                                                            <small class="badge badge-warning">
-                                                                We only do full plants! whole number only.
-                                                            </small>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-4">
-                                                    <!-- Delete product -->
-                                                    <button class="m-1" name="delete" data-item_id="{{ item.item_id }}">
-                                                        <span class="icon">
-                                                            <i class="far fa-trash-alt"></i>
-                                                        </span>
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </form>
+                                </div>
+                                <!-- Remove product -->
+                                <div class="col-4">
+                                    <button class="m-1 remove-item" id="remove_{{ item.item_id }}" 
+                                        name="delete" data-item_id="{{ item.item_id }}">
+                                        <span class="icon">
+                                            <i class="far fa-trash-alt"></i>
+                                        </span>
+                                    </button>
                                 </div>
                                 <!-- move to wishlist -->
                                 <div class="col-4">
@@ -243,19 +239,18 @@
         })
     </script>
 
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         // Remove item and reload on click
         $('.remove-item').click(function(e) {
             let csrfToken = "{{ csrf_token }}";
             let itemId = $(this).attr('id').split('remove_')[1]; // to get the second part of the split
-            let size = $(this).data('product_size');
             let url = `/bag/remove/${itemId}/`;
-            let data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+            let data = {'csrfmiddlewaretoken': csrfToken};
 
             $.post(url, data)
                 .done(function() {
                     location.reload();
             });
         });
-    </script> -->
+    </script>
 {% endblock %}
