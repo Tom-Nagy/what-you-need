@@ -374,6 +374,9 @@ For providing screenshots of the responsiveness of the website across several de
 * [Autoprefixer CSS online](https://autoprefixer.github.io/)  
 For adding prefixer in style.css for cross browser compatibility.
 
+* [cdnjs](https://cdnjs.com/libraries/jquery-cookie)  
+For jQuery cookie
+
 * [Git](https://git-scm.com/)  
 For Version control.
 
@@ -430,8 +433,11 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Code
 
+* For scrolling back to saved position:
+  * Credit to Joonas from [Satckoverflow post](https://stackoverflow.com/questions/12744145/how-to-remember-scroll-position-of-page/12744617)
+
 * For hiding element after a period of time:
-  * Credit to zzzzBov from [stackoverflow](https://stackoverflow.com/questions/4127527/how-to-show-div-for-10-seconds-and-then-hide-it)
+  * Credit to zzzzBov from [Stackoverflow post](https://stackoverflow.com/questions/4127527/how-to-show-div-for-10-seconds-and-then-hide-it)
 
 * For sorting a list and returning a list:
   * Credit to venpa from [Stackoverflow post](https://stackoverflow.com/questions/22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
