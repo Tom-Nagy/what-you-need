@@ -114,12 +114,17 @@
                                                         <!-- Quantity feedback messages -->
                                                         <div class="input-qty-feedback" id="too_high_qty_{{ item.item_id }}">
                                                             <small class="badge badge-warning">
-                                                                We dont have that many! max = {{ item.product.quantity }}
+                                                                We dont have that many! max = {{ item.product.quantity| calc_max_value:item.quantity }}
                                                             </small>
                                                         </div>
                                                         <div class="input-qty-feedback" id="too_small_qty_{{ item.item_id }}">
                                                             <small class="badge badge-warning">
                                                                 That is too little! min = 1
+                                                            </small>
+                                                        </div>
+                                                        <div class="input-qty-feedback" id="not_int_qty_{{ item.item_id }}">
+                                                            <small class="badge badge-warning">
+                                                                We only do full plants! whole number only.
                                                             </small>
                                                         </div>
                                                     </div>
@@ -220,30 +225,13 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    {% include 'bag/includes/set_position_back_script.html' %}
     {% include 'bag/includes/quantity_input_and_update_bag_script.html' %}
     <!-- Handle the back to top link -->
     <script type="text/javascript">
         $('#back-to-top-link').click(function(e) {
         window.scrollTo(0,0)
         })
-
-        // Credit to Joonas for scrolling back to saved position code from. 
-        // [Satckoverflow post](https://stackoverflow.com/questions/12744145/how-to-remember-scroll-position-of-page/12744617)
-        $(document).ready(function() {
-
-            // If cookie is set, scroll to the position saved in the cookie.
-            if ( $.cookie("scroll") !== null ) {
-                $(document).scrollTop( $.cookie("scroll") );
-            }
-
-            // When scrolling happens....
-            $(window).on("scroll", function() {
-
-                // Set a cookie that holds the scroll position.
-                $.cookie("scroll", $(document).scrollTop() );
-
-            });
-        });
     </script>
 
     <!-- <script type="text/javascript">

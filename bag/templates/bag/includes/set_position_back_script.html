@@ -1,0 +1,19 @@
+<script type="text/javascript">
+    // Credit to Joonas for scrolling back to saved position code from. 
+    // [Satckoverflow post](https://stackoverflow.com/questions/12744145/how-to-remember-scroll-position-of-page/12744617)
+    $(document).ready(function() {
+
+    // If cookie is set, scroll to the position saved in the cookie.
+    if ( $.cookie("scroll") !== null ) {
+        $(document).scrollTop( $.cookie("scroll") );
+    }
+
+    // When scrolling happens....
+    $(window).on("scroll", function() {
+
+        // Set a cookie that holds the scroll position.
+        $.cookie("scroll", $(document).scrollTop() );
+
+    });
+});
+</script>

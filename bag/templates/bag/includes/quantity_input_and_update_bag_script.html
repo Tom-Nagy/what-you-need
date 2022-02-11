@@ -28,27 +28,38 @@
     $('.qty_input').change(function() {
         let itemId = $(this).data('item_id');
         let currentInput = $(this)
-        let currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        let currentValue = Number($(`#id_qty_${itemId}`).val());
+        console.log(`current value ${currentValue}`)
         let maxValue = parseInt($(`#id_qty_${itemId}`).attr('max'));
         let newValue;
         var quantityFeedback;
 
-        if ( currentValue > maxValue ){
-            quantityFeedback = $(`#too_high_qty_${itemId}`);
-            newValue = maxValue;
-        } else if ( currentValue <= 0 ) {
-            quantityFeedback = $(`#too_small_qty_${itemId}`);
-            newValue = 1;
+        // check if the value is an integer
+        if (Number.isInteger(currentValue)){
+            if ( currentValue > maxValue ){
+                quantityFeedback = $(`#too_high_qty_${itemId}`);
+                newValue = maxValue;
+            } else if ( currentValue <= 0 ) {
+                quantityFeedback = $(`#too_small_qty_${itemId}`);
+                newValue = 1;
+            }
+            currentInput.val(newValue);
+            handleEnableDisable(itemId);
+
+            quantityFeedback.show();
+            setTimeout(function(){
+                quantityFeedback.hide();
+            }, 4000);
+
+            submitQuantityForm(currentInput);
+        } else {
+            quantityFeedback = $(`#not_int_qty_${itemId}`);
+            quantityFeedback.show();
+            setTimeout(function(){
+                quantityFeedback.hide();
+                location.reload();
+            }, 2000);
         }
-        currentInput.val(newValue);
-        handleEnableDisable(itemId);
-
-        quantityFeedback.show();
-        setTimeout(function(){
-            quantityFeedback.hide();
-        }, 4000);
-
-        submitQuantityForm(currentInput);
     });
 
     // Increment product quantity
