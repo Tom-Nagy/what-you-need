@@ -34,19 +34,21 @@ def add_to_bag(request, item_id):
 def adjust_bag(request, item_id):
     '''
     Adjust the quantity of the specified product
-    to the specified/possible amount in the shopping bag
+    to the specified/possible amount in the shopping bag.
+    Update the product quantity(stock).
     '''
 
     product = get_object_or_404(Product, pk=item_id)
     requested_quantity = int(request.POST.get('quantity'))
-    print(f'quantity = {requested_quantity}')
     available_quantity = product.quantity
-    print(f'available quantity = {available_quantity}')
     bag = request.session.get('bag', {})
+    print(bag)
+    print(bag.items())
+    bag_item_quantity = 0
 
     if item_id in list(bag.keys()):
         bag_item_quantity = bag[item_id]
-        print(f'bag item_id quantity = {bag[item_id]}')
+
     else:
         print('this item is not in the bag')
         redirect(reverse('view_bag'))
@@ -55,14 +57,12 @@ def adjust_bag(request, item_id):
         dif_qty = bag_item_quantity - requested_quantity
         product.quantity += dif_qty
         product.save()
-        print(f'new quantity = {product.quantity}')
         bag[item_id] = requested_quantity
     elif requested_quantity > bag_item_quantity:
         dif_qty = requested_quantity - bag_item_quantity
         if available_quantity >= dif_qty:
             product.quantity -= dif_qty
             product.save()
-            print(f'new quantity = {product.quantity}')
             bag[item_id] = requested_quantity
 
     request.session['bag'] = bag

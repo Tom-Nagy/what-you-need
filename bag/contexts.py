@@ -26,6 +26,12 @@ def bag_contents(request):
         total += quantity * product.price
         product_count += quantity
         product_subtotal = quantity * product.price
+
+        if product.quantity == 0:
+            took_last_item = True
+        else:
+            took_last_item = False
+
         for prices in range(quantity):
             products_price_list.append(float(product.price))
 
@@ -34,6 +40,7 @@ def bag_contents(request):
             'quantity': quantity,
             'product': product,
             'product_subtotal': product_subtotal,
+            'took_last_item': took_last_item,
         })
     products_price_list.sort()
 

@@ -60,12 +60,21 @@
                                             </div>
                                             <div class="col-12">
                                                 {% if item.product.quantity == 0 %}
-                                                    <p class="card-text">
-                                                        <span class="badge badge-pill badge-danger badge-product-quantity"
-                                                        >Out of stock</span>
-                                                        <span class="card-text my-0"><small class="text-muted">
-                                                            It will be back in stock soon</small></span>
-                                                    </p>
+                                                    {% if item.took_last_item %}
+                                                        <p class="card-text">
+                                                            <span class="badge badge-pill badge-danger badge-product-quantity"
+                                                            >No more</span>
+                                                            <span class="card-text my-0"><small class="text-muted">
+                                                                You got the last one</small></span>
+                                                        </p>
+                                                    {% else %}
+                                                        <p class="card-text">
+                                                            <span class="badge badge-pill badge-danger badge-product-quantity"
+                                                            >Out of stock</span>
+                                                            <span class="card-text my-0"><small class="text-muted">
+                                                                It will be back in stock soon</small></span>
+                                                        </p>
+                                                    {% endif %}
                                                 {% elif item.product.quantity <= 5 %}
                                                     <p class="card-text">
                                                         <span class="badge badge-pill badge-warning badge-product-quantity">
