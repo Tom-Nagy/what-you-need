@@ -456,6 +456,52 @@ Navigation menu done with a tutorial from adapted for this project.
     left: 0;
 }
 
+.decrement-qty,
+.increment-qty {
+    font-size: 12px;
+    border-radius: 0.25rem;
+    border: 2px solid #052614;
+}
+
+.decrement-qty:hover,
+.decrement-qty:focus,
+.decrement-qty:active,
+.increment-qty:hover,
+.increment-qty:focus,
+.increment-qty:active {
+    background-color: #078c5b;
+}
+
+.input-group {
+    background-color: #f2f2f2;
+}
+
+.form-control {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px;
+    margin: 0 3px;
+    border-radius: 0.2rem !important;
+    border: 1px solid #052614;
+}
+
+.prod-detail-add-to-bag-btn-wrapper {
+    position: absolute;
+    top: -2px;
+    left: 40%;
+}
+
+.prod-detail-qty-input-wrapper {
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+
+.prod-detail-buy-now-wrapper {
+    position: absolute;
+    top: -2px;
+    left: 70%;
+}
+
 /* --------------------------------------- Toasts messages */
 
 .message-container {
