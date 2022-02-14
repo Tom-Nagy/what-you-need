@@ -57,6 +57,7 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort} {direction}'
+    on_product_page = True
 
     context = {
         'products': products,
@@ -64,6 +65,7 @@ def all_products(request):
         'category_selected': category_selected,
         'current_category': current_category,
         'current_sorting': current_sorting,
+        'on_product_page': on_product_page,
     }
     return render(request, 'products/products.html', context)
 
@@ -72,8 +74,10 @@ def product_detail(request, product_id):
     ''' A view to display details of individual product. '''
 
     product = get_object_or_404(Product, pk=product_id)
+    on_product_page = True
 
     context = {
         'product': product,
+        'on_product_page': on_product_page,
     }
     return render(request, 'products/product_detail.html', context)

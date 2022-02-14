@@ -95,3 +95,8 @@ submitQuantityForm
 displayFeedback
 csrfmiddlewaretoken
 csrfToken
+callout-btn
+nav-icons-sm
+nav-icons-sm-text
+li
+nav-list-option-sm

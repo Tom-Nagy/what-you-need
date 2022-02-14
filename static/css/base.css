@@ -1,3 +1,12 @@
+
+.colors {
+    color: #03a65a;
+    color: #078c5b; /* titles */
+    color: #07593b;
+    color: #052614;
+    color: #0d0d0d;
+}
+
 /* ------------------------------------ Main content config */
 
 html {
@@ -14,6 +23,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
+    color: #078c5b;
 }
 
 p {
@@ -34,45 +44,13 @@ a {
     cursor: pointer;
 }
 
-/* Logo */
-
-.main-logo-sm {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 15px;
-    background-color: #f2f2f2;
-}
-
-/* Back to top button */
-
-.scroll-to-top {
-    /* height: 30px;
-    width: 30px; */
-    position: fixed;
-    bottom: 90px;
-    right: 12px;
+a:hover {
+    text-decoration: none;
 }
 
 /* icons */
 .icon {
     color: #052614;
-}
-
-
-/* ------------------------------------------- Navigation menu */
-
-.navigation-menu-container {
-    background-color: #03a65a;
-}
-
-.navigation-menu-container-lg {
-    background-color: #fff;
-    box-shadow: 0px -60px #f2f2f2;
-}
-
-.nav-icons {
-    color: #0d0d0d;
 }
 
 .dropup .dropdown-toggle::after,
@@ -81,13 +59,177 @@ a {
     content: none;
 }
 
-.new-nav-bar {
-    z-index: 1000000000000000;
+/* Titles */
+
+.main-title {
+    margin-top: 30px;
 }
 
-/* search menu and categories */
+.page-heading {
+    margin: 3px;
+}
 
-/* customise dropdown position for large screen */
+/* Header */
+.header-container {
+    height: 130px;
+}
+
+/* Footer */
+.footer-container {
+    height: 85px;
+}
+
+/* Back to top button */
+.scroll-to-top {
+    /* height: 30px;
+    width: 30px; */
+    position: fixed;
+    bottom: 90px;
+    right: 12px;
+}
+
+/* ------------------------------------- Small screen header */
+
+.header-container-sm {
+    height: 42px;
+}
+.main-logo-sm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    z-index: 9999;
+}
+
+.main-logo-sm img {
+    border-radius: 50%;
+}
+
+/* ------------------------------------------------------- Navbar small screen */
+
+.navigation-menu-container-sm {
+    color: #0d0d0d;
+    background-color: #03a65a;
+    border-radius: 10px;
+    padding-bottom: 3px;
+
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navigation-menu-container-sm .list-inline-item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.nav-icons-sm {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.nav-icons-sm i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.nav-icons-sm-text {
+    margin-top: -6px;
+    margin-bottom: 0;
+}
+
+/* 
+Navigation menu done with a tutorial from adapted for this project.
+[Online Tutorials](https://www.youtube.com/watch?v=ArTVfdHOB-M&list=PLKmECQB4ukRQPKzgKL1zpx3NeE-YlYF4o&index=62&t=51s) 
+*/
+
+.on-page .nav-icons-sm,
+.navigation-menu-container-sm li:hover .nav-icons-sm,
+.navigation-menu-container-sm li:focus .nav-icons-sm,
+.navigation-menu-container-sm li:active .nav-icons-sm {
+    font-size: 1.2rem;
+    background-color: #03a65a;
+    transform: translateY(-25px);
+    -webkit-transform: translateY(-25px);
+    -o-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    
+    transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -webkit-transition-duration: 300ms;
+    
+    -webkit-box-shadow: 0 2px 0 6px #f2f2f2;
+    box-shadow: 0 2px 0 6px #f2f2f2;
+}
+
+.on-page .nav-icons-sm-text,
+.navigation-menu-container-sm li:hover .nav-icons-sm-text,
+.navigation-menu-container-sm li:focus .nav-icons-sm-text,
+.navigation-menu-container-sm li:active .nav-icons-sm-text {
+    font-weight: 800;
+}
+
+.on-page .nav-icons-sm::before,
+.navigation-menu-container-sm li:hover .nav-icons-sm::before,
+.navigation-menu-container-sm li:focus .nav-icons-sm::before,
+.navigation-menu-container-sm li:active .nav-icons-sm::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border-top-right-radius: 20px;
+    -webkit-box-shadow: 2px -5px 0 0 #f2f2f2;
+    box-shadow: 2px -5px 0 0 #f2f2f2;
+}
+
+.on-page .nav-icons-sm::after,
+.navigation-menu-container-sm li:hover .nav-icons-sm::after,
+.navigation-menu-container-sm li:focus .nav-icons-sm::after,
+.navigation-menu-container-sm li:active .nav-icons-sm::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -50%;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border-top-left-radius: 20px;
+    -webkit-box-shadow: -2px -5px 0 0 #f2f2f2;
+    box-shadow: -2px -5px 0 0 #f2f2f2;
+}
+
+.nav-list-option-sm {
+    top: -24px !important;
+    left: 30px !important;
+}
+
+/* ------------------------------------------- Navbar large screen */
+
+.navigation-menu-container-lg {
+    background-color: #fff;
+    box-shadow: 
+        0 15px 15px 3px #f2f2f2,
+        0 -60px 0px 60px #f2f2f2;
+    border-radius: 5px;
+}
+
+.nav-icons-wrapper {
+    margin-top: 2px;
+    color: #0d0d0d;
+}
+
+
+/* ------------------------------------------------ Search menu and categories */
+
+/* customised dropdown position for large screen */
 .search-dropdown-container-lg {
     position: absolute;
     top: 50%;
@@ -105,7 +247,7 @@ a {
     overflow-y: scroll;
 }
 
-/* customise dropup position for small screen */
+/* customised dropup position for small screen */
 .search-dropdown-container-sm {
     position: absolute;
     top: -50% !important;
@@ -155,21 +297,69 @@ a {
     margin: 0;
 }
 
-/* Titles */
+/* ------------------------------------------- home page */
 
-.main-title {
-    margin-top: 15px;
+.home-image {
+    margin: 0.5rem;
+    border-radius: 5px;
 }
 
-/* Footer */
-
-.footer-container {
-    height: 85px;
+.callout-btn-container {
+    margin-top: 45px;
 }
 
-/* Header */
-.header-container {
-    height: 130px;
+.callout-btn {
+    padding: 6px;
+    font-weight: 800;
+    background-color: #078c5b;
+    color: #0d0d0d;
+    border: 2px solid #0d0d0d;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+
+    transition-property: transform, box-shadow;
+    -o-transition-property: transform, box-shadow;
+    -ms-transition-property: transform, box-shadow;
+    -moz-transition-property: transform, box-shadow;
+    -webkit-transition-property: transform, box-shadow;
+
+    -webkit-transition-property: -webkit-transform, -webkit-box-shadow;
+    transition-property: -webkit-transform, -webkit-box-shadow;
+    transition-property: transform, box-shadow, -webkit-transform, -webkit-box-shadow;
+}
+
+.callout-btn:hover,
+.callout-btn:focus,
+.callout-btn:active {
+    padding: 12px;
+    font-size: 110%;
+    color: #fff;
+
+    transform: translateY(6px);
+    -webkit-transform: translateY(6px);
+    -o-transform: translateY(6px);
+    -ms-transform: translateY(6px);
+    -moz-transform: translateY(6px);
+
+    -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* .subjects-buttons:hover {
+
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+
+    -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+} */
+
+.landing-page-container {
+    height: calc(100vh - 130px);
 }
 
 /* ----------------------------------------- all_products card */
@@ -221,13 +411,39 @@ a {
 
 /* --------------------------------------- Media queries */
 
+@media (max-width: 720px) {
+    .landing-page-container {
+        height: calc(100vh - 42px);
+    }
+    .main-title{
+        font-size: 2rem;
+    }
+    .home-page-section {
+        font-size: 1.25rem;
+    }
+    .page-heading {
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .lead {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
+
+
 @media (min-width: 720px) {
 
-    .home-page-headings{
+    .home-page-section {
         position: relative;
     }
-    .home-page-internal-links {
+    .home-page-internal-link {
         position: absolute;
         transform: translateY(-180px);
+    }
+    .lead {
+        font-weight: 400;
     }
 }

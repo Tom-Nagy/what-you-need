@@ -8,7 +8,12 @@ from products.models import Product
 
 def view_bag(request):
     ''' A view that return the bag contents page '''
-    return render(request, 'bag/bag.html')
+    on_bag_page = True
+
+    context = {
+        'on_bag_page': on_bag_page,
+    }
+    return render(request, 'bag/bag.html', context)
 
 
 def add_to_bag(request, item_id):

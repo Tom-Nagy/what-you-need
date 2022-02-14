@@ -2,59 +2,61 @@
     <div class="container fixed-bottom mb-3">
         <div class="row justify-content-center">
             <div class="col-10">
-                <ul class="list-inline list-unstyled text-center my-0 navigation-menu-container">
+                <ul class="list-inline list-unstyled text-center my-0 navigation-menu-container-sm">
                     <!-- Home -->
-                    <li class="list-inline-item dropup">
-                        <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home" data-toggle="dropdown" aria-expanded="false">
-                            <div class="text-center nav-icons">
-                                <div><i class="fas fa-home"></i></div>
-                                <p class="my-0 small">Home</p>
+                    <li class="list-inline-item dropup {% if on_home_page %}on-page{% endif %}">
+                        <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home" 
+                            data-toggle="dropdown" aria-expanded="false">
+                            <div class="text-center nav-icons-wrapper">
+                                <div class="nav-icons-sm"><i class="fas fa-home"></i></div>
+                                <p class="small nav-icons-sm-text">Home</p>
                             </div>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-menu-home">
+                        <div class="dropdown-menu nav-list-option-sm" aria-labelledby="dropdown-menu-home">
                             <a href="{% url 'home' %}" aria-label="Link to home landing page." 
-                            class="dropdown-item nav-link">Home</a>
+                            class="dropdown-item">Home</a>
                             <a href="{% url 'home' %}#about-us" aria-label="Link to home  page about us section." 
-                            class="dropdown-item nav-link">About us</a>
+                            class="dropdown-item">About us</a>
                             <a href="{% url 'home' %}#contact-us" aria-label="Link to home page contact us section." 
-                            class="dropdown-item nav-link">Contact us</a>
+                            class="dropdown-item">Contact us</a>
                             <a href="{% url 'home' %}#terms-and-conditions" aria-label="Link to home page terms and conditions section." 
-                            class="dropdown-item nav-link">Ts & Cs</a>
+                            class="dropdown-item">Ts & Cs</a>
                         </div>
                     </li>
                     <!-- Profile -->
-                    <li class="list-inline-item dropup">
-                        <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile" data-toggle="dropdown" aria-expanded="false">
-                            <div class="text-center nav-icons">
-                                <div><i class="fas fa-user"></i></div>
-                                <p class="my-0 small">Profile</p>
+                    <li class="list-inline-item dropup {% if on_profile_page %}on-page{% endif %}">
+                        <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile" 
+                            data-toggle="dropdown" aria-expanded="false">
+                            <div class="text-center nav-icons-wrapper">
+                                <div class="nav-icons-sm"><i class="fas fa-user"></i></div>
+                                <p class="small nav-icons-sm-text">Profile</p>
                             </div>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-menu-profile">
+                        <div class="dropdown-menu nav-list-option-sm" aria-labelledby="dropdown-menu-profile">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <a href="#" class="dropdown-item nav-link">Product Management</a>
+                                    <a href="#" class="dropdown-item">Product Management</a>
                                 {% endif %}
-                                <a href="#" class="dropdown-item nav-link">Account details</a>
-                                <a href="#" class="dropdown-item nav-link">Order history</a>
-                                <a href="#" class="dropdown-item nav-link">My wishlist</a>
+                                <a href="#" class="dropdown-item">Account details</a>
+                                <a href="#" class="dropdown-item">Order history</a>
+                                <a href="#" class="dropdown-item">My wishlist</a>
                                 <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
-                                class="dropdown-item nav-link">Logout</a>
+                                class="dropdown-item">Logout</a>
                             {% else %}
                                 <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
-                                class="dropdown-item nav-link">Sign in</a>
+                                class="dropdown-item">Sign in</a>
                                 <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
-                                class="dropdown-item nav-link">Create an account</a>
+                                class="dropdown-item">Create an account</a>
                             {% endif %}
                         </div>
                     </li>
                     <!-- Bag -->
-                    <li class="list-inline-item">
+                    <li class="list-inline-item {% if on_bag_page %}on-page{% endif %}">
                         <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
-                        class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
-                            <div class="text-center nav-icons">
-                                <div><i class="fas fa-shopping-bag"></i></div>
-                                <p class="my-0 small">
+                        class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
+                            <div class="text-center nav-icons-wrapper">
+                                <div class="nav-icons-sm"><i class="fas fa-shopping-bag"></i></div>
+                                <p class="small nav-icons-sm-text">
                                     {% if grand_total %}
                                     ${{ grand_total|floatformat:2 }}
                                     {% else %}
@@ -65,12 +67,12 @@
                         </a>
                     </li>
                     <!-- Search -->
-                    <li class="list-inline-item dropup">
+                    <li class="list-inline-item dropup {% if on_product_page %}on-page{% endif %}">
                         <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search" data-toggle="dropdown" 
                         aria-expanded="false">
-                            <div class="text-center nav-icons">
-                                <div><i class="fas fa-search"></i></div>
-                                <p class="my-0 small">Search</p>
+                            <div class="text-center nav-icons-wrapper">
+                                <div class="nav-icons-sm"><i class="fas fa-search"></i></div>
+                                <p class="small nav-icons-sm-text">Search</p>
                             </div>
                         </a>
                         <div class="dropdown-menu search-dropdown-container-sm" aria-labelledby="dropdown-menu-search">
@@ -116,6 +118,7 @@
                             </div>
                         </div>
                     </li>
+                    <div class="indicator"></div>
                 </ul>
             </div>
         </div>

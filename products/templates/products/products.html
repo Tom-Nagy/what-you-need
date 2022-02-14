@@ -8,16 +8,16 @@
                 <!-- Category and sorting display -->
                 {% if current_category %}
                     {% for c in current_category %}
-                        <h3 class="mx-auto text-center">
+                        <h2 class="mx-auto text-center page-heading">
                             {{ c.friendly_name }} 
                             <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
-                        </h3>
+                        </h2>
                     {% endfor %}
                 {% else %}
-                    <h3 class="mx-auto text-center">
+                    <h2 class="mx-auto text-center page-heading">
                         All Plants 
                         <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
-                    </h3>
+                    </h2>
                 {% endif %}
             </div>
             {% if products %}
@@ -43,7 +43,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters">
                                             <div class="col">
-                                                <h5 class="card-title">{{ product.name }}</h5>
+                                                <h3 class="card-title">{{ product.name }}</h3>
                                             </div>
                                             <div class="col">
                                                 <p class="text-right">

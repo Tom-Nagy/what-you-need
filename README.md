@@ -433,6 +433,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Code
 
+* Navigation menu for small screen:
+  * Navigation menu done with a tutorial from and adapted to the project. [Online Tutorials](https://www.youtube.com/watch?v=ArTVfdHOB-M&list=PLKmECQB4ukRQPKzgKL1zpx3NeE-YlYF4o&index=62&t=51s)
+
 * For scrolling back to saved position:
   * Credit to Joonas from [Satckoverflow post](https://stackoverflow.com/questions/12744145/how-to-remember-scroll-position-of-page/12744617)
 
