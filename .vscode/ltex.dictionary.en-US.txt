@@ -100,3 +100,7 @@ nav-icons-sm
 nav-icons-sm-text
 li
 nav-list-option-sm
+br
+more-detail-btn
+buy-now-btn
+add-to-bag-btn

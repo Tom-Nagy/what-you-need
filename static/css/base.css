@@ -1,9 +1,9 @@
 
 .colors {
-    color: #03a65a;
-    color: #078c5b; /* titles */
-    color: #07593b;
-    color: #052614;
+    color: #03a65a; /* navbar */
+    color: #078c5b; /* buttons background */
+    color: #07593b; /* titles */
+    color: #052614; /* buttons */
     color: #0d0d0d;
 }
 
@@ -21,9 +21,13 @@ body {
     background-color: #f2f2f2;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
     font-family: 'Poppins', sans-serif;
     color: #078c5b;
+}
+
+h3, h4, h5, h6 {
+    color: #07593b;
 }
 
 p {
@@ -163,8 +167,8 @@ Navigation menu done with a tutorial from adapted for this project.
     -moz-transition-duration: 300ms;
     -webkit-transition-duration: 300ms;
     
-    -webkit-box-shadow: 0 2px 0 6px #f2f2f2;
-    box-shadow: 0 2px 0 6px #f2f2f2;
+    -webkit-box-shadow: 0 3px 0 6px #f2f2f2;
+    box-shadow: 0 3px 0 6px #f2f2f2;
 }
 
 .on-page .nav-icons-sm-text,
@@ -180,14 +184,14 @@ Navigation menu done with a tutorial from adapted for this project.
 .navigation-menu-container-sm li:active .nav-icons-sm::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 54%;
     left: -50%;
     height: 20px;
     width: 20px;
     background-color: transparent;
     border-top-right-radius: 20px;
-    -webkit-box-shadow: 2px -5px 0 0 #f2f2f2;
-    box-shadow: 2px -5px 0 0 #f2f2f2;
+    -webkit-box-shadow: 2px -3px 0 0 #f2f2f2;
+    box-shadow: 2px -3px 0 0 #f2f2f2;
 }
 
 .on-page .nav-icons-sm::after,
@@ -196,14 +200,14 @@ Navigation menu done with a tutorial from adapted for this project.
 .navigation-menu-container-sm li:active .nav-icons-sm::after {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 54%;
     right: -50%;
     height: 20px;
     width: 20px;
     background-color: transparent;
     border-top-left-radius: 20px;
-    -webkit-box-shadow: -2px -5px 0 0 #f2f2f2;
-    box-shadow: -2px -5px 0 0 #f2f2f2;
+    -webkit-box-shadow: -2px -3px 0 0 #f2f2f2;
+    box-shadow: -2px -3px 0 0 #f2f2f2;
 }
 
 .nav-list-option-sm {
@@ -364,15 +368,77 @@ Navigation menu done with a tutorial from adapted for this project.
 
 /* ----------------------------------------- all_products card */
 
-.card-products {
-    /* card container */
-}
-.card-products-images {
-    /* card images */
+.card-product {
+    /* max-height: 300px; */
 }
 
-.card-products-description {
-    /* max-height: 60px; */
+.card-product-body {
+    padding: 0.5rem;
+    font-size: 14px;
+}
+
+.card-product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.card-product-category {
+    color: #0d0d0d;
+}
+
+.card-product-description {
+    margin-bottom: 0;
+}
+
+.wishlist-icon-wrapper {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    margin: 6px;
+}
+
+.wishlist-icon {
+    color: #052614;
+}
+
+/* 
+<span class="icon">
+    <i class="fas fa-plus-circle"></i>
+</span> 
+*/
+
+.more-detail-btn,
+.buy-now-btn,
+.add-to-bag-btn {
+    background-color: transparent;
+    color: #052614;
+    border: 1px solid #052614;
+    border-radius: 0.25rem;
+    padding: 5px;
+    font-size: 12px;
+    margin: 3px;
+    vertical-align: sub;
+    
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+
+.more-detail-btn:hover,
+.more-detail-btn:focus,
+.more-detail-btn:active,
+.buy-now-btn:hover,
+.buy-now-btn:focus,
+.buy-now-btn:active,
+.add-to-bag-btn:hover,
+.add-to-bag-btn:focus,
+.add-to-bag-btn:active {
+    background-color: #078c5b;
+    color: #fff;
+    font-size: 600;
+
+    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ----------------------------------------- product_detail card */
@@ -426,11 +492,16 @@ Navigation menu done with a tutorial from adapted for this project.
     }
     p {
         font-size: 0.9rem;
+        line-height: 1.2;
     }
     .lead {
         font-size: 1rem;
         font-weight: 400;
     }
+    
+    .card-product-images {
+        max-width: 100px;
+}
 }
 
 

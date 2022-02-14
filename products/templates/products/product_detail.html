@@ -5,22 +5,22 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 p-3">
-                <div class="card h-100 card-products">
+                <div class="card h-100 card-product">
                     <div class="row no-gutters">
                         <div class="col-12 text-center">
                             {% if product.image.url %}
                                 <a href="{{ product.image.url }}" target="_blank" aria-label="Link to view the image.">
-                                    <img class="img-fluid card-products-images" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    <img class="img-fluid card-product-images" src="{{ product.image.url }}" alt="{{ product.name }}">
                                 </a>
                             {% else %}
-                                <img class="img-fluid card-products-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                <img class="img-fluid card-product-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
                             {% endif %}
                         </div>
                         <div class="col-12">
-                            <div class="card-body">
+                            <div class="card-body card-product-body">
                                 <div class="row no-gutters">
                                     <div class="col">
-                                        <h3 class="card-title">{{ product.name }}</h3>
+                                        <h3 class="card-title card-product-title">{{ product.name }}</h3>
                                     </div>
                                     <div class="col">
                                         <p class="text-right">
@@ -44,13 +44,13 @@
                                         <div class="col-12 text-left">
                                             <a href="{% url 'products' %}?category={{ product.category.name }}" 
                                             aria-label="Link to {{ product.category.friendly_name }} category." 
-                                            class="">{{ product.category.friendly_name }}</a>
+                                            class="card-product-category text-muted">{{ product.category.friendly_name }}</a>
                                         </div>
                                     {% endif %}
                                 </div>
                                 <div class="row no-gutters">
                                     <div class="col-12">
-                                        <p class="card-text">
+                                        <p class="card-text card-product-description">
                                             {{ product.description }}<br>
                                         </p>
                                         {% if product.height %}
