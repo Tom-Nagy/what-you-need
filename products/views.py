@@ -58,6 +58,7 @@ def all_products(request):
 
     current_sorting = f'{sort} {direction}'
     on_product_page = True
+    need_sorting = True
 
     context = {
         'products': products,
@@ -66,6 +67,7 @@ def all_products(request):
         'current_category': current_category,
         'current_sorting': current_sorting,
         'on_product_page': on_product_page,
+        'need_sorting': need_sorting,
     }
     return render(request, 'products/products.html', context)
 

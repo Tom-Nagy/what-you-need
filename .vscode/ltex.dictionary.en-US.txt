@@ -120,3 +120,4 @@ bag-buy-now-btn-top-screen
 addClass
 removeClass
 buyNowButtonWrapper
+endwith

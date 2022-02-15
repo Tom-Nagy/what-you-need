@@ -54,10 +54,10 @@
                                             {{ product.description }}<br>
                                         </p>
                                         {% if product.height %}
-                                            <p class="card-text">Height: {{ product.height }} cms</p>
+                                            <p class="card-text mt-2 mb-0 mb-mb-1">Height: {{ product.height }} cms</p>
                                         {% endif %}
                                         {% if product.diameter %}
-                                            <p class="card-text">Diameter: {{ product.diameter }} cms</p>
+                                            <p class="card-text mb-1 mb-mb-2">Diameter: {{ product.diameter }} cms</p>
                                         {% endif %}
                                         {% if product.quantity == 0 %}
                                             <p class="card-text">
@@ -147,7 +147,7 @@
                     </a>
                 </div>
                 <div class="row">
-                    <div class="col-12 m-2 text-center">
+                    <div class="col-12 mb-2 text-center">
                         <a href="{% url 'products' %}" aria-label="Link to all products page." 
                             class="keep-shop-btn">
                             <span class="icon">
@@ -156,7 +156,7 @@
                             <span>Keep shopping | All products</span>
                         </a>
                     </div>
-                    <div class="col-12 m-2 text-center">
+                    <div class="col-12 mt-2 text-center">
                         <a href="{% url 'products' %}?category={{product.category.name}}" aria-label="Link to all products page." 
                             class="keep-shop-btn">
                             <span class="icon">

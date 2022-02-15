@@ -22,6 +22,7 @@
             </div>
         </div>
         {% if bag_items %}
+            <!-- Buy now btn for small screen -->
             <div class="row no-gutters">
                 <div class="col-12 d-block d-md-none text-center bag-buy-now-btn-wrapper" id="buy-now-btn-position-wrapper">
                     <a class="lead buy-now-btn bag-buy-now-btn" id="buy-now-btn-position">
@@ -34,7 +35,7 @@
             </div>
             <!-- Products count -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mt-2">
                     <span class="badge badge-info">
                         {% if product_count > 1 %}
                             There are {{ product_count }} plants

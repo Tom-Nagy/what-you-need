@@ -1,14 +1,14 @@
-<div class="sorting-menu-container fixed-top">
-    <ul class="list-inline list-unstyled my-0  float-right mt-3 mr-3">
+<div class="sorting-menu-container">
+    <ul class="list-inline list-unstyled my-0">
         <li class="list-inline-item drodown">
             <a href="#" role="button" class="btn-sorting-menu dropdown-toggle" id="dropdown-menu-sorting" 
             data-toggle="dropdown" aria-expanded="false" data-reference="parent">
-                <div class="text-center">
+                <div class="text-center sort-menu-icon-wrapper">
                     <div class="my-0"><i class="fas fa-sliders-h"></i></div>
-                    <p class="my-0 small">Sort</p>
+                    <p class="my-0 small sort-menu-icon-text">Sort</p>
                 </div>
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdown-menu-sorting">
+            <div class="dropdown-menu sort-dropdown-container" aria-labelledby="dropdown-menu-sorting">
                 {% if category_selected %}
                     <a href="{% url 'products' %}?category={{category_selected}}&sort=rating&direction=desc" 
                     aria-label="Sort items by rating from high to low." 

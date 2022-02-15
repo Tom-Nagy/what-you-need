@@ -261,7 +261,30 @@ Navigation menu done with a tutorial from adapted for this project.
     top: 66px !important;
 }
 
-/* ------------------------------------------------ Search menu and categories */
+/* ---------------------------------------------Sort and Search menu/categories */
+
+.sorting-menu-container {
+    position: fixed;
+    top: 120px;
+    right: 0;
+    z-index: 9999;
+    margin: 6px;
+}
+
+.sort-menu-icon-wrapper {
+    height: 50px;
+    width: 36px;
+    
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #0d0d0d;
+    font-weight: 800;
+}
+
+.sort-menu-icon-text {
+    font-weight: 800;
+}
 
 /* customised dropdown position for large screen */
 .search-dropdown-container-lg {
@@ -292,6 +315,7 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: -2px -3px 0 0 #f2f2f2;
 }
 
+.sort-dropdown-container,
 .search-dropdown-container-sm,
 .search-dropdown-container-lg {
     color: #212529;
@@ -303,6 +327,7 @@ Navigation menu done with a tutorial from adapted for this project.
     border-radius: 0.25rem;
     overflow-x: hidden;
     overflow-y: visible;
+    z-index: 1031;
 
     -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
     box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
@@ -535,7 +560,7 @@ Navigation menu done with a tutorial from adapted for this project.
 
 .keep-shop-btn,
 .toasts-view-bag-btn {
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     border-radius: 0.25rem;
     padding: 0.375rem 0.75rem;
@@ -659,8 +684,28 @@ Navigation menu done with a tutorial from adapted for this project.
     .card-product-images {
         max-width: 100px;
     }
-}
 
+    .sorting-text {
+        font-size: 0.8rem;
+    }
+    .sorting-menu-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 9999;
+        margin: 6px;
+    }
+    .sort-menu-icon-wrapper {
+        height: 44px;
+        width: 32px;
+        background-color: rgba(0, 0, 0, 0.65);
+        color: #f2f2f2;
+        font-weight: 600;
+    }
+    .sort-menu-icon-text {
+        font-weight: 600;
+    }
+}
 
 @media (min-width: 720px) {
 
@@ -679,5 +724,27 @@ Navigation menu done with a tutorial from adapted for this project.
         position: absolute;
         top: 0;
         right: 0;
+    }
+}
+
+@media (min-width: 1199px) {
+    .sorting-menu-container {
+        top: 126px;
+        right: 40px;
+    }
+    .sort-menu-icon-wrapper {
+        height: 58px;
+        width: 50px;
+        font-size: 1.3rem;
+    }
+    .sort-menu-icon-text {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1441px) {
+    .sorting-menu-container {
+        top: 126px;
+        right: 320px;
     }
 }

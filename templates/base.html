@@ -98,9 +98,11 @@
             </div>
         {% endif %}
 
-        {% include 'includes/sorting-menu.html' %}
+        {% if need_sorting %}
+            {% include 'includes/sorting-menu.html' %}
+        {% endif %}
 
-        {% if sorting_options %}
+        {% if need_sorting %}
             {% include 'includes/sorting-menu.html' %}
         {% endif %}
 

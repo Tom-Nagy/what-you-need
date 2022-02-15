@@ -10,13 +10,17 @@
                     {% for c in current_category %}
                         <h2 class="mx-auto text-center page-heading">
                             {{ c.friendly_name }} 
-                            <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
+                            <small class="text-muted sorting-text">
+                                {% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}
+                            </small>
                         </h2>
                     {% endfor %}
                 {% else %}
                     <h2 class="mx-auto text-center page-heading">
                         All Plants 
-                        <small class="text-muted">{% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}</small>
+                        <small class="text-muted sorting-text">
+                            {% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}
+                        </small>
                     </h2>
                 {% endif %}
             </div>
@@ -29,7 +33,7 @@
                 </div>
                 <!-- Products display -->
                 {% for product in products %}
-                    <div class="col-12 col-md-6 p-3">
+                    <div class="col-12 col-md-6 p-3 px-md-4 px-lg-5">
                         <div class="card h-100 card-product">
                             <div class="row no-gutters">
                                 <div class="col-12 text-center">
