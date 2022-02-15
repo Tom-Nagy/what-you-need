@@ -3,11 +3,11 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 p-3">
-                <div class="card h-100 card-product">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 p-3">
+                <div class="card card-product">
                     <div class="row no-gutters">
-                        <div class="col-12 text-center">
+                        <div class="col-12 col-md-4 text-center">
                             {% if product.image.url %}
                                 <a href="{{ product.image.url }}" target="_blank" aria-label="Link to view the image.">
                                     <img class="img-fluid card-product-images" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -16,7 +16,7 @@
                                 <img class="img-fluid card-product-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
                             {% endif %}
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-md-8">
                             <div class="card-body card-product-body">
                                 <div class="row no-gutters">
                                     <div class="col">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-8">
                 <!-- Add to bag with quantity selector -->
                 <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
@@ -140,24 +140,24 @@
                 <div class="prod-detail-buy-now-wrapper">
                     <button class="buy-now-btn">Buy now</button>
                 </div>
-                <div class="wishlist-icon-wrapper">
+                <div class="wishlist-icon-wrapper mr-4">
                     <a class="wishlist-icon" href="#" type="button" title="Add to wishlist">
                         <i class="far fa-heart"></i>
                     </a>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 m-2 text-center">
                         <a href="{% url 'products' %}" aria-label="Link to all products page." 
-                            class="btn btn-primary">
+                            class="keep-shop-btn">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
                             <span>Keep shopping | All products</span>
                         </a>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 m-2 text-center">
                         <a href="{% url 'products' %}?category={{product.category.name}}" aria-label="Link to all products page." 
-                            class="btn btn-primary">
+                            class="keep-shop-btn">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
