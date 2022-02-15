@@ -92,6 +92,10 @@ a:hover {
     right: 12px;
 }
 
+.striked {
+    text-decoration: line-through;
+}
+
 /* ------------------------------------- Small screen header */
 
 .header-container-sm {
@@ -447,39 +451,6 @@ Navigation menu done with a tutorial from adapted for this project.
     color: #052614;
 }
 
-.more-detail-btn,
-.buy-now-btn,
-.add-to-bag-btn {
-    background-color: transparent;
-    color: #052614;
-    border: 1px solid #052614;
-    border-radius: 0.25rem;
-    padding: 5px;
-    font-size: 12px;
-    margin: 3px;
-    vertical-align: sub;
-    
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
-}
-
-.more-detail-btn:hover,
-.more-detail-btn:focus,
-.more-detail-btn:active,
-.buy-now-btn:hover,
-.buy-now-btn:focus,
-.buy-now-btn:active,
-.add-to-bag-btn:hover,
-.add-to-bag-btn:focus,
-.add-to-bag-btn:active {
-    background-color: #078c5b;
-    color: #fff;
-    font-size: 600;
-
-    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-}
-
 /* ----------------------------------------- product_detail card */
 
 .badge-product-quantity {
@@ -560,7 +531,7 @@ Navigation menu done with a tutorial from adapted for this project.
     padding: 0.375rem 4rem;
 }
 
-/* --------------------- buttons common */
+/* --------------------------- buttons common */
 
 .keep-shop-btn,
 .toasts-view-bag-btn {
@@ -584,6 +555,82 @@ Navigation menu done with a tutorial from adapted for this project.
     color: #0d0d0d;
 }
 
+.delete-prod-btn,
+.move-to-wishlist-btn,
+.more-detail-btn,
+.buy-now-btn,
+.add-to-bag-btn {
+    background-color: transparent;
+    color: #052614;
+    border: 1px solid #052614;
+    border-radius: 0.25rem;
+    padding: 5px;
+    font-size: 12px;
+    margin: 3px;
+    vertical-align: sub;
+    
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+
+.move-to-wishlist-btn:hover,
+.move-to-wishlist-btn:focus,
+.move-to-wishlist-btn:active,
+.more-detail-btn:hover,
+.more-detail-btn:focus,
+.more-detail-btn:active,
+.buy-now-btn:hover,
+.buy-now-btn:focus,
+.buy-now-btn:active,
+.add-to-bag-btn:hover,
+.add-to-bag-btn:focus,
+.add-to-bag-btn:active {
+    background-color: #078c5b;
+    color: #fff;
+    font-size: 600;
+
+    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.delete-prod-btn i {
+    padding: 3px;
+    font-size: 1rem;
+    color: #dc3545;
+}
+
+.delete-prod-btn:hover,
+.delete-prod-btn:focus,
+.delete-prod-btn:active {
+    background-color: #dc3545;
+}
+
+.delete-prod-btn:hover i,
+.delete-prod-btn:focus i,
+.delete-prod-btn:active i {
+    color: #0d0d0d;
+}
+
+/* ---------------------------------------Bag */
+
+.bag-buy-now-btn-wrapper {
+    height: 40px;
+}
+
+.bag-buy-now-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 98%;
+    margin-right: auto;
+    background-color: gold;
+    color: #052614;
+}
+
+.bag-buy-now-btn-top-screen {
+    -webkit-box-shadow: 0 -1px 6px 6px #fff;
+    box-shadow: 0 -1px 6px 6px #fff;
+}
 
 /* --------------------------------------- Media queries */
 
@@ -611,7 +658,7 @@ Navigation menu done with a tutorial from adapted for this project.
     
     .card-product-images {
         max-width: 100px;
-}
+    }
 }
 
 
@@ -626,5 +673,11 @@ Navigation menu done with a tutorial from adapted for this project.
     }
     .lead {
         font-weight: 400;
+    }
+
+    .bag-order-detail {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }

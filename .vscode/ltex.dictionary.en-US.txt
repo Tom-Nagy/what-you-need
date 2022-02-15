@@ -107,3 +107,16 @@ add-to-bag-btn
 keep-shop-btn
 ul
 toasts-view-bag-btn
+d-md-none
+bag-buy-now-btn-wrapper
+buy-now-btn-position
+bag-buy-now-btn
+scrollTop
+buyNowButton
+buyNowButtonPosition
+localStorage
+buy-now-btn-position-wrapper
+bag-buy-now-btn-top-screen
+addClass
+removeClass
+buyNowButtonWrapper

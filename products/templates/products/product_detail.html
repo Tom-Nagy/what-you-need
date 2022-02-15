@@ -88,7 +88,7 @@
                 <!-- Add to bag with quantity selector -->
                 <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
-                    <div class="prod-detail-qty-input-wrapper{% if product.quantity == 0 %}d-none{% endif %}">
+                    <div class="prod-detail-qty-input-wrapper">
                         <div class="form-group">
                             <div class="input-group position-relative">
                                 <div class="input-group-prepend">
@@ -99,7 +99,8 @@
                                         </span>
                                     </button>
                                 </div>
-                                <input class="form-control qty_input text-center" id="id_qty_{{ product.id }}" type="number" name="quantity" 
+                                <input class="form-control qty_input text-center" 
+                                    id="id_qty_{{ product.id }}" type="number" name="quantity" 
                                     value="1" min="1" max="{{ product.quantity }}" data-item_id="{{ product.id }}">
                                 <div class="input-group-append">
                                     <button class="increment-qty"
@@ -123,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="prod-detail-add-to-bag-btn-wrapper{% if product.quantity == 0 %}mt-4{% endif %}">
+                    <div class="prod-detail-add-to-bag-btn-wrapper">
                         {% if product.quantity == 0 %}
                             <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
                                 Add to bag
