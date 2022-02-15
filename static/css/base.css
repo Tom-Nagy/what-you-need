@@ -657,6 +657,25 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: 0 -1px 6px 6px #fff;
 }
 
+/* scroll to top */
+.scroll-to-top {
+    position: fixed;
+    right: 4px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+
+.scroll-to-top i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0d0d0d;
+}
+
 /* --------------------------------------- Media queries */
 
 @media (max-width: 720px) {
@@ -725,6 +744,11 @@ Navigation menu done with a tutorial from adapted for this project.
         top: 0;
         right: 0;
     }
+    .scroll-to-top {
+        right: 10px;
+        height: 30px;
+        width: 30px;
+    }
 }
 
 @media (min-width: 1199px) {
@@ -740,11 +764,18 @@ Navigation menu done with a tutorial from adapted for this project.
     .sort-menu-icon-text {
         font-size: 1rem;
     }
+
+    .scroll-to-top {
+        right: 60px;
+    }
 }
 
 @media (min-width: 1441px) {
     .sorting-menu-container {
         top: 126px;
         right: 320px;
+    }
+    .scroll-to-top {
+        right: 340px;
     }
 }
