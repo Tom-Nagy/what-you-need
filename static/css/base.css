@@ -109,6 +109,27 @@ a:hover {
     border-radius: 50%;
 }
 
+/* --------------------- Navbar */
+
+.nav-icons-wrapper-sm,
+.nav-icons-wrapper-lg {
+    margin-top: 2px;
+    color: #0d0d0d;
+}
+
+.bag-icon-total {
+    color: #078c5b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-list-option-sm,
+.nav-list-option-lg {
+    color: #0d0d0d;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
 /* ------------------------------------------------------- Navbar small screen */
 
 .navigation-menu-container-sm {
@@ -225,11 +246,15 @@ Navigation menu done with a tutorial from adapted for this project.
     border-radius: 5px;
 }
 
-.nav-icons-wrapper {
-    margin-top: 2px;
-    color: #0d0d0d;
+.navigation-menu-container-lg > ul > li:hover .nav-icons-wrapper-lg,
+.navigation-menu-container-lg > ul > li:focus .nav-icons-wrapper-lg,
+.navigation-menu-container-lg > ul > li:active .nav-icons-wrapper-lg {
+    color: #03a65a;
 }
 
+.nav-list-option-lg {
+    top: 66px !important;
+}
 
 /* ------------------------------------------------ Search menu and categories */
 

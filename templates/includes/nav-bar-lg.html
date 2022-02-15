@@ -12,12 +12,12 @@
             <li class="list-inline-item nav-item dropdown mr-5">
                 <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home-lg" data-toggle="dropdown" 
                 aria-expanded="false">
-                    <div class="text-center nav-icons">
+                    <div class="text-center nav-icons-wrapper-lg">
                         <div><i class="fas fa-home"></i></div>
                         <p class="my-0 small">Home</p>
                     </div>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown-menu-home-lg">
+                <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-home-lg">
                     <a href="{% url 'home' %}" aria-label="Link to home landing page." 
                     class="dropdown-item">Home</a>
                     <a href="{% url 'home' %}#about-us" aria-label="Link to home  page about us section." 
@@ -32,12 +32,12 @@
             <li class="list-inline-item nav-item dropdown mr-5">
                 <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile-lg" data-toggle="dropdown" 
                 aria-expanded="false">
-                    <div class="text-center nav-icons">
+                    <div class="text-center nav-icons-wrapper-lg">
                         <div><i class="fas fa-user"></i></div>
                         <p class="my-0 small">Profile</p>
                     </div>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown-menu-profile-lg">
+                <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-profile-lg">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
                             <a href="#" class="dropdown-item">Product Management</a>
@@ -59,13 +59,15 @@
             <li class="list-inline-item nav-item mr-5">
                 <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
                 class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
-                    <div class="text-center nav-icons">
+                    <div class="text-center nav-icons-wrapper-lg">
                         <div><i class="fas fa-shopping-bag"></i></div>
                         <p class="my-0 small">
                             {% if grand_total %}
-                            ${{ grand_total|floatformat:2 }}
+                                <span class="bag-icon-total">
+                                    ${{ grand_total|floatformat:2 }}
+                                </span>
                             {% else %}
-                            Empty
+                                Empty
                             {% endif %}
                         </p>
                     </div>
@@ -75,7 +77,7 @@
             <li class="list-inline-item nav-item dropdown">
                 <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search-lg" data-toggle="dropdown" 
                 aria-expanded="false">
-                    <div class="text-center nav-icons">
+                    <div class="text-center nav-icons-wrapper-lg">
                         <div><i class="fas fa-search"></i></div>
                         <p class="my-0 small">Search</p>
                     </div>

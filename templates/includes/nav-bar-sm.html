@@ -7,7 +7,7 @@
                     <li class="list-inline-item dropup {% if on_home_page %}on-page{% endif %}">
                         <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home" 
                             data-toggle="dropdown" aria-expanded="false">
-                            <div class="text-center nav-icons-wrapper">
+                            <div class="text-center nav-icons-wrapper-sm">
                                 <div class="nav-icons-sm"><i class="fas fa-home"></i></div>
                                 <p class="small nav-icons-sm-text">Home</p>
                             </div>
@@ -27,7 +27,7 @@
                     <li class="list-inline-item dropup {% if on_profile_page %}on-page{% endif %}">
                         <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile" 
                             data-toggle="dropdown" aria-expanded="false">
-                            <div class="text-center nav-icons-wrapper">
+                            <div class="text-center nav-icons-wrapper-sm">
                                 <div class="nav-icons-sm"><i class="fas fa-user"></i></div>
                                 <p class="small nav-icons-sm-text">Profile</p>
                             </div>
@@ -54,13 +54,15 @@
                     <li class="list-inline-item {% if on_bag_page %}on-page{% endif %}">
                         <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
                         class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
-                            <div class="text-center nav-icons-wrapper">
+                            <div class="text-center nav-icons-wrapper-sm">
                                 <div class="nav-icons-sm"><i class="fas fa-shopping-bag"></i></div>
                                 <p class="small nav-icons-sm-text">
                                     {% if grand_total %}
-                                    ${{ grand_total|floatformat:2 }}
+                                        <span class="bag-icon-total">
+                                            ${{ grand_total|floatformat:2 }}
+                                        </span>
                                     {% else %}
-                                    Empty
+                                        Empty
                                     {% endif %}
                                 </p>
                             </div>
@@ -70,7 +72,7 @@
                     <li class="list-inline-item dropup {% if on_product_page %}on-page{% endif %}">
                         <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search" data-toggle="dropdown" 
                         aria-expanded="false">
-                            <div class="text-center nav-icons-wrapper">
+                            <div class="text-center nav-icons-wrapper-sm">
                                 <div class="nav-icons-sm"><i class="fas fa-search"></i></div>
                                 <p class="small nav-icons-sm-text">Search</p>
                             </div>
