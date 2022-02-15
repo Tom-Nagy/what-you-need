@@ -109,7 +109,7 @@ a:hover {
     border-radius: 50%;
 }
 
-/* --------------------- Navbar */
+/* ---------------------------------------------- Navbar common */
 
 .nav-icons-wrapper-sm,
 .nav-icons-wrapper-lg {
@@ -118,7 +118,7 @@ a:hover {
 }
 
 .bag-icon-total {
-    color: #078c5b;
+    color: #dc3545;
     font-size: 14px;
     font-weight: 600;
 }
@@ -246,6 +246,7 @@ Navigation menu done with a tutorial from adapted for this project.
     border-radius: 5px;
 }
 
+.on-page .nav-icons-wrapper-lg,
 .navigation-menu-container-lg > ul > li:hover .nav-icons-wrapper-lg,
 .navigation-menu-container-lg > ul > li:focus .nav-icons-wrapper-lg,
 .navigation-menu-container-lg > ul > li:active .nav-icons-wrapper-lg {
@@ -267,13 +268,6 @@ Navigation menu done with a tutorial from adapted for this project.
     width: 600px;
     min-height: 30vh;
     font-size: 1rem;
-    color: #212529;
-    text-align: left;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 0.25rem;
-    overflow-y: scroll;
 }
 
 /* customised dropup position for small screen */
@@ -289,6 +283,13 @@ Navigation menu done with a tutorial from adapted for this project.
     padding: 0.5rem 0;
     margin: 0.125rem 0 0;
     font-size: 12px;
+
+    -webkit-box-shadow: -2px -3px 0 0 #f2f2f2;
+    box-shadow: -2px -3px 0 0 #f2f2f2;
+}
+
+.search-dropdown-container-sm,
+.search-dropdown-container-lg {
     color: #212529;
     text-align: left;
     list-style: none;
@@ -296,10 +297,44 @@ Navigation menu done with a tutorial from adapted for this project.
     background-clip: padding-box;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 0.25rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+    box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
 }
 
 .category-card-body{
     padding: 18px 3px 3px 3px;
+    overflow: hidden;    
+}
+
+.category-card-sm:hover .category-card-body img,
+.category-card-lg:hover .category-card-body img {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+
+    transition-property: transform;
+    -o-transition-property: transform;
+    -ms-transition-property: transform;
+    -moz-transition-property: transform;
+    -webkit-transition-property: transform;
+    
+    transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    -ms-transition-duration: 500ms;
+    -moz-transition-duration: 500ms;
+    -webkit-transition-duration: 500ms;
+}
+
+.category-card-sm:hover .category-card-body,
+.category-card-lg:hover .category-card-body {
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .category-card-sm {
@@ -376,27 +411,11 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
 }
 
-/* .subjects-buttons:hover {
-
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-
-    -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
-} */
-
 .landing-page-container {
     height: calc(100vh - 130px);
 }
 
 /* ----------------------------------------- all_products card */
-
-.card-product {
-    /* max-height: 300px; */
-}
 
 .card-product-body {
     padding: 0.5rem;
@@ -427,12 +446,6 @@ Navigation menu done with a tutorial from adapted for this project.
 .wishlist-icon {
     color: #052614;
 }
-
-/* 
-<span class="icon">
-    <i class="fas fa-plus-circle"></i>
-</span> 
-*/
 
 .more-detail-btn,
 .buy-now-btn,
@@ -498,10 +511,6 @@ Navigation menu done with a tutorial from adapted for this project.
     background-color: #078c5b;
 }
 
-.input-group {
-    background-color: #f2f2f2;
-}
-
 .form-control {
     font-size: 12px;
     font-weight: 800;
@@ -528,24 +537,6 @@ Navigation menu done with a tutorial from adapted for this project.
     left: 70%;
 }
 
-.keep-shop-btn {
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    padding: 0.375rem 0.75rem;
-    background-color: #078c5b;
-    border-color: #078c5b;
-    color: #0d0d0d;
-}
-
-.keep-shop-btn:hover,
-.keep-shop-btn:focus,
-.keep-shop-btn:active {
-    background-color: #03a65a;
-    border-color: #0d0d0d;
-    color: #0d0d0d;
-}
-
 /* --------------------------------------- Toasts messages */
 
 .message-container {
@@ -560,10 +551,39 @@ Navigation menu done with a tutorial from adapted for this project.
 }
 
 .bag-notification-wrapper {
-    height: 100px;
+    height: 120px;
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.toasts-view-bag-btn {
+    padding: 0.375rem 4rem;
+}
+
+/* --------------------- buttons common */
+
+.keep-shop-btn,
+.toasts-view-bag-btn {
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #078c5b;
+    border-color: #078c5b;
+    color: #0d0d0d;
+}
+
+.keep-shop-btn:hover,
+.keep-shop-btn:focus,
+.keep-shop-btn:active,
+.toasts-view-bag-btn:hover,
+.toasts-view-bag-btn:focus,
+.toasts-view-bag-btn:active {
+    background-color: #03a65a;
+    border-color: #0d0d0d;
+    color: #0d0d0d;
+}
+
 
 /* --------------------------------------- Media queries */
 

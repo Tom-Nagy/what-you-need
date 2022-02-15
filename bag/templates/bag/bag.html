@@ -8,8 +8,8 @@
             <div class="col-12">
                 <h2 class="mx-auto text-center page-heading">Shopping bag</h2>
             </div>
-            <div class="col-12">
-                <p>
+            <div class="col-12 text-center mt-5">
+                <p class="lead mx-auto">
                     Every 3 products purchase one is on us!<br>
                     {% if product_count == 0 %}
                         Get {{ free_product_threshold }} plants to have one Free.
@@ -212,10 +212,10 @@
             </div>
         {% else %}
             <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-center mx-auto">There is nothing in your basket...</p>
-                    <a href="{% url 'home' %}" aria-label="link to home page" class="btn btn-large">Back home</a>
-                    <a href="{% url 'products' %}" aria-label="link to home page" class="btn btn-large">Back to the garden</a>
+                <div class="col-12 text-center mt-5">
+                    <p class="text-center mx-auto mb-5">There is nothing in your basket...</p>
+                    <a href="{% url 'home' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back home</a>
+                    <a href="{% url 'products' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back to the garden</a>
                 </div>
             </div>
         {% endif %}

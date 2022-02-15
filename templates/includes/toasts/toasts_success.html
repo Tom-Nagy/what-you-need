@@ -61,13 +61,15 @@
                     {% else %}
                         <p class="my-0 badge badge-warning">Get {{ free_product_threshold }} more plants and have another one Free.</p>
                     {% endif %}
-                    <p><strong>Total: € {{ grand_total|floatformat:2 }}</strong></p>
-                    <a href="{% url 'view_bag' %}" class="btn">
-                        <span class="text-uppercase">Checkout</span>
-                        <span class="icon">
-                            <i class="fas fa-lock"></i>
-                        </span>
-                    </a>
+                    <p class="mt-2"><strong>Total: € {{ grand_total|floatformat:2 }}</strong></p>
+                    <p class="text-center">
+                        <a href="{% url 'view_bag' %}" class="toasts-view-bag-btn">
+                            <span class="text-uppercase">View bag</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                    </p>
                 </div>
             </div>
         {% endif %}

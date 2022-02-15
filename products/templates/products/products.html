@@ -131,13 +131,13 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <div class="col-12 text-center">
-                    <p class="text-center mx-auto">
+                <div class="col-12 text-center mt-5">
+                    <p class="text-center mx-auto pb-4">
                         OoOps !!! There is nothing growing here 
                         {% if search_term %} with <strong>"{{ search_term }}"</strong> characteristics{% endif %}...
                     </p>
-                    <a href="{% url 'home' %}" aria-label="link to home page" class="btn btn-large">Back home</a>
-                    <a href="{% url 'products' %}" aria-label="link to home page" class="btn btn-large">Back to the garden</a>
+                    <a href="{% url 'home' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back home</a>
+                    <a href="{% url 'products' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back to the garden</a>
                 </div>
             {% endif %}
         </div>

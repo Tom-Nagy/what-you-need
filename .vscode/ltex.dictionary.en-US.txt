@@ -106,3 +106,4 @@ buy-now-btn
 add-to-bag-btn
 keep-shop-btn
 ul
+toasts-view-bag-btn

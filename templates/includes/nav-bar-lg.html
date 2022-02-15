@@ -9,7 +9,7 @@
     </a>
         <ul class="list-inline list-unstyled text-center my-0 flex-fill">
             <!-- Home -->
-            <li class="list-inline-item nav-item dropdown mr-5">
+            <li class="list-inline-item nav-item dropdown mr-5 {% if on_home_page %}on-page{% endif %}">
                 <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home-lg" data-toggle="dropdown" 
                 aria-expanded="false">
                     <div class="text-center nav-icons-wrapper-lg">
@@ -29,7 +29,7 @@
                 </div>
             </li>
             <!-- Profile -->
-            <li class="list-inline-item nav-item dropdown mr-5">
+            <li class="list-inline-item nav-item dropdown mr-5 {% if on_profile_page %}on-page{% endif %}">
                 <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile-lg" data-toggle="dropdown" 
                 aria-expanded="false">
                     <div class="text-center nav-icons-wrapper-lg">
@@ -56,7 +56,7 @@
                 </div>
             </li>
             <!-- Bag -->
-            <li class="list-inline-item nav-item mr-5">
+            <li class="list-inline-item nav-item mr-5 {% if on_bag_page %}on-page{% endif %}">
                 <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
                 class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
                     <div class="text-center nav-icons-wrapper-lg">
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <!-- Search -->
-            <li class="list-inline-item nav-item dropdown">
+            <li class="list-inline-item nav-item dropdown {% if on_product_page %}on-page{% endif %}">
                 <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search-lg" data-toggle="dropdown" 
                 aria-expanded="false">
                     <div class="text-center nav-icons-wrapper-lg">
@@ -103,11 +103,11 @@
                     <div class="row categories-container-lg">
                         {% if categories %}
                             {% for cat in categories %}
-                                <div class="col-4">
+                                <div class="col-4 category-card-lg">
                                     <a href="{% url 'products' %}?category={{ cat.name }}" 
                                     aria-label="Link to {{ cat.friendly_name }} category.">
                                         <div class="card h-100">
-                                            <div class="card-body">
+                                            <div class="card-body category-card-body">
                                                 <h4 class="card-title">{{ cat.friendly_name }}</h4>
                                                 <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
                                             </div>
@@ -118,9 +118,9 @@
                         {% endif %}
                     </div>
                     <!-- All products button -->
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <a href="{% url 'products' %}" class="btn rounded" aria-label="Link to the all products page.">See all products</a>
+                    <div class="row justify-content-center mt-2 mb-2">
+                        <div class="col text-center">
+                            <a href="{% url 'products' %}" class="keep-shop-btn" aria-label="Link to the all products page.">See all products</a>
                         </div>
                     </div>
                 </div>
