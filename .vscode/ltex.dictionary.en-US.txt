@@ -121,3 +121,8 @@ addClass
 removeClass
 buyNowButtonWrapper
 endwith
+fieldset
+fieldset-label
+order-md-last
+checkout-btn
+complete-order-btn

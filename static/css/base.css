@@ -636,6 +636,10 @@ Navigation menu done with a tutorial from adapted for this project.
     color: #0d0d0d;
 }
 
+.checkout-btn {
+    padding: 6px 35px;
+}
+
 /* ---------------------------------------Bag */
 
 .bag-buy-now-btn-wrapper {
@@ -756,6 +760,28 @@ Navigation menu done with a tutorial from adapted for this project.
         top: 126px;
         right: 40px;
     }
+
+    .scroll-to-top {
+        right: 60px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .sorting-menu-container {
+        top: 126px;
+        right: 180px;
+    }
+
+    .scroll-to-top {
+        right: 180px;
+    }
+}
+
+@media (min-width: 2500px) {
+    .sorting-menu-container {
+        top: 126px;
+        right: 320px;
+    }
     .sort-menu-icon-wrapper {
         height: 58px;
         width: 50px;
@@ -763,17 +789,6 @@ Navigation menu done with a tutorial from adapted for this project.
     }
     .sort-menu-icon-text {
         font-size: 1rem;
-    }
-
-    .scroll-to-top {
-        right: 60px;
-    }
-}
-
-@media (min-width: 1441px) {
-    .sorting-menu-container {
-        top: 126px;
-        right: 320px;
     }
     .scroll-to-top {
         right: 340px;

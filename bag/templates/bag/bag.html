@@ -205,7 +205,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="float-right w-50">
+                    <div>
                         <hr class="mb-1">
                         <hr class="mt-1">
                         <p>Bag total: € {{ total }}</p>
@@ -220,10 +220,10 @@
                         <p><strong>Grand total: € {{ grand_total|floatformat:2 }}</strong></p>
                     </div>
                     <div class="row w-100">
-                        <div class="col-12 d-none d-md-block text-center">
-                            <button class="buy-now-btn">Buy now</button>
+                        <div class="col-12 d-none d-md-block text-left mb-2 mr-0">
+                            <a href="{% url 'checkout' %}" class="buy-now-btn checkout-btn mr-0">Proceed to Checkout</a>
                         </div>
-                        <div class="col-12 m-2 text-center">
+                        <div class="col-12 mt-2 text-left">
                             <a href="{% url 'products' %}" aria-label="Link to all products page." 
                                 class="keep-shop-btn">
                                 <span class="icon">

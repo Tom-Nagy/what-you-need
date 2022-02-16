@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mx-auto mb-2 mb-md-5 text-center page-heading">Checkout</h2>
+            </div>
+        </div>
+        <!-- Buy now btn for small screen -->
+        <!-- <div class="row no-gutters">
+            <div class="col-12 d-block d-md-none text-center bag-buy-now-btn-wrapper" id="buy-now-btn-position-wrapper">
+                <a class="lead buy-now-btn bag-buy-now-btn" id="buy-now-btn-position">
+                    Buy now 
+                    <span class="text-muted">
+                        ({{ product_count }}{% if product_count > 1 %}items{% else %}items{% endif %} for € {{ grand_total|floatformat:2 }})
+                    </span>
+                </a>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <!-- Order summary -->
+            <div class="col-12 col-md-6 order-md-last mb-5">
+                <div class="table-responsive">
+                    <p class="text-muted small">
+                        <span>Order summary </span>
+                        <span>
+                            {% if product_count > 1 %}
+                                ({{ product_count }} plants)
+                            {% else %}
+                                ({{ product_count }} plant)
+                            {% endif %}
+                        </span>
+                    </p>
+                    <table class="table table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Item</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in bag_items %}
+                                <tr>
+                                    <td>
+                                        {% if item.product.image.url %}
+                                            <img class="img-fluid card-products-images" 
+                                                src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                                height="60" width="60">
+                                        {% else %}
+                                            <img class="img-fluid card-products-images" 
+                                                src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}"
+                                                height="60" width="60">
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>€ {{ item.product.price }}</td>
+                                    <td>€ {{ item.product_subtotal }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <hr class="mb-1">
+                    <hr class="mt-1">
+                    <p>Bag total: € {{ total }}</p>
+                    <p>Delivery cost: € {{ delivery_cost|floatformat:2 }}</p>
+                    <p>Discount: € 
+                        {% if discount %}
+                            {{ discount|floatformat:2 }}
+                        {% else %}
+                            0 <span class="badge badge-warning">Get {{ free_product_threshold }} more items and the cheapest is on us!</span>
+                        {% endif %}
+                    </p>
+                    <p><strong>Grand total: € {{ grand_total|floatformat:2 }}</strong></p>
+                </div>
+            </div>
+            <!-- Order form -->
+            <div class="col-12 col-md-6">
+                <p class="text-muted">Please fill out the form below to complete your order</p>
+                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                    {% csrf_token %}
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small px-2 w-auto">Details</legend>
+                        {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
+                        {{ order_form.phone_number | as_crispy_field }}
+                    </fieldset>
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small px-2 w-auto">Delivery</legend>
+                        {{ order_form.country | as_crispy_field }}
+                        {{ order_form.street_address1 | as_crispy_field }}
+                        {{ order_form.street_address2 | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
+                        {{ order_form.county_or_region | as_crispy_field }}
+                        <div class="form-check form-check-inline float-right mr-0">
+                            {% if user.is_authenticated %}
+                                <label class="form-check-label" for="id-save-info">
+                                    Save information to my profile
+                                </label>
+                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                            {% else %}
+                                <label class="form-check-label" for="id-save-info">
+                                    <a href="{% url 'account_signup' %}" class="text-info" aria-label="Link to Sign up page">
+                                        Create an account</a> or
+                                    <a href="{% url 'account_login' %}" class="text-info" aria-label="Link to login page">
+                                        login</a> to save information to your profile
+                                </label>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="px-3">
+                        <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                        <!-- A stripe card element will go here -->
+                        <div class="mb-3" id="card-element"></div>
+
+                        <!-- Used to display form errors -->
+                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                    </fieldset>
+
+                    <div class="submit-button text-right mt-5 mb-2">
+                        <!-- Adjust bag btn -->
+                        <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." class="keep-shop-btn mr-2">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Adjust Bag</span>
+                        </a>
+                        <button id="submit-button" class="complete-order-btn">
+                            <span>Complete Order</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </button>
+                        <p class="small text-danger my-0">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span> Your card will be charged <strong>€ {{ grand_total|floatformat:2 }}</strong></span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Back to the top button -->
+    <div class="scroll-to-top d-md-none">
+        <a href="#" id="back-to-top-link">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {% include 'bag/includes/set_position_back_script.html' %}
+    {% include 'bag/includes/quantity_input_and_update_bag_script.html' %}
+    <!-- Handle the back to top link -->
+    <script type="text/javascript">
+        $('#back-to-top-link').click(function(e) {
+        window.scrollTo(0,0)
+        })
+    </script>
+
+    <script type="text/javascript">
+        // Remove item and reload on click
+        $('.remove-item').click(function(e) {
+            let csrfToken = "{{ csrf_token }}";
+            let itemId = $(this).attr('id').split('remove_')[1]; // to get the second part of the split
+            let url = `/bag/remove/${itemId}/`;
+            let data = {'csrfmiddlewaretoken': csrfToken};
+
+            $.post(url, data)
+                .done(function() {
+                    location.reload();
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Position "buy now" btn to fix at the top of the screen 
+        // when scroll past (= sticky-top) on small screen.
+        $(document).ready(function() {
+            $(window).scroll(function() {
+
+                let buyNowButtonWrapper = $('#buy-now-btn-position-wrapper');
+                let buyNowButton = $('#buy-now-btn-position');
+
+                if ($(document).scrollTop() > 182) {
+                    buyNowButtonWrapper.addClass("fixed-top");
+                    buyNowButton.addClass("bag-buy-now-btn-top-screen");
+                } else {
+                    buyNowButtonWrapper.removeClass("fixed-top");
+                    buyNowButton.removeClass("bag-buy-now-btn-top-screen");
+                }
+            });
+        });
+    </script>
+{% endblock %}

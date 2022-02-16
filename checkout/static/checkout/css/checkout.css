@@ -1,0 +1,25 @@
+.colors {
+    color: #03a65a; /* navbar */
+    color: #078c5b; /* buttons background */
+    color: #07593b; /* titles */
+    color: #052614; /* buttons */
+    color: #0d0d0d;
+}
+
+
+.complete-order-btn {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #078c5b;
+    border: 0px solid #078c5b;
+    color: #0d0d0d;   
+}
+
+.complete-order-btn:hover,
+.complete-order-btn:focus,
+.complete-order-btn:active {
+    background-color: #03a65a;
+    color: #0d0d0d;
+}

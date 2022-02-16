@@ -45,7 +45,7 @@ def bag_contents(request):
     products_price_list.sort()
 
     # Every 3 items purchase the least expensive is offered.
-    # Get the list of product prices and return a list of prices to discount 
+    # Get the list of product prices and return a list of prices to discount
     # and number of items to purchase for the next discount.
     if product_count % 3 == 0 and product_count != 0:
         free_products_count = int(product_count / 3)

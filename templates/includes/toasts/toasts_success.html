@@ -63,12 +63,7 @@
                     {% endif %}
                     <p class="mt-2"><strong>Total: € {{ grand_total|floatformat:2 }}</strong></p>
                     <p class="text-center">
-                        <a href="{% url 'view_bag' %}" class="toasts-view-bag-btn">
-                            <span class="text-uppercase">View bag</span>
-                            <span class="icon">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </a>
+                        <a href="{% url 'view_bag' %}" class="toasts-view-bag-btn">View bag</a>
                     </p>
                 </div>
             </div>
