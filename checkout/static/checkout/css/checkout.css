@@ -1,11 +1,43 @@
-.colors {
-    color: #03a65a; /* navbar */
-    color: #078c5b; /* buttons background */
-    color: #07593b; /* titles */
-    color: #052614; /* buttons */
-    color: #0d0d0d;
+.StripeElement,
+.stripe-style-input {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    -moz-transition: box-shadow 150ms ease;
+    -o-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
 }
 
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #aab7c4;
+}
+
+.fieldset-label {
+    position: relative;
+    right: 8px;
+    color: #052614;
+}
+
+#payment-form .form-control,
+#card-element {
+    color: #0d0d0d;
+    border: 1px solid #052614;
+}
 
 .complete-order-btn {
     font-size: 0.8rem;

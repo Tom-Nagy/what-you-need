@@ -20,7 +20,7 @@ class OrderForm(forms.ModelForm):
         '''
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'full Name',
+            'full_name': 'Full Name',
             'email': 'Email Address',
             'phone_number': 'Phone Number',
             'country': 'Country',

@@ -144,7 +144,7 @@
                                 <i class="fas fa-lock"></i>
                             </span>
                         </button>
-                        <p class="small text-danger my-0">
+                        <p class="small text-danger mt-0 mb-2 text-right total-charge-text">
                             <i class="fas fa-exclamation-circle"></i>
                             <span> Your card will be charged <strong>€ {{ grand_total|floatformat:2 }}</strong></span>
                         </p>
@@ -163,47 +163,10 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    {% include 'bag/includes/set_position_back_script.html' %}
-    {% include 'bag/includes/quantity_input_and_update_bag_script.html' %}
-    <!-- Handle the back to top link -->
-    <script type="text/javascript">
-        $('#back-to-top-link').click(function(e) {
-        window.scrollTo(0,0)
-        })
-    </script>
+    <!-- {% include 'bag/includes/set_position_back_script.html' %} -->
 
-    <script type="text/javascript">
-        // Remove item and reload on click
-        $('.remove-item').click(function(e) {
-            let csrfToken = "{{ csrf_token }}";
-            let itemId = $(this).attr('id').split('remove_')[1]; // to get the second part of the split
-            let url = `/bag/remove/${itemId}/`;
-            let data = {'csrfmiddlewaretoken': csrfToken};
-
-            $.post(url, data)
-                .done(function() {
-                    location.reload();
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        // Position "buy now" btn to fix at the top of the screen 
-        // when scroll past (= sticky-top) on small screen.
-        $(document).ready(function() {
-            $(window).scroll(function() {
-
-                let buyNowButtonWrapper = $('#buy-now-btn-position-wrapper');
-                let buyNowButton = $('#buy-now-btn-position');
-
-                if ($(document).scrollTop() > 182) {
-                    buyNowButtonWrapper.addClass("fixed-top");
-                    buyNowButton.addClass("bag-buy-now-btn-top-screen");
-                } else {
-                    buyNowButtonWrapper.removeClass("fixed-top");
-                    buyNowButton.removeClass("bag-buy-now-btn-top-screen");
-                }
-            });
-        });
-    </script>
+    <!-- Handle Stripe -->
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
