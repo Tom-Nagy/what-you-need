@@ -107,7 +107,7 @@ class OrderLineItem(models.Model):
     quantity = models.PositiveIntegerField(
         validators=[
             MaxValueValidator(100),
-            MinValueValidator(0)])
+            MinValueValidator(0)], null=False, blank=False)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          null=False, blank=False,
                                          editable=False)
