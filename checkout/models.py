@@ -58,9 +58,12 @@ class Order(models.Model):
         # create a list of prices of each individual product
         # to determine the discount amount.
         product_price_list = []
+        free_product_count = 0
+        free_products = []
+
         for item in self.lineitems.all():
-            for x in range(self.lineitems.quantity):
-                product_price_list += self.lineitems.product.price
+            for x in range(int(item.quantity)):
+                product_price_list.append(item.product.price)
         product_price_list.sort()
 
         # Every 3 items purchase the least expensive is offered.

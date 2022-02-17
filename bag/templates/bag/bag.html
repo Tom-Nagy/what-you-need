@@ -25,7 +25,8 @@
             <!-- Buy now btn for small screen -->
             <div class="row no-gutters">
                 <div class="col-12 d-block d-md-none text-center bag-buy-now-btn-wrapper" id="buy-now-btn-position-wrapper">
-                    <a class="lead buy-now-btn bag-buy-now-btn" id="buy-now-btn-position">
+                    <a href="{% url 'checkout' %}" class="lead buy-now-btn bag-buy-now-btn" id="buy-now-btn-position"
+                    aria-label="Link to checkout page.">
                         Buy now 
                         <span class="text-muted">
                             ({{ product_count }}{% if product_count > 1 %}items{% else %}items{% endif %} for € {{ grand_total|floatformat:2 }})
@@ -221,7 +222,8 @@
                     </div>
                     <div class="row w-100">
                         <div class="col-12 d-none d-md-block text-left mb-2 mr-0">
-                            <a href="{% url 'checkout' %}" class="buy-now-btn checkout-btn mr-0">Proceed to Checkout</a>
+                            <a href="{% url 'checkout' %}" class="buy-now-btn checkout-btn mr-0" aria-label="Link to checkout page.">
+                                Proceed to Checkout</a>
                         </div>
                         <div class="col-12 mt-2 text-left">
                             <a href="{% url 'products' %}" aria-label="Link to all products page." 

@@ -34,7 +34,7 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order_form.save()
+            order = order_form.save()
             for item_id, quantity in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -62,7 +62,8 @@ def checkout(request):
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, 'There is nothing in your bag at the moment')
+            messages.error(request,
+                           'There is nothing in your bag at the moment')
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)

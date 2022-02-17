@@ -12,21 +12,10 @@
                 <h2 class="mx-auto mb-2 mb-md-5 text-center page-heading">Checkout</h2>
             </div>
         </div>
-        <!-- Buy now btn for small screen -->
-        <!-- <div class="row no-gutters">
-            <div class="col-12 d-block d-md-none text-center bag-buy-now-btn-wrapper" id="buy-now-btn-position-wrapper">
-                <a class="lead buy-now-btn bag-buy-now-btn" id="buy-now-btn-position">
-                    Buy now 
-                    <span class="text-muted">
-                        ({{ product_count }}{% if product_count > 1 %}items{% else %}items{% endif %} for € {{ grand_total|floatformat:2 }})
-                    </span>
-                </a>
-            </div>
-        </div> -->
 
         <div class="row">
             <!-- Order summary -->
-            <div class="col-12 col-md-6 order-md-last mb-5">
+            <div class="col-12 col-md-6 order-md-last mb-5 order-sum-wrapper">
                 <div class="table-responsive">
                     <p class="text-muted small">
                         <span>Order summary </span>
@@ -153,11 +142,14 @@
             </div>
         </div>
     </div>
-    <!-- Back to the top button -->
-    <div class="scroll-to-top d-md-none">
-        <a href="#" id="back-to-top-link">
-            <i class="fas fa-arrow-up"></i>
-        </a>
+    <!-- loading spinner -->
+    <div id="loading-overlay">
+        <h1 class="text-light logo-font loading-spinner" role="status">
+            <span class="sr-only">Loading...</span>
+            <span class="icon">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
     </div>
 {% endblock %}
 
