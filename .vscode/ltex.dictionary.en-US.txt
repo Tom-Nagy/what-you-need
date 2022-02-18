@@ -133,3 +133,4 @@ allauth-links-inline-style
 allauth-btn-style
 back-to-btn
 allauth-form-inner-content
+user-form-detail-btn

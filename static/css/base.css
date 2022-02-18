@@ -395,7 +395,7 @@ Navigation menu done with a tutorial from adapted for this project.
     margin: 0;
 }
 input[name='q']::placeholder {
-    color: #0d0d0db3;
+    color: #0d0d0d80;
 }
 /* ------------------------------------------- home page */
 
@@ -647,6 +647,40 @@ input[name='q']::placeholder {
     padding: 6px 35px;
 }
 
+.user-form-detail-btn,
+.allauth-btn-style {
+    background-color: #078c5b;
+    color: #fff;
+    border: 1px solid #052614;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
+    margin: 3px;
+    vertical-align: sub;
+    
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
+}
+
+.user-form-detail-btn:hover,
+.user-form-detail-btn:focus,
+.user-form-detail-btn:active,
+.allauth-btn-style:hover,
+.allauth-btn-style:focus,
+.allauth-btn-style:active {
+    background-color: #03a65a;
+    color: #fff;
+    font-size: 800;
+
+    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.back-to-btn {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.65rem;
+}
+
 /* ---------------------------------------Bag */
 
 .bag-buy-now-btn-wrapper {
@@ -703,7 +737,7 @@ input[name='q']::placeholder {
     display: none;
 }
 .allauth-form-inner-content input::placeholder {
-    color: #0d0d0db3;
+    color: #0d0d0d80;
 }
 
 .allauth-links-inline-style {
@@ -720,36 +754,6 @@ input[name='q']::placeholder {
     text-shadow: 1px 1px #03a65a;
     color: #052614;
     font-weight: 800;
-}
-
-.allauth-btn-style {
-    background-color: #078c5b;
-    color: #fff;
-    border: 1px solid #052614;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    padding: 0.25rem 0.75rem;
-    margin: 3px;
-    vertical-align: sub;
-    
-    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
-}
-
-.allauth-btn-style:hover,
-.allauth-btn-style:focus,
-.allauth-btn-style:active {
-    background-color: #03a65a;
-    color: #fff;
-    font-size: 800;
-
-    -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-}
-
-.back-to-btn {
-    font-size: 0.8rem;
-    padding: 0.15rem 0.65rem;
 }
 
 /* --------------------------------------- Media queries */
