@@ -40,6 +40,18 @@
     border: 1px solid #052614;
 }
 
+/* ------------------------------------------- Country select boxe */
+
+select,
+select option {
+    color: #0d0d0d;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
 /* ------------------------------------------- complete order btn */
 
 .complete-order-btn {
