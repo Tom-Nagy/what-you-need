@@ -127,3 +127,5 @@ order-md-last
 checkout-btn
 complete-order-btn
 sr-only
+text-md-right
+lineitems
