@@ -20,8 +20,8 @@ class OrderAdmin(admin.ModelAdmin):
                        'product_count', 'discount', 'grand_total',
                        'original_bag', 'stripe_pid',)
 
-    fields = ('order_number', 'date', 'full_name', 'email', 'phone_number',
-              'street_address1', 'street_address2', 'postcode',
+    fields = ('order_number', 'user_profile', 'date', 'full_name', 'email',
+              'phone_number', 'street_address1', 'street_address2', 'postcode',
               'town_or_city', 'county_or_region', 'country', 'product_count',
               'order_total', 'delivery_cost', 'discount', 'grand_total',
               'original_bag', 'stripe_pid',)
@@ -30,7 +30,7 @@ class OrderAdmin(admin.ModelAdmin):
                     'order_total', 'delivery_cost', 'discount',
                     'grand_total',)
 
-    ordering = ('-date',)
+    ordering = ('-date', 'user_profile',)
 
 
 admin.site.register(Order, OrderAdmin)
