@@ -78,11 +78,11 @@
                                             </p>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
-                                            <p class="small">
-                                                <a class="cancel-btn" href="{% url 'edit_product' product.id %}" 
-                                                aria-label="Cancel operation">Edit Product</a>
-                                                <a class="cancel-btn" href="{% url 'delete_product' product.id %}" 
-                                                aria-label="Cancel operation">Delete Product</a>
+                                            <p class="text-right mb-2">
+                                                <a class="text-info" href="{% url 'edit_product' product.id %}" 
+                                                aria-label="Link to edit product page.">Edit Product</a> |
+                                                <a class="text-danger" href="{% url 'delete_product' product.id %}" 
+                                                aria-label="Delete product.">Delete Product</a>
                                             </p>
                                         {% endif %}
                                     </div>
