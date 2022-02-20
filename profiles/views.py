@@ -25,8 +25,9 @@ def profile(request):
                                      Please make sure information are valid'
                                     'or contact us for assiatance.')
             redirect(reverse('profile'))
+    else:
+        form = UserProfileForm(instance=user_profile)
 
-    form = UserProfileForm(instance=user_profile)
     orders = user_profile.orders.all()
 
     template = 'profiles/profile.html'

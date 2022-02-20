@@ -40,9 +40,11 @@
                 <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-profile-lg">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                            <a href="#" class="dropdown-item">Product Management</a>
+                            <a href="{% url 'add_product' %}" aria-label="Link to add product page." 
+                            class="dropdown-item">Product Management</a>
                         {% endif %}
-                        <a href="{% url 'profile' %}" class="dropdown-item">Account details</a>
+                        <a href="{% url 'profile' %}" aria-label="Link to account details page." 
+                        class="dropdown-item">Account details</a>
                         <a href="#" class="dropdown-item">Order history</a>
                         <a href="#" class="dropdown-item">My wishlist</a>
                         <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 

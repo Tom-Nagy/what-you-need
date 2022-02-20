@@ -35,9 +35,11 @@
                         <div class="dropdown-menu nav-list-option-sm" aria-labelledby="dropdown-menu-profile">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <a href="#" class="dropdown-item">Product Management</a>
+                                    <a href="{% url 'add_product' %}" aria-label="Link to add product page." 
+                                    class="dropdown-item">Product Management</a>
                                 {% endif %}
-                                <a href="{% url 'profile' %}" class="dropdown-item">Account details</a>
+                                <a href="{% url 'profile' %}" aria-label="Link to account details page." 
+                                class="dropdown-item">Account details</a>
                                 <a href="#" class="dropdown-item">Order history</a>
                                 <a href="#" class="dropdown-item">My wishlist</a>
                                 <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
@@ -58,7 +60,7 @@
                                 <div class="nav-icons-sm"><i class="fas fa-shopping-bag"></i></div>
                                 <p class="small nav-icons-sm-text">
                                     {% if grand_total %}
-                                        <span class="bag-icon-total">
+                                        <span class="bag-icon-total-sm">
                                             ${{ grand_total|floatformat:2 }}
                                         </span>
                                     {% else %}

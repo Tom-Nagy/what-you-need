@@ -136,3 +136,10 @@ allauth-form-inner-content
 user-form-detail-btn
 list-unstyled
 callout-btn-wrapper
+enctype
+cancel-btn
+form-btn
+nav-icons-wrapper-sm
+bag-icon-total-sm
+select-image-btn
+btn-file

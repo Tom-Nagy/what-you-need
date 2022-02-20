@@ -1,5 +1,6 @@
 '''Create and configure the products form'''
 
+from .widgets import CustomClearableFileInput
 from django import forms
 
 from .models import Product, Category
@@ -11,6 +12,11 @@ class ProductForm(forms.ModelForm):
         ''' Form meta properties '''
         model = Product
         fields = '__all__'
+
+        # Replace the image field the the custom widget
+        image = forms.ImageField(label='Image',
+                                 required=False,
+                                 widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

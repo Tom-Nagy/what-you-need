@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mx-auto mb-1 mb-md-3 text-center page-heading">Product Management</h2>
+                <h3 class="mx-auto text-center subheading">Add Product</h3>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Product form -->
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="text-right">
+                        <a class="cancel-btn" href="{% url 'products' %}" aria-label="Cancel operation">Cancel</a>
+                        <button class="form-btn" type="submit">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+{% endblock %}
