@@ -130,7 +130,8 @@ The next step is the live deployment of the website :arrow_double_down:
 7. A pop-up appears to select a plan. Select **Hobby Dev - Free**.
     * ![Free plan Postgres](documentation/deployment/free-postgres.png)
 
-8. Now you need to save your current database and load it into a db.json file by typing in the CLI of your IDE:
+8. Now you need to save your current database and load it into a db.json file:
+    * Previous to loading the date, ensure you have deleted user profiles from admin panel of your website to avoid any recurrencies.
     * ``python3 manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json``
     * This will be the data that you will upload to Postgres. Note that you can use a different filename than "db", and it will then be ``<YOUR FILENAME>.json``
 
@@ -142,18 +143,18 @@ The next step is the live deployment of the website :arrow_double_down:
 10. Freeze the requirements. In order to add the new dependencies to *requirements.txt* type in the CLI:
     * ``pip3 freeze > requirements.txt`` This will make sure Heroku install all the apps requirements when we deploy it.
 
-11. Go to what-you-need > settings.py (root folder) and import dj_database_url by typing ``import dj_database_url`` at the top of the file.
+11. Go to your project folder what-you-need > settings.py (root folder) and import dj_database_url by typing ``import dj_database_url`` at the top of the file.
 
 12. Then still in settings.py, down in the Database settings, comment out the default database configuration:
     * ![Default config](documentation/deployment/default-database-commented-out.png)
 
 13. Replace the default database with a call to *dj_database_url.parse* and give it the database URL from Heroku.
     * ![Replace databases](documentation/deployment/replace-databases.png)
-    * You can either get it from your config variables in your Heroku app settings tab, or from the command line by typing Heroku config.
+    * You can either get your url from your config variables in your Heroku app settings tab, or from the command line by typing Heroku config.
       * ![Database url Heroku](documentation/deployment/database-url-heroku.png)
 
 14. Run migrations by typing in the CLI:
-    * ``Python3 manage.py migrate`` This will apply all the migrations and get the database all set up.
+    * ``python3 manage.py migrate`` This will apply all the migrations and get the database all set up.
 
 15. Run the following command to load the data previously saved into the json file by typing in the CLI:
     * ``python3 manage.py loaddata db.json``
