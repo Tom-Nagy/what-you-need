@@ -436,10 +436,8 @@ Now you can remove/delete the ``DISABLE_COLLECTSTATIC`` variable from the list o
 
 * Navigate to your s3 bucket and to the Objects tab.
 * Click on the Create Folder.
-* Name your folder media.
-* Click Create folder.
-* Click on your media folder and inside it,
-* Click Upload.
+* Name your folder "media" and click Create folder.
+* Navigate to the media folder you just created and inside it, click Upload.
 * Click Add Files and select all the product images. If you need to download them all, you can do so from your own GitHub repo.
 * In Permissions > Access control list (ACL) > Predefined ACLs select "Grant public-read access" and tick you understand the risks.
 * Click on Upload.
@@ -535,32 +533,6 @@ else:
 
 * Add, commit and push your changes.
 
-<!-- What happens now is when our project is deployed to Heroku.
-Heroku will run python3 manage.py collectstatic during the build process.
-Which will search through all our apps and project folders looking for static files.
-And it will use the s3 custom domain setting in conjunction with our custom storage classes that tell it the location at that URL -->
-
-<!-- if we wanted to turn this into a real store at this point
-it would involve some additional testing on stripe.
-Setting up real confirmation emails.
-And switching our stripe settings to use the live keys rather than the test ones we're using now.
-we would also likely want to write a plethora of tests for our application.
-In particular in the checkout and shopping bag apps.
-And make some security adjustments as well as some minor changes to make it easier to work
-between our development and production environments seamlessly. -->
-
-
-<!-- :warning: Never share sensible and private information as they are confidential and could put the security of your data, database and website at risk.
-
-#### Key steps to Deploy on Heroku
-
-This will give a quick and short reminder on the important steps to deploy the on Heroku.
-
-1. Create a Heroku app
-2. Connect Git remote to Heroku or Set automatic Deployment from GitHub.
-3. Create a requirements.txt file
-4. Create a Heroku Procfile: Tells Heroku how to run the project.
-
-You can find the Heroku CLI command on [Code-Institute-Solutions/ FlaskFramework](https://github.com/Code-Institute-Solutions/FlaskFramework/blob/master/05-DeployingOurProjectToHeroku/04-pushing_to_heroku/Heroku_CLI_commands.md) -->
+Now you are all set! Well Done :thumbsup:
 
 [**:back:** *Table of Content*](#Table-of-Content)

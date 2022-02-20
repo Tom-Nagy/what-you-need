@@ -341,7 +341,7 @@ Navigation menu done with a tutorial from adapted for this project.
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 0.25rem;
     overflow-x: hidden;
-    overflow-y: visible;
+    overflow-y: auto;
     z-index: 1031;
 
     -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
@@ -392,14 +392,14 @@ Navigation menu done with a tutorial from adapted for this project.
 }
 
 .categories-container-sm {
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 3px;
     width: 300px;
     margin: 0;
 }
 
 .categories-container-lg {
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 3px;
     width: 600px;
     margin: 0;
