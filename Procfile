@@ -1,1 +1,1 @@
-web: gunicorn what-you-need.wsgi:application
+web: gunicorn what_you_need.wsgi:application
