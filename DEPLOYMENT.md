@@ -237,7 +237,7 @@ Now we will set up Amazon Web Services ([AWS](https://aws.amazon.com/)) s3 (simp
 3. Navigate to your bucket and go to the **Properties** tab.
     * Scroll down to "Static website hosting" and click edit.
     * Select enable static website hosting. It will give us a new endpoint we can use to access it from the internet.
-    * Enter some default values for the index document (index.html) and for the error document(error.html) as we won't use them for this project.
+    * Enter some default values for the index document (index.html) and for the error document(error.html).
     * Click save changes.
 
 4. Navigate to the **Permissions** tab.
@@ -337,7 +337,7 @@ Now we will set up Amazon Web Services ([AWS](https://aws.amazon.com/)) s3 (simp
       * Click on Add users.
       * Give it a name (e.i. ``<your project name>-staticfiles-user``)
       * Select "Access key - Programmatic access"
-      * Click on "Next: Permissions".
+      * Click on "Next" until creating the user.
       * Select the group we just created that has the policy attached and click next until you create the user as we have nothing else to add.
 
 :warning: Now download the CSV file which will contain the users access key and secret access key which we'll use to authenticate them from our Django app.  
@@ -413,10 +413,10 @@ Now you can remove/delete the ``DISABLE_COLLECTSTATIC`` variable from the list o
         location = settings.MEDIAFILES_LOCATION
     ```
 
-    * In settings.py we need to tell Django that for static file storage we want to use our storage class we just created. And git it the location to save the static files (a folder called static).
+    * In settings.py we need to tell Django that for static file storage we want to use our storage class we just created. And give it the location to save the static files (a folder called static).
     * We need to do the same for media files by using the default file storage and media files location settings.
     * As well, we need to override and explicitly set the URLs for static and media files using our custom domain and the new locations.
-    * So in settings.py below our bucket settings, add in this code snippet:
+    * So in settings.py below our bucket settings, add in this code snippet inside the if statement:
 
     ```python
     # Static and media files
