@@ -215,7 +215,11 @@ The next step is the live deployment of the website :arrow_double_down:
 
 25. Add, commit and push your changes to GitHub.
 
-26. Now every time you add, commit and push to GitHub, it will automatically deploy to Heroku.
+26. In Deploy tab of your Heroku app:
+    * Choose GitHub in the Deployment method section.
+    * Click on connect in the following section.
+    * Enable Automatic deploys in the next section.
+    * Now every time you add, commit and push to GitHub, it will automatically deploy to Heroku.
 
 ### Set up AWS s3 to host our static files and images
 
