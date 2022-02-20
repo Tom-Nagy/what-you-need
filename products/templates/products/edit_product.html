@@ -15,6 +15,7 @@
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
+                        <!-- display field as crispy except for the custom widget for image  -->
                         {% if field.name != 'image' %}
                             {{ field | as_crispy_field }}
                         {% else %}

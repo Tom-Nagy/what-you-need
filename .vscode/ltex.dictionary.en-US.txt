@@ -143,3 +143,4 @@ nav-icons-wrapper-sm
 bag-icon-total-sm
 select-image-btn
 btn-file
+shadow-sm

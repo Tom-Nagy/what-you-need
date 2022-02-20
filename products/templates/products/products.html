@@ -37,7 +37,7 @@
                         <div class="card h-100 card-product">
                             <div class="row no-gutters">
                                 <div class="col-12 text-center">
-                                    {% if product.image.url %}
+                                    {% if product.image %}
                                         <img class="img-fluid card-product-images" src="{{ product.image.url }}" alt="{{ product.name }}">
                                     {% else %}
                                         <img class="img-fluid card-product-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
