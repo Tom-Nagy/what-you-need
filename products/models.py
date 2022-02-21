@@ -72,6 +72,7 @@ class ProductReview(models.Model):
     '''Model that determine how the data will be store for a review'''
 
     rating_options = [
+            (0, 0),
             (1, 1),
             (2, 2),
             (3, 3),
@@ -92,7 +93,8 @@ class ProductReview(models.Model):
             MinValueValidator(0)],
         null=False, blank=False)
     content = models.TextField(max_length=1000, null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True)
+    date_time = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         ''' String method to return the name of the Product '''

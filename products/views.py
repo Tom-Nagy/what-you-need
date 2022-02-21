@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.utils.safestring import mark_safe
 
 from profiles.models import UserProfile
 
@@ -87,6 +88,7 @@ def product_detail(request, product_id):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user__username=request.user)
 
+    template = 'products/product_detail.html'
     context = {
         'product': product,
         'on_product_page': True,
@@ -94,7 +96,7 @@ def product_detail(request, product_id):
         'review_form': review_form,
         'reviews': reviews,
     }
-    return render(request, 'products/product_detail.html', context)
+    return render(request, template, context)
 
 
 @login_required
@@ -174,27 +176,33 @@ def add_review(request, product_id):
 
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)
-        user = get_object_or_404(UserProfile, user=request.user)
+        user_profile = get_object_or_404(UserProfile, user=request.user)
 
         form = ProductReviewForm(request.POST, request.FILES)
 
         if form.is_valid():
             review = form.save(commit=False)
             review.product = product
-            review.user = user
+            review.user = user_profile
             form.save()
             messages.success(request, f'Your have added a review for \
-                                       {product.name}'
-                                      'Thank you for your feedback!')
+                                       {product.name}.'
+                                      ' Thank you for your feedback!')
         else:
             messages.error(request, 'Something went wrong \
                                      Please make sure information are valid'
                                     'or contact us for assiatance.')
-            redirect(reverse('product_details', args=[product.id]))
+            return redirect(reverse('product_detail', args=[product.id]))
 
-        template = f'products/product_details/{product.id}/'
+        review_form = ProductReviewForm()
+        reviews = ProductReview.objects.all()
+        template = 'products/product_detail.html'
         context = {
-            'from_add_review': True,
+            'product': product,
+            'on_product_page': True,
+            'user': user_profile,
+            'review_form': review_form,
+            'reviews': reviews,
         }
 
         return render(request, template, context)

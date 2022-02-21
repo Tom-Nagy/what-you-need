@@ -9,11 +9,11 @@ class ProductReviewAdminInline(admin.TabularInline):
 
     model = ProductReview
 
-    readonly_fields = ('date', 'content', 'review_rating',)
+    readonly_fields = ('date_time', 'content', 'review_rating',)
 
-    list_display = ('date', 'user', 'content', 'review_rating',)
+    list_display = ('date_time', 'user', 'content', 'review_rating',)
 
-    ordering = ('-date',)
+    ordering = ('-date_time',)
 
 
 class ProductAdmin(admin.ModelAdmin):
