@@ -137,9 +137,9 @@ a:hover {
 }
 
 .bag-icon-total-sm {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+    color: #5c0000;
+    font-size: 13.5px;
+    font-weight: 800;
 }
 
 .nav-list-option-sm,
@@ -189,7 +189,6 @@ Navigation menu done with a tutorial from adapted for this project.
 [Online Tutorials](https://www.youtube.com/watch?v=ArTVfdHOB-M&list=PLKmECQB4ukRQPKzgKL1zpx3NeE-YlYF4o&index=62&t=51s) 
 */
 
-.on-page .nav-icons-sm,
 .navigation-menu-container-sm li:hover .nav-icons-sm,
 .navigation-menu-container-sm li:focus .nav-icons-sm,
 .navigation-menu-container-sm li:active .nav-icons-sm {
@@ -211,14 +210,12 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: 0 3px 0 6px #f2f2f2;
 }
 
-.on-page .nav-icons-sm-text,
 .navigation-menu-container-sm li:hover .nav-icons-sm-text,
 .navigation-menu-container-sm li:focus .nav-icons-sm-text,
 .navigation-menu-container-sm li:active .nav-icons-sm-text {
     font-weight: 800;
 }
 
-.on-page .nav-icons-sm::before,
 .navigation-menu-container-sm li:hover .nav-icons-sm::before,
 .navigation-menu-container-sm li:focus .nav-icons-sm::before,
 .navigation-menu-container-sm li:active .nav-icons-sm::before {
@@ -234,7 +231,6 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: 2px -3px 0 0 #f2f2f2;
 }
 
-.on-page .nav-icons-sm::after,
 .navigation-menu-container-sm li:hover .nav-icons-sm::after,
 .navigation-menu-container-sm li:focus .nav-icons-sm::after,
 .navigation-menu-container-sm li:active .nav-icons-sm::after {
@@ -253,6 +249,12 @@ Navigation menu done with a tutorial from adapted for this project.
 .nav-list-option-sm {
     top: -24px !important;
     left: 30px !important;
+}
+
+.on-page .nav-icons-sm,
+.on-page .nav-icons-sm-text {
+    transform: scale(1.25);
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* ------------------------------------------- Navbar large screen */
