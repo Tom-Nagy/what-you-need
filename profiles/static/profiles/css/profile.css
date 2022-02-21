@@ -1,18 +1,3 @@
-.order-history {
-    max-height: 416px;
-    overflow-y: auto;
-}
-
-.profile-form-input{
-    border-radius: 10px;
-    border-color: #0d0d0d;
-    color: #0d0d0d;
-}
-
-.profile-form-input::placeholder {
-    color: #0d0d0d80;
-}
-
 #id_default_country,
 #id_default_country option:not(:first-child) {
     color: #0d0d0d;

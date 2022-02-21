@@ -1,7 +1,11 @@
 ''' Models configuration for Products app '''
 
 from django.db import models
+from django.db.models import Sum
+
 from django.core.validators import MinValueValidator, MaxValueValidator
+
+from profiles.models import UserProfile
 
 
 class Category(models.Model):
@@ -57,3 +61,28 @@ class Product(models.Model):
     def __str__(self):
         ''' String method to return the name of the Product '''
         return str(self.name)
+
+    def update_rating(self):
+        ''' Update product rating each time a review is added '''
+
+        self.rating = self.reviews.aggregate(
+            Sum('review_rating'))['review_rating__sum'] or 0
+
+
+class ProductReview(models.Model):
+    '''Model that determine how the data will be store for a review'''
+
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
+                             related_name='reviews')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='reviews')
+    review_rating = models.PositiveSmallIntegerField(
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0)], null=False, blank=False)
+    content = models.TextField(max_length=1000, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        ''' String method to return the name of the Product '''
+        return str(self.product.name)

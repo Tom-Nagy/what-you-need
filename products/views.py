@@ -5,8 +5,10 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
-from .forms import ProductForm
+from profiles.models import UserProfile
+
+from .models import Product, Category, ProductReview
+from .forms import ProductForm, ProductReviewForm
 
 
 def all_products(request):
@@ -78,18 +80,26 @@ def product_detail(request, product_id):
     ''' A view to display details of individual product. '''
 
     product = get_object_or_404(Product, pk=product_id)
-    on_product_page = True
+    review_form = ProductReviewForm()
+    reviews = ProductReview.objects.all()
+
+    user_profile = None
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user__username=request.user)
 
     context = {
         'product': product,
-        'on_product_page': on_product_page,
+        'on_product_page': True,
+        'user': user_profile,
+        'review_form': review_form,
+        'reviews': reviews,
     }
     return render(request, 'products/product_detail.html', context)
 
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    ''' Add a product to the store '''
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -116,7 +126,7 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
-    """ Edit a product in the store """
+    ''' Edit a product in the store '''
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -147,7 +157,7 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
+    ''' Delete a product from the store '''
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -156,3 +166,22 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted')
     return redirect(reverse('products'))
+
+
+# @login_required
+# def add_review(request, product_id):
+#     ''' Add a review for a specified product '''
+
+#     user_profile = get_object_or_404(UserProfile, user=request.user)
+#     product = get_object_or_404(Product, pk=product_id)
+#     review_form = ProductReviewForm(instance=ProductReview)
+#     reviews = ProductReview.objects.all()
+
+#     context = {
+#         'user': user_profile,
+#         'product': product,
+#         'review_form': review_form,
+#         'reviews': reviews,
+#     }
+
+#     return render(request, context)
