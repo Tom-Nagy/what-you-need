@@ -495,6 +495,10 @@ input[name='q']::placeholder {
     color: #052614;
 }
 
+.rating-icon {
+    color: gold;
+}
+
 /* ----------------------------------------- product_detail card */
 
 .badge-product-quantity {

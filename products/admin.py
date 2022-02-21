@@ -1,11 +1,26 @@
 ''' Admin configuration and registration for Products app '''
 
 from django.contrib import admin
-from .models import Product, Category
+from .models import Product, Category, ProductReview
+
+
+class ProductReviewAdminInline(admin.TabularInline):
+    ''' Allow access to review of product from the Product admin '''
+
+    model = ProductReview
+
+    readonly_fields = ('date', 'content', 'review_rating',)
+
+    list_display = ('date', 'user', 'content', 'review_rating',)
+
+    ordering = ('-date',)
 
 
 class ProductAdmin(admin.ModelAdmin):
     ''' Customise the admin Product interface '''
+
+    inlines = (ProductReviewAdminInline,)
+
     list_display = (
         'name',
         'category',

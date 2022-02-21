@@ -36,13 +36,16 @@
                     <hr>
                 </div>
                 <div class="mt-2">
-                    <p>
-                        <span>{{ review.user.full_name }}</span>
-                        <span class="text-right">{{ review.review_rating }}</span>
+                    <p class="text-right mb-0">
+                        <span>{{ review.review_rating }}/5</span>
+                        <span class="rating-icon"><i class="fas fa-star"></i></span>
+                        <span class="sr-only">ratings score</span>
                     </p>
-                    <p>
-                        {{ review.content }}
-                    </p>
+                    <blockquote class="blockquote">
+                        <p class="mb-1 small">{{ review.user }}</p>
+                        <footer class="blockquote-footer">{{ review.content }}</footer>
+                    </blockquote>
+                    <p class="text-right small text-muted mb-0">{{ review.date }}</p>    
                 </div>
             {% endfor %} 
         {% endif %}

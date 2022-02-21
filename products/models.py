@@ -81,7 +81,8 @@ class ProductReview(models.Model):
 
     user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                              null=True, blank=True,)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+    product = models.ForeignKey(Product, null=False, blank=False,
+                                on_delete=models.CASCADE,
                                 related_name='reviews')
     review_rating = models.PositiveSmallIntegerField(
         choices=rating_options,
