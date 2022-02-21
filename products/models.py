@@ -64,7 +64,6 @@ class Product(models.Model):
 
     def update_rating(self):
         ''' Update product rating each time a review is added '''
-
         self.rating = self.reviews.aggregate(
             Sum('review_rating'))['review_rating__sum'] or 0
 
@@ -72,14 +71,25 @@ class Product(models.Model):
 class ProductReview(models.Model):
     '''Model that determine how the data will be store for a review'''
 
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
-                             related_name='reviews')
+    rating_options = [
+            (1, 1),
+            (2, 2),
+            (3, 3),
+            (4, 4),
+            (5, 5),
+        ]
+
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                             null=True, blank=True,)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,
                                 related_name='reviews')
     review_rating = models.PositiveSmallIntegerField(
+        choices=rating_options,
+        default=5,
         validators=[
             MaxValueValidator(5),
-            MinValueValidator(0)], null=False, blank=False)
+            MinValueValidator(0)],
+        null=False, blank=False)
     content = models.TextField(max_length=1000, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 

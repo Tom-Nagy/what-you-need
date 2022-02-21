@@ -9,6 +9,6 @@ from .models import ProductReview
 
 
 @receiver(post_save, sender=ProductReview)
-def update_on_save(sender, instance, created, **kwargs):
+def update_rating_on_save(sender, instance, created, **kwargs):
     ''' Update order total on lineitem update/create event '''
     instance.product.update_rating()

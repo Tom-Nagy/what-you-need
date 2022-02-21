@@ -168,20 +168,33 @@ def delete_product(request, product_id):
     return redirect(reverse('products'))
 
 
-# @login_required
-# def add_review(request, product_id):
-#     ''' Add a review for a specified product '''
+@login_required
+def add_review(request, product_id):
+    ''' Add a review for a specified product '''
 
-#     user_profile = get_object_or_404(UserProfile, user=request.user)
-#     product = get_object_or_404(Product, pk=product_id)
-#     review_form = ProductReviewForm(instance=ProductReview)
-#     reviews = ProductReview.objects.all()
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        user = get_object_or_404(UserProfile, user=request.user)
 
-#     context = {
-#         'user': user_profile,
-#         'product': product,
-#         'review_form': review_form,
-#         'reviews': reviews,
-#     }
+        form = ProductReviewForm(request.POST, request.FILES)
 
-#     return render(request, context)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.user = user
+            form.save()
+            messages.success(request, f'Your have added a review for \
+                                       {product.name}'
+                                      'Thank you for your feedback!')
+        else:
+            messages.error(request, 'Something went wrong \
+                                     Please make sure information are valid'
+                                    'or contact us for assiatance.')
+            redirect(reverse('product_details', args=[product.id]))
+
+        template = f'products/product_details/{product.id}/'
+        context = {
+            'from_add_review': True,
+        }
+
+        return render(request, template, context)
