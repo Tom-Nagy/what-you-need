@@ -64,8 +64,10 @@ class Product(models.Model):
 
     def update_rating(self):
         ''' Update product rating each time a review is added '''
-        self.rating = self.reviews.aggregate(
+        reviews_nb = self.reviews.count()
+        rating_sum = self.reviews.aggregate(
             Sum('review_rating'))['review_rating__sum'] or 0
+        self.rating = int(rating_sum / reviews_nb)
 
 
 class ProductReview(models.Model):
