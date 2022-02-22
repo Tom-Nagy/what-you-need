@@ -4,12 +4,26 @@ from django.contrib import admin
 from .models import Product, Category, ProductReview
 
 
+class ProductReviewAdmin(admin.ModelAdmin):
+    ''' Allow access to all reviews from admin '''
+
+    model = ProductReview
+
+    readonly_fields = ('date_time', 'user', 'content', 'review_rating',
+                       'product',)
+
+    list_display = ('date_time', 'user', 'product',
+                    'content', 'review_rating',)
+
+    ordering = ('-date_time', 'product',)
+
+
 class ProductReviewAdminInline(admin.TabularInline):
     ''' Allow access to review of product from the Product admin '''
 
     model = ProductReview
 
-    readonly_fields = ('date_time', 'content', 'review_rating',)
+    readonly_fields = ('date_time', 'user', 'content', 'review_rating',)
 
     list_display = ('date_time', 'user', 'content', 'review_rating',)
 
@@ -48,3 +62,4 @@ class CategoryAdmin(admin.ModelAdmin):
 # Models registration with relevant classes
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(ProductReview, ProductReviewAdmin)
