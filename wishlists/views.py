@@ -17,6 +17,7 @@ def all_wishlist(request):
     template = 'wishlists/all_wishlist.html'
     context = {
         'wishlist': wishlist,
+        'on_profile_page': True,
     }
     return render(request, template, context)
 
@@ -40,9 +41,20 @@ def add_wishlist(request):
         wishlist.user = user_profile
         wishlist.name = wishlist_name
         wishlist.save()
-        messages.success(request, f'Wishlist {wishlist_name} created')
+        messages.success(request, 'Wishlist created')
         return redirect('all_wishlist')
 
+    return redirect(reverse('all_wishlist'))
+
+
+@login_required
+def delete_wishlist(request, list_id):
+    ''' Delete the selected wishlist '''
+    wishlist = get_object_or_404(Wishlist, pk=list_id)
+    print(f'wishlist to delete {wishlist}')
+    wishlist.delete()
+
+    messages.success(request, 'Wishlist deleted')
     return redirect(reverse('all_wishlist'))
 
 

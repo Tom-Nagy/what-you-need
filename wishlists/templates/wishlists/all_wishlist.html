@@ -17,13 +17,20 @@
                     <div class="accordion">
                         <div class="card">
                             <div class="card-header" id="id_header_{{list.name}}">
-                                <h2 class="mb-0">
+                                <h2 class="mb-0 d-inline-block">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button" 
                                 data-toggle="collapse" data-target="#id_{{list.name}}" 
                                 aria-expanded="false" aria-controls="id_{{list.name}}">
                                     {{ list.name }}
                                 </button>
                                 </h2>
+                                <a class="delete-prod-btn float-right" href="{% url 'delete_wishlist' list.id %}" 
+                                aria-label="Delete product.">
+                                    <span class="icon">
+                                        <i class="far fa-trash-alt"></i>
+                                    </span>
+                                    <span class="sr-only">Delete the {{list.name}} wishlist and its content.</span>
+                                </a>
                             </div>
                         
                             <div id="id_{{list.name}}" class="collapse" aria-labelledby="id_header_{{list.name}}">
