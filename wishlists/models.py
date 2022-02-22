@@ -26,14 +26,3 @@ class WishlistItem(models.Model):
                                  related_name='wishlist_items')
     product = models.ForeignKey(Product, null=True, blank=True,
                                 on_delete=models.SET_NULL)
-
-
-# @receiver(post_save, sender=Wishlist)
-# def create_or_update_default_wishlist(sender, instance, created, **kwargs):
-#     """
-#     Create a default wishlist or update it.
-#     """
-#     if created:
-#         Wishlist.objects.create()
-#     # Existing wishlist: save the wishlist
-#     instance.whislist.save()

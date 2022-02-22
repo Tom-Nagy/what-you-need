@@ -1,6 +1,7 @@
 ''' Views to manage and render the wishlists pages '''
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -16,7 +17,7 @@ def all_wishlist(request):
     wishlist = Wishlist.objects.all()
     template = 'wishlists/all_wishlist.html'
     context = {
-        'wishlist': wishlist,
+        'all_wishlist': wishlist,
         'on_profile_page': True,
     }
     return render(request, template, context)
@@ -48,10 +49,41 @@ def add_wishlist(request):
 
 
 @login_required
+def edit_wishlist(request, wishlist_id):
+    ''' Edit a wishlist name '''
+
+    wishlist = get_object_or_404(Wishlist, pk=wishlist_id)
+    if request.method == 'POST':
+        user_profile = get_object_or_404(UserProfile, user=request.user)
+        wishlist_name = request.POST.get('new_wishlist_name')
+
+        if wishlist_name:
+            user_wishlist = user_profile.wishlist.all()
+            wishlist.name = wishlist_name
+
+            for a_wishlist in user_wishlist:
+                if a_wishlist.name == wishlist_name:
+                    messages.error(request, f'{wishlist_name} exist aleady. \
+                                                Please pick a different name.')
+                    return redirect(reverse('edit_wishlist',
+                                            args=[wishlist.id]))
+
+            wishlist.save()
+            return redirect('all_wishlist')
+        else:
+            messages.error(request, mark_safe('Something went wrong!<br/> \
+                                               Try again or contact us \
+                                               for assistance'))
+            return redirect(reverse('edit_wishlist',
+                                    args=[wishlist.id]))
+
+    return redirect(reverse('all_wishlist'))
+
+
+@login_required
 def delete_wishlist(request, list_id):
     ''' Delete the selected wishlist '''
     wishlist = get_object_or_404(Wishlist, pk=list_id)
-    print(f'wishlist to delete {wishlist}')
     wishlist.delete()
 
     messages.success(request, 'Wishlist deleted')

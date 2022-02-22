@@ -770,6 +770,17 @@ input[name='q']::placeholder {
     color: #0d0d0d;
 }
 
+/* --------------------------------------- Wishlist */
+
+.edit-delete-wishlist-wrapper {
+    height: 36px;
+}
+
+.edit-delete-wishlist-wrapper a {
+    line-height: 1.3rem;
+    vertical-align: middle;
+}
+
 /* --------------------------------------- Forms */
 
 .allauth-form-inner-content p {
@@ -791,6 +802,11 @@ input[name='q']::placeholder {
 .custom-form-input::placeholder,
 .allauth-form-inner-content input::placeholder {
     color: #0d0d0d80;
+}
+
+.modal .custom-form-input {
+    font-size: 1rem;
+    padding: 6px;
 }
 
 .links-inline-style,

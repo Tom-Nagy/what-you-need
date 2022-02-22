@@ -11,32 +11,65 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            {% if wishlist %}
+            {% if all_wishlist %}
                 <div class="col-12 col-md-6">
-                    {% for list in wishlist %}
-                    <div class="accordion">
+                    <!-- wishlist -->
+                    {% for wishlist in all_wishlist %}
+                    <div class="accordion mb-3">
                         <div class="card">
-                            <div class="card-header" id="id_header_{{list.name}}">
+                            <div class="card-header" id="id_header_{{wishlist.id}}">
                                 <h2 class="mb-0 d-inline-block">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button" 
-                                data-toggle="collapse" data-target="#id_{{list.name}}" 
-                                aria-expanded="false" aria-controls="id_{{list.name}}">
-                                    {{ list.name }}
+                                data-toggle="collapse" data-target="#id_{{wishlist.id}}" 
+                                aria-expanded="false" aria-controls="id_{{wishlist.name}}">
+                                    {{ wishlist.name }}
                                 </button>
+                                <!-- Modal form for editing wishlist name -->
+                                <div class="modal fade" id="modal_id_{{wishlist.id}}" tabindex="-1" 
+                                aria-labelledby="modal_label_{{wishlist.id}}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modal_label_{{wishlist.id}}">
+                                                    Change your wishlist name "{{wishlist.name}}"
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{% url 'edit_wishlist' wishlist.id %}" method="POST" >
+                                                    {% csrf_token %}
+                                                    <input type="text" id="new_wishlist_name" name="new_wishlist_name" 
+                                                    class="custom-form-input d-block" placeholder="Enter a name" 
+                                                    aria-label="Enter a new name">
+                                                    <button type="submit" class="form-btn">Change</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </h2>
-                                <a class="delete-prod-btn float-right" href="{% url 'delete_wishlist' list.id %}" 
-                                aria-label="Delete product.">
-                                    <span class="icon">
-                                        <i class="far fa-trash-alt"></i>
-                                    </span>
-                                    <span class="sr-only">Delete the {{list.name}} wishlist and its content.</span>
-                                </a>
+                                <!-- Rename wishlist -->
+                                <div class="float-right edit-delete-wishlist-wrapper">
+                                    <a class="text-info mr-2" type="button" href="#" data-toggle="modal" data-target="#modal_id_{{wishlist.id}}"
+                                    aria-label="Link to edit wishlist name.">Rename</a>
+                                    <!-- Delete wishlist -->
+                                    <a class="delete-prod-btn" href="{% url 'delete_wishlist' wishlist.id %}" 
+                                    aria-label="Delete product.">
+                                        <span class="icon">
+                                            <i class="far fa-trash-alt"></i>
+                                        </span>
+                                        <span class="sr-only">Delete the {{wishlist.name}} wishlist and its content.</span>
+                                    </a>
+                                </div>
+                                
                             </div>
-                        
-                            <div id="id_{{list.name}}" class="collapse" aria-labelledby="id_header_{{list.name}}">
+                            <!-- wishlist content -->
+                            <div id="id_{{wishlist.id}}" class="collapse" aria-labelledby="id_header_{{wishlist.id}}">
                                 <div class="card-body">
-                                {% if product|length in list.wishlist_items != 0 %}
-                                    {{ list.wishlist_items }}
+                                {% if product|length in wishlist.wishlist_items != 0 %}
+                                    {{ wishlist.wishlist_items }}
                                 {% else %}
                                     <p>Your wishlist is empty!</p>
                                     <a href="{% url 'products' %}" aria-label="Link to all products page." 
