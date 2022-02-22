@@ -68,6 +68,7 @@ class Product(models.Model):
         rating_sum = self.reviews.aggregate(
             Sum('review_rating'))['review_rating__sum'] or 0
         self.rating = int(rating_sum / reviews_nb)
+        self.save()
 
 
 class ProductReview(models.Model):
