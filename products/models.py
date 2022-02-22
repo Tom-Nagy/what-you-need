@@ -67,7 +67,7 @@ class Product(models.Model):
         reviews_nb = self.reviews.count()
         rating_sum = self.reviews.aggregate(
             Sum('review_rating'))['review_rating__sum'] or 0
-        
+
         if reviews_nb > 0:
             self.rating = int(rating_sum / reviews_nb)
         else:
