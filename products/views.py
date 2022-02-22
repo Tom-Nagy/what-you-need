@@ -52,8 +52,9 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, 'You are searching for nothing! \
-                                         Try with something!')
+                messages.error(request,
+                               mark_safe('You are searching for nothing! \
+                                          <br/>Try with something!'))
                 return redirect(reverse('products'))
 
             queries = Q(name__icontains=query) | Q(
@@ -185,9 +186,9 @@ def add_review(request, product_id):
             review.product = product
             review.user = user_profile
             form.save()
-            messages.success(request, f'Your have added a review for \
-                                       {product.name}.'
-                                      ' Thank you for your feedback!')
+            messages.success(request,
+                             mark_safe(f'You added a review for {product.name}'
+                                       '<br/>Thank you for your feedback!'))
         else:
             messages.error(request, 'Something went wrong \
                                      Please make sure information are valid'
