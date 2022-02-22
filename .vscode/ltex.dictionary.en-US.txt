@@ -144,3 +144,4 @@ bag-icon-total-sm
 select-image-btn
 btn-file
 shadow-sm
+Wishlists
