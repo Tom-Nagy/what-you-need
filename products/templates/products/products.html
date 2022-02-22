@@ -53,10 +53,11 @@
                                                 <p class="text-right my-0">
                                                     {% if product.rating %}
                                                         <span>{{ product.rating }}</span>
+                                                        <span class="rating-icon"><i class="fas fa-star"></i></span>
                                                     {% else %}
                                                         <span><small class="text-muted">No rating</small></span>
+                                                        <i class="fas fa-star"></i>
                                                     {% endif %}
-                                                    <i class="fas fa-star"></i>
                                                 </p>
                                             </div>
                                             <div class="col-12 text-left">
