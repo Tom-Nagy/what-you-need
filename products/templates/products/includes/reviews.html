@@ -23,6 +23,7 @@
                     aria-label="Cancel operation">Cancel</a>
                     <button type="submit" class="form-btn">Add Review</button>
                 </div>
+                <input type="hidden" name="review_redirect_url" value="{{ request.path }}">
             </form>
         {% else %}
             <p class="mt-2">

@@ -178,6 +178,7 @@ def add_review(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)
         user_profile = get_object_or_404(UserProfile, user=request.user)
+        redirect_url = request.POST.get('review_redirect_url')
 
         form = ProductReviewForm(request.POST, request.FILES)
 
@@ -189,21 +190,12 @@ def add_review(request, product_id):
             messages.success(request,
                              mark_safe(f'You added a review for {product.name}'
                                        '<br/>Thank you for your feedback!'))
+            return redirect(redirect_url)
+
         else:
             messages.error(request, 'Something went wrong \
                                      Please make sure information are valid'
                                     'or contact us for assiatance.')
             return redirect(reverse('product_detail', args=[product.id]))
 
-        review_form = ProductReviewForm()
-        reviews = ProductReview.objects.all()
-        template = 'products/product_detail.html'
-        context = {
-            'product': product,
-            'on_product_page': True,
-            'user': user_profile,
-            'review_form': review_form,
-            'reviews': reviews,
-        }
-
-        return render(request, template, context)
+    return redirect(reverse('product_detail', args=[product.id]))
