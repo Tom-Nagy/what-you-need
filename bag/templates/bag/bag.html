@@ -162,11 +162,12 @@
                                 </div>
                                 <!-- Remove product -->
                                 <div class="col-2 text-center">
-                                    <button class="delete-prod-btn remove-item" id="remove_{{ item.item_id }}" 
+                                    <button title="Delete product" class="delete-prod-btn remove-item" id="remove_{{ item.item_id }}" 
                                         name="delete" data-item_id="{{ item.item_id }}">
                                         <span class="icon">
                                             <i class="far fa-trash-alt"></i>
                                         </span>
+                                        <span class="sr-only">Remove the product {{item.product.name}} from the bag.</span>
                                     </button>
                                 </div>
                             </div>
