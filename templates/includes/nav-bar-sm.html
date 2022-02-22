@@ -41,7 +41,8 @@
                                 <a href="{% url 'profile' %}" aria-label="Link to account details page." 
                                 class="dropdown-item">Account details</a>
                                 <a href="#" class="dropdown-item">Order history</a>
-                                <a href="#" class="dropdown-item">My wishlist</a>
+                                <a href="{% url 'all_wishlist' %}" aria-label="Link to wishlist page." 
+                                class="dropdown-item">My wishlist</a>
                                 <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
                                 class="dropdown-item">Logout</a>
                             {% else %}

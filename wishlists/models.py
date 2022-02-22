@@ -11,9 +11,8 @@ class Wishlist(models.Model):
 
     user = models.ForeignKey(UserProfile, null=False, blank=False,
                              on_delete=models.CASCADE,
-                             related_name='whislist')
-    name = models.CharField(max_length=254, null=False, blank=False,
-                            default="My whislist")
+                             related_name='wishlist')
+    name = models.CharField(max_length=254, null=False, blank=False)
 
     def __str__(self):
         ''' String method to return the name of the category '''
