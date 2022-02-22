@@ -11,7 +11,13 @@
         {% if user %}
             <form action="{% url 'add_review' product.id %}" method="POST" class="form mt-2 mt-md-4">
                 {% csrf_token %}
-                {{ review_form|crispy }}
+                {% for field in review_form %}
+                    {% if field.name == 'review_rating' %}
+                        Rating<span class="text-danger"> * </span>:{{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field | as_crispy_field }}
+                    {% endif %}
+                {% endfor %}
                 <div class="text-right">
                     <a class="cancel-btn" href="{% url 'product_detail' product.id %}" 
                     aria-label="Cancel operation">Cancel</a>
@@ -35,13 +41,13 @@
                 <div class="text-center">
                     <hr>
                 </div>
-                <div class="mt-2">
+                <div class="mt-1">
                     <p class="text-right mb-0">
                         <span>{{ review.review_rating }}/5</span>
                         <span class="rating-icon"><i class="fas fa-star"></i></span>
                         <span class="sr-only">ratings score</span>
                     </p>
-                    <blockquote class="blockquote">
+                    <blockquote class="blockquote mb-0">
                         <p class="mb-1 small">{{ review.user }}</p>
                         <footer class="blockquote-footer">{{ review.content }}</footer>
                     </blockquote>

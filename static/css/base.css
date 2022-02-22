@@ -779,7 +779,7 @@ input[name='q']::placeholder {
 
 .custom-form-input,
 .allauth-form-inner-content input {
-    border-radius: 10px;
+    border-radius: 6px !important;
     border-color: #0d0d0d;
     color: #0d0d0d;
 }
@@ -845,6 +845,21 @@ input[name='q']::placeholder {
 
 #id_product_review option:first-child {
     color: #0d0d0d80;
+}
+
+#div_id_review_rating {
+    display: inline-block;
+}
+
+#id_review_rating {
+    width: 42px;
+    height: 26px;
+    padding: 4px;
+}
+
+#id_content {
+    height: 90px;
+    overflow-y: auto;
 }
 
 /* --------------------------------------- Media queries */
