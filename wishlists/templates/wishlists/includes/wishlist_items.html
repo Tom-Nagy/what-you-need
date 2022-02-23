@@ -1,8 +1,8 @@
 <div class="table-responsive">
     <table class="table table-hover table-sm">
         <tbody>
-            <tr>
-                <td>
+            <tr class="jsutify-content-center">
+                <td class="align-middle">
                     {% if item.product.image.url %}
                         <a href="{{ item.product.image.url }}" target="_blank" aria-label="Link to view the image.">
                             <img class="img-fluid card-products-images" 
@@ -15,12 +15,12 @@
                             height="60" width="60">
                     {% endif %}
                 </td>
-                <td>
+                <td class="align-middle">
                     <a href="{% url 'product_detail' item.product.id %}" aria-label="Link to {{ item.product.name }} details">
                         {{ item.product.name }}
                     </a>
                 </td>
-                <td>
+                <td class="align-middle">
                     {% if item.product.quantity == 0 %}
                         <p class="card-text">
                             <span class="badge badge-pill badge-danger badge-product-quantity">
@@ -39,8 +39,33 @@
                                 In stock</span>
                         </p>
                     {% endif %}
+                </td class="align-middle">
+                <td class="align-middle">€ {{ item.product.price }}</td>
+                <td class="align-middle text-center">
+                    <!-- Add to bag -->
+                    <form class="form" action="{% url 'add_to_bag' item.product.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if product.quantity == 0 %}
+                            <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
+                                Add to bag
+                            </button>
+                        {% else %}
+                            <button class="add-to-bag-btn" type="submit">
+                                Add to bag
+                            </button>
+                        {% endif %}
+                        <input type="hidden" name="quantity" value="1" data-item_id="{{ item.product.id }}">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                    <!-- Remove Item -->
+                    <form class="form" action="{% url 'remove_from_wishlist' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="delete-prod-btn" type="submit" aria-label="Remove product from wishlist.">
+                            Remove
+                        </button>
+                        <input type="hidden" name="wishlist_id" value="{{ wishlist.id }}">
+                    </form>
                 </td>
-                <td>€ {{ item.product.price }}</td>
             </tr>
         </tbody>
     </table>

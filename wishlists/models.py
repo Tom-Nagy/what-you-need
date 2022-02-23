@@ -26,3 +26,7 @@ class WishlistItem(models.Model):
                                  related_name='wishlist_items')
     product = models.ForeignKey(Product, null=True, blank=True,
                                 on_delete=models.SET_NULL)
+
+    def __str__(self):
+        ''' String method to return the name of the category '''
+        return str(self.product.name)

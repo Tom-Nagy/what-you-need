@@ -129,3 +129,16 @@ def add_to_wishlist(request, product_id):
         return redirect(redirect_url)
 
     return redirect(reverse('all_products'))
+
+
+@login_required
+def remove_from_wishlist(request, item_id):
+    ''' Delete the selected item from the wishlist '''
+    if request.method == 'POST':
+        wishlist_item = get_object_or_404(WishlistItem, pk=item_id)
+        wishlist_item.delete()
+        messages.success(request, f'{wishlist_item} removed from \
+                                    {wishlist_item.wishlist}')
+        return redirect('all_wishlist')
+
+    return redirect(reverse('all_wishlist'))
