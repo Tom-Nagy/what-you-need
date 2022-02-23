@@ -542,7 +542,7 @@ input[name='q']::placeholder {
 .prod-detail-add-to-bag-btn-wrapper {
     position: absolute;
     top: -2px;
-    left: 40%;
+    left: 30%;
 }
 
 .prod-detail-qty-input-wrapper {
@@ -550,11 +550,11 @@ input[name='q']::placeholder {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
 }
 
-.prod-detail-buy-now-wrapper {
+/* .prod-detail-buy-now-wrapper {
     position: absolute;
     top: -2px;
     left: 70%;
-}
+} */
 
 /* --------------------------------------- Toasts messages */
 

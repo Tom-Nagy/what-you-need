@@ -95,7 +95,7 @@
             </div>
             <div class="col-12 col-md-8 col-lg-6">
                 <!-- Add to bag with quantity selector -->
-                <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
+                <form class="form w-25 d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="prod-detail-qty-input-wrapper">
                         <div class="form-group">
@@ -146,15 +146,17 @@
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
+                <!-- Add to wishlist dropdown-->
+                <div class="d-inline-block float-right">
+                    {% include 'products/includes/add_to_wishlist.html' %}
+                </div>
                 <!-- if product = 0 disable buy button 888888888888888888888888888888-->
-                <div class="prod-detail-buy-now-wrapper">
+                <div class="d-inline-block float-right mr-4">
                     <a href="#" class="buy-now-btn" aria-label="Link to shopping bag page">Buy now</a>
                 </div>
-                <!-- Add to wishlist dropdown-->
-                {% include 'products/includes/add_to_wishlist.html' %}
                 <!-- Keep shopping buttons -->
                 <div class="row">
-                    <div class="col-12 mb-2 text-center">
+                    <div class="col-12 my-2 text-center">
                         <a href="{% url 'products' %}" aria-label="Link to all products page." 
                             class="keep-shop-btn">
                             <span class="icon">
@@ -175,6 +177,7 @@
                 </div>
             </div>
         </div>
+        <!-- Product reviews -->
         {% include 'products/includes/reviews.html' %}
     </div>
 {% endblock %}
