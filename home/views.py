@@ -4,8 +4,7 @@ from django.shortcuts import render
 
 def index(request):
     ''' A view to return the index page '''
-    on_home_page = True
     context = {
-        'on_home_page': on_home_page,
+        'on_home_page': True,
     }
     return render(request, 'home/index.html', context)

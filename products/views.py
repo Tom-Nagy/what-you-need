@@ -63,19 +63,19 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort} {direction}'
-    on_product_page = True
     need_sorting = True
 
+    template = 'products/products.html'
     context = {
+        'on_product_page': True,
         'products': products,
         'search_term': query,
         'category_selected': category_selected,
         'current_category': current_category,
         'current_sorting': current_sorting,
-        'on_product_page': on_product_page,
         'need_sorting': need_sorting,
     }
-    return render(request, 'products/products.html', context)
+    return render(request, template, context)
 
 
 def product_detail(request, product_id):
