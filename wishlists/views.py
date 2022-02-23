@@ -30,7 +30,6 @@ def add_wishlist(request):
         user_profile = get_object_or_404(UserProfile, user=request.user)
         wishlist_name = request.POST.get('wishlist_name')
         user_wishlist = user_profile.wishlist.all()
-        print(f'wishlist name ====> {wishlist_name}')
         if wishlist_name == '':
             messages.error(request, 'Your wishlist name cannot be empty!')
             return redirect('all_wishlist')
@@ -85,34 +84,44 @@ def edit_wishlist(request, wishlist_id):
 
 
 @login_required
-def delete_wishlist(request, list_id):
+def delete_wishlist(request, wishlist_id):
     ''' Delete the selected wishlist '''
-    wishlist = get_object_or_404(Wishlist, pk=list_id)
+    wishlist = get_object_or_404(Wishlist, pk=wishlist_id)
     wishlist.delete()
 
     messages.success(request, 'Wishlist deleted')
     return redirect(reverse('all_wishlist'))
 
 
-# @login_required
-# def add_to_wishlist(request, product_id):
-#     '''
-#     Add a product to a wishlist or to the default wishlist if none created.
-#     '''
-#     if request.method == 'POST':
-#         product = get_object_or_404(Product, pk=product_id)
-#         user_profile = get_object_or_404(UserProfile, user=request.user)
-#         redirect_url = request.POST.get('redirect_url')
-#         wishlist_name = request.POST.get('wishlist_name')
+@login_required
+def add_to_wishlist(request, product_id):
+    '''
+    Add a product to a wishlist or to the default wishlist if none created.
+    '''
+    product = get_object_or_404(Product, pk=product_id)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        redirect_url = request.POST.get('redirect_url')
+        wishlist = None
 
-#         wishlist = Wishlist.objects.get(name=wishlist_name)
-#         if not wishlist:
-#             wishlist = Wishlist.create()
-#             wishlist.user = user_profile
-#             wishlist.name = 'wishlist'
-#             wishlist.save()
-#             messages.info(request, f'Wishlist created')
-        
-#         wishlist  
-#         WishlistItem.product = product
-#         WishlistItem()
+        # if no wishlist owned
+        if 'default_wishlist' in request.POST:
+            # create a default wishlit
+            wishlist_name = 'wishlist'
+            wishlist = Wishlist()
+            wishlist.user = user_profile
+            wishlist.name = wishlist_name
+            wishlist.save()
+        else:
+            # Get the wishlist
+            wishlist_id = request.POST.get('wishlist_id')
+            wishlist = get_object_or_404(Wishlist, pk=wishlist_id)
+
+        wishlist_item = WishlistItem()
+        wishlist_item.wishlist = wishlist
+        wishlist_item.product = product
+        wishlist_item.save()
+        messages.success(request, f'{product.name} saved to {wishlist.name}')
+        return redirect(redirect_url)
+
+    return redirect(reverse('all_products'))

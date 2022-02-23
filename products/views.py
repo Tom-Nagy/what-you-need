@@ -88,12 +88,14 @@ def product_detail(request, product_id):
     user_profile = None
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user__username=request.user)
+        user_wishlist = user_profile.wishlist.all()
 
     template = 'products/product_detail.html'
     context = {
-        'product': product,
         'on_product_page': True,
         'user': user_profile,
+        'user_wishlist': user_wishlist,
+        'product': product,
         'review_form': review_form,
         'reviews': reviews,
     }

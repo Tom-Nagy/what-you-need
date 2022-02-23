@@ -1,8 +1,35 @@
-<div class="wishlist-icon-wrapper mr-4">
-    <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
-        <button class="wishlist-icon" type="submit" title="Add to wishlist">
-            <i class="far fa-heart"></i>
-        </button>
-        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-    </form>
+<div class="dropdown">
+    <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{product.id}}"
+    data-toggle="dropdown" aria-expanded="false">
+        Add to wishlist
+    </button>
+    <!-- dropdown choices -->
+    <div class="dropdown-menu" aria-labelledby="wishlist-dropdown-{{product.id}}">
+        {% if user %}
+            {% if user_wishlist %}
+                {% for wishlist in user_wishlist %}
+                    <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">{{wishlist.name}}</button>
+                        <input type="hidden" name="wishlist_id" value="{{wishlist.id}}">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                {% endfor %}
+            {% else %}
+                <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="dropdown-item" type="submit">wishlist</button>
+                    <input type="hidden" name="default_wishlist">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+            {% endif %}
+        {% else %}
+            <span class="small px-2">
+                <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                class="links-inline-style">sign-in</a> or
+                <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                class="links-inline-style"> create an account</a> to save products.
+            </span>
+        {% endif %}
+    </div>
 </div>

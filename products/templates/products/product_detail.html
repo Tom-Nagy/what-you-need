@@ -146,15 +146,13 @@
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
-                <!-- if product = 0 disable buy button -->
+                <!-- if product = 0 disable buy button 888888888888888888888888888888-->
                 <div class="prod-detail-buy-now-wrapper">
                     <a href="#" class="buy-now-btn" aria-label="Link to shopping bag page">Buy now</a>
                 </div>
-                <div class="wishlist-icon-wrapper mr-4">
-                    <a class="wishlist-icon" href="#" type="button" title="Add to wishlist">
-                        <i class="far fa-heart"></i>
-                    </a>
-                </div>
+                <!-- Add to wishlist dropdown-->
+                {% include 'products/includes/add_to_wishlist.html' %}
+                <!-- Keep shopping buttons -->
                 <div class="row">
                     <div class="col-12 mb-2 text-center">
                         <a href="{% url 'products' %}" aria-label="Link to all products page." 
