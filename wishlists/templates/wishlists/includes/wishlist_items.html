@@ -1,0 +1,47 @@
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
+        <tbody>
+            <tr>
+                <td>
+                    {% if item.product.image.url %}
+                        <a href="{{ item.product.image.url }}" target="_blank" aria-label="Link to view the image.">
+                            <img class="img-fluid card-products-images" 
+                                src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                height="60" width="60">
+                        </a>
+                    {% else %}
+                        <img class="img-fluid card-products-images" 
+                            src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}"
+                            height="60" width="60">
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'product_detail' item.product.id %}" aria-label="Link to {{ item.product.name }} details">
+                        {{ item.product.name }}
+                    </a>
+                </td>
+                <td>
+                    {% if item.product.quantity == 0 %}
+                        <p class="card-text">
+                            <span class="badge badge-pill badge-danger badge-product-quantity">
+                                Out of stock</span>
+                            <span class="card-text my-0"><small class="text-muted">
+                                It will be back in stock soon</small></span>
+                        </p>
+                    {% elif item.product.quantity <= 5 %}
+                        <p class="card-text">
+                            <span class="badge badge-pill badge-warning badge-product-quantity">
+                                Only {{ item.product.quantity }} left</span>
+                        </p>
+                    {% else %}
+                        <p class="card-text">
+                            <span class="badge badge-pill badge-success badge-product-quantity">
+                                In stock</span>
+                        </p>
+                    {% endif %}
+                </td>
+                <td>€ {{ item.product.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

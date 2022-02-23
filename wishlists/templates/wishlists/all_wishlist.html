@@ -68,18 +68,22 @@
                             <!-- wishlist content -->
                             <div id="id_{{wishlist.id}}" class="collapse" aria-labelledby="id_header_{{wishlist.id}}">
                                 <div class="card-body">
-                                {% if product|length in wishlist.wishlist_items != 0 %}
-                                    {{ wishlist.wishlist_items }}
-                                {% else %}
-                                    <p>Your wishlist is empty!</p>
-                                    <a href="{% url 'products' %}" aria-label="Link to all products page." 
-                                    class="keep-shop-btn">
-                                        <span>Look for plants!</span>
-                                        <span class="icon">
-                                            <i class="fas fa-search"></i>
-                                        </span>
-                                    </a>
-                                {% endif %}
+                                    {% with wishlist.wishlist_items.all as items %}
+                                        {% if items %}
+                                            {% for item in items %}
+                                                {% include 'wishlists/includes/wishlist_items.html' %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <p>Your wishlist is empty!</p>
+                                            <a href="{% url 'products' %}" aria-label="Link to all products page." 
+                                            class="keep-shop-btn">
+                                                <span>Look for plants!</span>
+                                                <span class="icon">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
+                                            </a>
+                                        {% endif %}
+                                    {% endwith %}
                                 </div>
                             </div>
                         </div>

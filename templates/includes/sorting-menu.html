@@ -26,7 +26,8 @@
                     aria-label="Sort items by name from Z to A." 
                     class="dropdown-item">By name: Z to A</a>
                 {% else %}
-                    <a href="{% url 'products' %}?category={{category_selected}}&sort=rating&direction=desc" aria-label="Sort items by rating from high to low." 
+                    <a href="{% url 'products' %}?category={{category_selected}}&sort=rating&direction=desc" 
+                    aria-label="Sort items by rating from high to low." 
                     class="dropdown-item">By rating</a>
                     <a href="{% url 'products' %}?sort=price&direction=asc" aria-label="Sort items by price from low to high." 
                     class="dropdown-item">By price: low to high</a>

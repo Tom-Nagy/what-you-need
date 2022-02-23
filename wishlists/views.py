@@ -14,10 +14,11 @@ from .models import Wishlist, WishlistItem
 @login_required
 def all_wishlist(request):
     ''' View that display all the wishlists of a user '''
-    wishlist = Wishlist.objects.all()
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    user_wishlist = user_profile.wishlist.all()
     template = 'wishlists/all_wishlist.html'
     context = {
-        'all_wishlist': wishlist,
+        'all_wishlist': user_wishlist,
         'on_profile_page': True,
     }
     return render(request, template, context)
@@ -121,6 +122,9 @@ def add_to_wishlist(request, product_id):
         wishlist_item.wishlist = wishlist
         wishlist_item.product = product
         wishlist_item.save()
+        print(f'wishlist item {wishlist_item}')
+        print(f'wishlist item product {wishlist_item.product}')
+        print(f'wishlist item product {wishlist.wishlist_items.all()}')
         messages.success(request, f'{product.name} saved to {wishlist.name}')
         return redirect(redirect_url)
 
