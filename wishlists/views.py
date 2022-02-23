@@ -30,6 +30,10 @@ def add_wishlist(request):
         user_profile = get_object_or_404(UserProfile, user=request.user)
         wishlist_name = request.POST.get('wishlist_name')
         user_wishlist = user_profile.wishlist.all()
+        print(f'wishlist name ====> {wishlist_name}')
+        if wishlist_name == '':
+            messages.error(request, 'Your wishlist name cannot be empty!')
+            return redirect('all_wishlist')
 
         if user_wishlist:
             for wishlist in user_wishlist:
