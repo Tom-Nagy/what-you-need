@@ -129,6 +129,7 @@ def add_to_wishlist(request, product_id):
         wishlist_item = WishlistItem()
         wishlist_item.wishlist = wishlist
         wishlist_item.product = liked_product
+        wishlist_item.name = liked_product.name
         wishlist_item.save()
         messages.success(request, f'{liked_product.name} saved to \
                                     {wishlist.name}')

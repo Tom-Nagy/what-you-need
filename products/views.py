@@ -34,14 +34,16 @@ def all_products(request):
         if user_wishlist:
             for wishlist in user_wishlist:
                 wishlist_items = wishlist.wishlist_items.all()
-                for item in wishlist_items:
-                    product_id = item.product.id
-                    if product_id:
-                        liked_product = Product.objects.get(id=product_id)
-                        liked_product.liked = True
-                        liked_product.save()
+                if wishlist_items:
+                    for item in wishlist_items:
+                        if item.product:
+                            product_id = item.product.id
+                            if product_id:
+                                liked_product = Product.objects.get(id=product_id)
+                                liked_product.liked = True
+                                liked_product.save()
 
-                        need_new_queryset = True
+                                need_new_queryset = True
 
     if need_new_queryset:
         # Get the updated query set

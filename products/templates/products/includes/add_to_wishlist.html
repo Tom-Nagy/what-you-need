@@ -20,7 +20,7 @@
         {% if user %}
             {% if user_wishlist %}
                 {% if liked_product %}
-                <p class="dropdown-header">Liked plant</p>
+                    <p class="dropdown-header">Liked plant</p>
                 {% endif %}
                 {% for wishlist in user_wishlist %}
                     <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
