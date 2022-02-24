@@ -25,7 +25,7 @@
                                     <div class="col">
                                         <p class="text-right">
                                             {% if product.rating %}
-                                                <span>{{ product.rating }}</span>
+                                                {{ product.rating }}<span class="small text-muted">/5</span>
                                                 <span class="rating-icon"><i class="fas fa-star"></i></span>
                                             {% else %}
                                                 <span><small class="text-muted">No rating</small></span>

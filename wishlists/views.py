@@ -99,13 +99,13 @@ def add_to_wishlist(request, product_id):
     '''
     Add a product to a wishlist or to the default wishlist if none created.
     '''
-    product = get_object_or_404(Product, pk=product_id)
+    liked_product = get_object_or_404(Product, pk=product_id)
     user_profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         redirect_url = request.POST.get('redirect_url')
         wishlist = None
 
-        # if no wishlist owned
+        # if no wishlist owned/created
         if 'default_wishlist' in request.POST:
             # create a default wishlit
             wishlist_name = 'wishlist'
@@ -117,15 +117,24 @@ def add_to_wishlist(request, product_id):
             # Get the wishlist
             wishlist_id = request.POST.get('wishlist_id')
             wishlist = get_object_or_404(Wishlist, pk=wishlist_id)
+            # check if the product is already in the wishlist
+            wishlist_items = wishlist.wishlist_items.all()
+            for item in wishlist_items:
+                if item.product == liked_product:
+                    messages.info(request, f'{liked_product} already in \
+                                             {wishlist}')
+                    return redirect(redirect_url)
 
+        # Add the product to the wishlist
         wishlist_item = WishlistItem()
         wishlist_item.wishlist = wishlist
-        wishlist_item.product = product
+        wishlist_item.product = liked_product
         wishlist_item.save()
         print(f'wishlist item {wishlist_item}')
         print(f'wishlist item product {wishlist_item.product}')
         print(f'wishlist item product {wishlist.wishlist_items.all()}')
-        messages.success(request, f'{product.name} saved to {wishlist.name}')
+        messages.success(request, f'{liked_product.name} saved to \
+                                    {wishlist.name}')
         return redirect(redirect_url)
 
     return redirect(reverse('all_products'))

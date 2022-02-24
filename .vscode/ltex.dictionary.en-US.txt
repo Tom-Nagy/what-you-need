@@ -145,3 +145,4 @@ select-image-btn
 btn-file
 shadow-sm
 Wishlists
+wishlists

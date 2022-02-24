@@ -12,14 +12,14 @@
     <div class="container">
         <div class="row justify-content-center">
             {% if all_wishlist %}
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-8">
                     <!-- wishlist -->
                     {% for wishlist in all_wishlist %}
                     <div class="accordion mb-3">
                         <div class="card">
                             <div class="card-header" id="id_header_{{wishlist.id}}">
                                 <h2 class="mb-0 d-inline-block">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button" 
+                                <button class="btn btn-link btn-block text-left collapsed px-md-5" type="button" 
                                 data-toggle="collapse" data-target="#id_{{wishlist.id}}" 
                                 aria-expanded="false" aria-controls="id_{{wishlist.name}}">
                                     {{ wishlist.name }}

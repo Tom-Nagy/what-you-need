@@ -1,8 +1,15 @@
 <div class="dropdown">
-    <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{product.id}}"
-    data-toggle="dropdown" aria-expanded="false">
-        Add to wishlist
-    </button>
+    {% if like_icon %}
+        <a class="wishlist-icon" href="#" type="button" title="Add to wishlist" id="wishlist-dropdown-{{product.id}}"
+        data-toggle="dropdown" aria-expanded="false">
+            <i class="far fa-heart"></i>
+        </a>
+    {% else %}
+        <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{product.id}}"
+        data-toggle="dropdown" aria-expanded="false">
+            Add to wishlist
+        </button>
+    {% endif %}
     <!-- dropdown choices -->
     <div class="dropdown-menu" aria-labelledby="wishlist-dropdown-{{product.id}}">
         {% if user %}

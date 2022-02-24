@@ -63,17 +63,24 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort} {direction}'
-    need_sorting = True
+    user_profile = None
+    user_wishlist = None
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user__username=request.user)
+        user_wishlist = user_profile.wishlist.all()
 
     template = 'products/products.html'
     context = {
         'on_product_page': True,
+        'like_icon': True,
+        'need_sorting': True,
         'products': products,
         'search_term': query,
         'category_selected': category_selected,
         'current_category': current_category,
         'current_sorting': current_sorting,
-        'need_sorting': need_sorting,
+        'user': user_profile,
+        'user_wishlist': user_wishlist,
     }
     return render(request, template, context)
 
@@ -86,6 +93,7 @@ def product_detail(request, product_id):
     reviews = ProductReview.objects.all()
 
     user_profile = None
+    user_wishlist = None
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user__username=request.user)
         user_wishlist = user_profile.wishlist.all()
