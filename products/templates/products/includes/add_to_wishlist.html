@@ -1,8 +1,13 @@
 <div class="dropdown">
+    <!-- Dropdown button/icon -->
     {% if like_icon %}
-        <a class="wishlist-icon" href="#" type="button" title="Add to wishlist" id="wishlist-dropdown-{{product.id}}"
-        data-toggle="dropdown" aria-expanded="false">
-            <i class="far fa-heart"></i>
+        <a class="wishlist-icon" href="#" type="button" title="{% if product.liked %}Saved{% else %}Add{% endif %} to a wishlist" 
+        id="wishlist-dropdown-{{product.id}}" data-toggle="dropdown" aria-expanded="false">
+            {% if product.liked %}
+                <i class="fas fa-heart"></i>
+            {% else %}
+                <i class="far fa-heart"></i>
+            {% endif %}
         </a>
     {% else %}
         <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{product.id}}"
@@ -14,6 +19,9 @@
     <div class="dropdown-menu" aria-labelledby="wishlist-dropdown-{{product.id}}">
         {% if user %}
             {% if user_wishlist %}
+                {% if liked_product %}
+                <p class="dropdown-header">Liked plant</p>
+                {% endif %}
                 {% for wishlist in user_wishlist %}
                     <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
                         {% csrf_token %}

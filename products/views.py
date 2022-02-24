@@ -16,6 +16,37 @@ def all_products(request):
     ''' A view to display all products, including sorting and searching. '''
 
     products = Product.objects.all()
+    # Reset all the product's liked filed to False
+    for product in products:
+        product.liked = False
+        product.save()
+
+    user_profile = None
+    user_wishlist = None
+    need_new_queryset = False
+    # Get user profile and associated wishlist
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user__username=request.user)
+        user_wishlist = user_profile.wishlist.all()
+
+        # check for saved products in a user's wishlist
+        # and update liked field accordingling
+        if user_wishlist:
+            for wishlist in user_wishlist:
+                wishlist_items = wishlist.wishlist_items.all()
+                for item in wishlist_items:
+                    product_id = item.product.id
+                    if product_id:
+                        liked_product = Product.objects.get(id=product_id)
+                        liked_product.liked = True
+                        liked_product.save()
+
+                        need_new_queryset = True
+
+    if need_new_queryset:
+        # Get the updated query set
+        products = Product.objects.all()
+
     query = None
     category_selected = None
     current_category = None
@@ -63,11 +94,6 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort} {direction}'
-    user_profile = None
-    user_wishlist = None
-    if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user__username=request.user)
-        user_wishlist = user_profile.wishlist.all()
 
     template = 'products/products.html'
     context = {
@@ -89,18 +115,38 @@ def product_detail(request, product_id):
     ''' A view to display details of individual product. '''
 
     product = get_object_or_404(Product, pk=product_id)
+    # reset product's liked field in case theproduct is accessed by url
+    product.liked = False
+    product.save()
+
     review_form = ProductReviewForm()
     reviews = ProductReview.objects.all()
 
     user_profile = None
     user_wishlist = None
+    liked_product = False
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user__username=request.user)
         user_wishlist = user_profile.wishlist.all()
 
+        # check for saved products in a user's wishlist
+        # and update liked field accordingling
+        if user_wishlist:
+            for wishlist in user_wishlist:
+                wishlist_items = wishlist.wishlist_items.all()
+                for item in wishlist_items:
+                    product_id = item.product.id
+                    if product_id == product.id:
+                        liked_product = Product.objects.get(id=product_id)
+                        liked_product.liked = True
+                        liked_product.save()
+                        # Get the updated product
+                        product = get_object_or_404(Product, pk=product_id)
+
     template = 'products/product_detail.html'
     context = {
         'on_product_page': True,
+        'liked_product': liked_product,
         'user': user_profile,
         'user_wishlist': user_wishlist,
         'product': product,

@@ -130,9 +130,6 @@ def add_to_wishlist(request, product_id):
         wishlist_item.wishlist = wishlist
         wishlist_item.product = liked_product
         wishlist_item.save()
-        print(f'wishlist item {wishlist_item}')
-        print(f'wishlist item product {wishlist_item.product}')
-        print(f'wishlist item product {wishlist.wishlist_items.all()}')
         messages.success(request, f'{liked_product.name} saved to \
                                     {wishlist.name}')
         return redirect(redirect_url)

@@ -25,7 +25,7 @@ class WishlistItem(models.Model):
                                  on_delete=models.CASCADE,
                                  related_name='wishlist_items')
     product = models.ForeignKey(Product, null=True, blank=True,
-                                on_delete=models.SET_NULL)
+                                on_delete=models.SET_NULL,)
 
     def __str__(self):
         ''' String method to return the name of the category '''
