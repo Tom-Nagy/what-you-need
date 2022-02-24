@@ -16,12 +16,13 @@
         </button>
     {% endif %}
     <!-- dropdown choices -->
-    <div class="dropdown-menu" aria-labelledby="wishlist-dropdown-{{product.id}}">
+    <div class="dropdown-menu wishlist-dropdown-menu" aria-labelledby="wishlist-dropdown-{{product.id}}">
         {% if user %}
             {% if user_wishlist %}
                 {% if liked_product %}
                     <p class="dropdown-header">Liked plant</p>
                 {% endif %}
+                    <p class="dropdown-header">Add to:</p>
                 {% for wishlist in user_wishlist %}
                     <form action="{% url 'add_to_wishlist' product.id %}" method="POST">
                         {% csrf_token %}
@@ -39,12 +40,13 @@
                 </form>
             {% endif %}
         {% else %}
-            <span class="small px-2">
+            <p class="small mb-0">
                 <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
                 class="links-inline-style">sign-in</a> or
                 <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
-                class="links-inline-style"> create an account</a> to save products.
-            </span>
+                class="links-inline-style"> create an account</a><br/>
+                 to save products.
+            </p>
         {% endif %}
     </div>
 </div>

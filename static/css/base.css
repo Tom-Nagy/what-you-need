@@ -814,7 +814,6 @@ input[name='q']::placeholder {
     color: #07593b;
     font-size: 1rem;
     font-weight: 600;
-    text-shadow: .5px .5px #03a65a;
 }
 
 .links-inline-style:hover,
@@ -824,9 +823,8 @@ input[name='q']::placeholder {
 .allauth-links-inline-style:focus,
 .allauth-links-inline-style:active {
     text-decoration: underline;
-    text-shadow: 1px 1px #03a65a;
+    text-shadow: .5px 1px 2px #07593b;
     color: #052614;
-    font-weight: 800;
 }
 
 .btn-file {
@@ -876,6 +874,17 @@ input[name='q']::placeholder {
 #id_content {
     height: 90px;
     overflow-y: auto;
+}
+
+/* wishlist dropdown menu position override */
+.wishlist-dropdown-menu {
+    transform: translate3d(-180px, 22px, 0px) !important;
+    padding: 6px !important;
+    width: max-content !important;
+
+    -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+    box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+
 }
 
 /* --------------------------------------- Media queries */
