@@ -39,7 +39,8 @@ def all_products(request):
                         if item.product:
                             product_id = item.product.id
                             if product_id:
-                                liked_product = Product.objects.get(id=product_id)
+                                liked_product = \
+                                    Product.objects.get(id=product_id)
                                 liked_product.liked = True
                                 liked_product.save()
 

@@ -14,7 +14,7 @@
         </div>
 
         <!-- Order summary -->
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <div class="order-confirmation-wrapper p-2">
                     <!-- Order info -->
@@ -179,15 +179,25 @@
         </div>
 
         <!-- redirect buttons -->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <a href="{% url 'products' %}?category=indoor" aria-label="Link to special deals page." 
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 text-center mt-2">
+                {% if from_order_history %}
+                    <a href="{% url 'order_history' %}" aria-label="Link to special deals page." 
                     class="keep-shop-btn">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span>Check out the latest deals!</span>
-                </a>
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Back to order history</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'products' %}?category=indoor" aria-label="Link to special deals page." 
+                        class="keep-shop-btn">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Check out the latest deals!</span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

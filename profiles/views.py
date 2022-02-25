@@ -1,6 +1,7 @@
 ''' Views to manage and render the profiles pages '''
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from checkout.models import Order
@@ -9,6 +10,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 
+@login_required
 def profile(request):
     ''' Display the user's profile information '''
 
@@ -28,11 +30,25 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user_profile)
 
-    orders = user_profile.orders.all()
-
     template = 'profiles/profile.html'
     context = {
         'form': form,
+        'on_profile_page': True,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def order_history(request):
+    '''
+    View to display order history, file for issue and check issue status
+    '''
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    orders = user_profile.orders.all()
+
+    template = 'profiles/order_history.html'
+    context = {
         'orders': orders,
         'on_profile_page': True,
     }
@@ -40,7 +56,8 @@ def profile(request):
     return render(request, template, context)
 
 
-def order_history(request, order_number):
+@login_required
+def view_past_order_history(request, order_number):
     ''' View that display the past, saved order '''
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -52,6 +69,7 @@ def order_history(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'from_order_history': True,
     }
 
     return render(request, template, context)
