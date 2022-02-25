@@ -123,7 +123,7 @@ def product_detail(request, product_id):
     product.save()
 
     review_form = ProductReviewForm()
-    reviews = ProductReview.objects.all()
+    reviews = ProductReview.objects.filter(product=product)
 
     user_profile = None
     user_wishlist = None
@@ -258,3 +258,16 @@ def add_review(request, product_id):
             return redirect(reverse('product_detail', args=[product.id]))
 
     return redirect(reverse('product_detail', args=[product.id]))
+
+
+# @login_required
+# def delete_review(request, review_id):
+#     ''' Delete a review from the store (admin only)'''
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners can do that.')
+#         return redirect(reverse('home'))
+
+#     review = get_object_or_404(ProductReview, pk=review_id)
+#     review.delete()
+#     messages.success(request, 'Review deleted')
+#     return redirect(reverse('all_reviews'))
