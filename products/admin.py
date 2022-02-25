@@ -44,6 +44,7 @@ class ProductAdmin(admin.ModelAdmin):
         'rating',
         'date_added',
         'image',
+        'quantity_sold',
     )
 
     ordering = ('name', 'category',)
@@ -56,6 +57,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'friendly_name',
         'for_registered_user',
         'image',
+        'selectable',
     )
 
 

@@ -19,6 +19,7 @@ class Category(models.Model):
     friendly_name = models.CharField(max_length=254)
     image = models.ImageField(null=True, blank=True)
     for_registered_user = models.BooleanField(default=False)
+    selectable = models.BooleanField(default=False)
 
     def __str__(self):
         ''' String method to return the name of the category '''
@@ -32,7 +33,8 @@ class Category(models.Model):
 class Product(models.Model):
     '''Model that determine how the data will be stored for a product '''
     category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.SET_NULL)
+        'Category', limit_choices_to={'selectable': True}, null=True,
+        blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     scientific_name = models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField()
@@ -58,6 +60,8 @@ class Product(models.Model):
     on_sale = models.BooleanField(default=False, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     liked = models.BooleanField(default=False)
+    quantity_sold = models.PositiveIntegerField(default=0, null=False,
+                                                blank=False)
 
     def __str__(self):
         ''' String method to return the name of the Product '''

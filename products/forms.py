@@ -22,7 +22,14 @@ class ProductForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Replace the categorie select box to see the friendly name.
         categories = Category.objects.all()
-        friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
+        categories_selection = []
+        for category in categories:
+            if (category.name != "best_seller" and
+                category.name != "newly_added" and
+                    category.name != "special_deals"):
+                categories_selection.append(category)
+        friendly_names = \
+            [(c.id, c.get_friendly_name()) for c in categories_selection]
         self.fields['category'].choices = friendly_names
 
         # Add custom class to form fields
