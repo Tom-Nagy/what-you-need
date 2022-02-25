@@ -447,6 +447,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ### Content
 
+* Pinterest's link on the home page footer:
+  * [Pinterest plants](https://www.pinterest.ie/search/pins/?q=plants&rs=typed&term_meta[]=plants%7Ctyped)
+
 * From [depositphotos](https://depositphotos.com/)
   * Home page photo:
     * By vectordreamsmachine [House flowers indoor floriculture round pattern vector illustration. Nature home decoration gardening. Indoor plants in flowerpot beauty decorative flora. Cozy succulent foliage exotic garden — Vector](https://depositphotos.com/274525976/stock-illustration-house-flowers-indoor-floriculture-round.html)
