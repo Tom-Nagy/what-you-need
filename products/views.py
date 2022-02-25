@@ -1,4 +1,6 @@
-''' Views to manage and render the products pages '''
+''' Views to manage and render the products pages and reviews '''
+
+import datetime
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -78,7 +80,32 @@ def all_products(request):
         # Search by category functionality
         if 'category' in request.GET:
             category_selected = request.GET['category']
-            products = products.filter(category__name=category_selected)
+
+            
+            if category_selected == 'special_deals':
+                products = products.filter(on_sale=True)
+            elif category_selected == 'newly_added':
+                # got help from JeffCharter post on stackoverflow
+                # (https://stackoverflow.com/questions/796008)
+                #  and [geeksforgeeks](https://www.geeksforgeeks.org/
+                # python-difference-between-two-dates-in-minutes-using
+                # -datetime-timedelta-method)
+                # for calculating time difference.
+                today = datetime.datetime.now().astimezone()
+                two_month = float(86400)
+                new_products = []
+                for product in products:
+                    time_diff = today - product.date_added
+                    time_diff = divmod(time_diff.total_seconds(),
+                                       60)
+                    time_diff_in_min = time_diff[0]
+
+                    if time_diff_in_min < float(31680):
+                        new_products.append(product)
+                products = new_products
+            else:
+                products = products.filter(category__name=category_selected)
+
             current_category = Category.objects.filter(
                                  name=category_selected)
 

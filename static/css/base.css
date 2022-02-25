@@ -387,6 +387,10 @@ Navigation menu done with a tutorial from adapted for this project.
     padding: 3px;
 }
 
+.category-card-lg {
+    padding: 6px 12px;
+}
+
 .category-card-heading-sm {
     font-size: 1rem;
     font-weight: 500;
