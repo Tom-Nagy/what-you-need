@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 
 from profiles.models import UserProfile
 from products.models import Product
@@ -39,6 +40,17 @@ class StripeWebhookHandler:
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )
+
+    # def _update_product_quantity_sold(self, order):
+    #     ''' update the quantity sold field of the products ordered '''
+    #     order_line_items = order.lineitems.all()
+    #     print('inside the update quantity')
+    #     for item in order_line_items:
+    #         product = Product.objects.get(id=item.product.id)
+    #         quantity_sold = product.quantity_sold
+    #         new_quantity_sold = quantity_sold + item.quantity
+    #         product.quantity_sold = new_quantity_sold
+    #         product.save()
 
     def handle_event(self, event):
         ''' Hanlde a generic/unknown/unexpected webhook event '''
@@ -147,6 +159,8 @@ class StripeWebhookHandler:
                 return HttpResponse(content=f'Webhook received {event["type"]} \
                                               | ERROR: {e}', status=500)
 
+        print('befor the fucntion is called but here the payement should have been throught')
+        self._update_product_quantity_sold(order)
         self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received {event["type"]} | \

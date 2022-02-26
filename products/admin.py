@@ -34,6 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
     ''' Customise the admin Product interface '''
 
     inlines = (ProductReviewAdminInline,)
+    readonly_fields = ('quantity_sold', 'rating',)
 
     list_display = (
         'name',

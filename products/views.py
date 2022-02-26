@@ -81,8 +81,10 @@ def all_products(request):
         if 'category' in request.GET:
             category_selected = request.GET['category']
 
-            
-            if category_selected == 'special_deals':
+            if category_selected == 'best_seller':
+                products = products.filter(rating=5)
+                print(f'best seller products  ===>>> {products}')
+            elif category_selected == 'special_deals':
                 products = products.filter(on_sale=True)
             elif category_selected == 'newly_added':
                 # got help from JeffCharter post on stackoverflow
