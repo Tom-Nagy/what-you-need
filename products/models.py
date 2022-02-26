@@ -56,8 +56,12 @@ class Product(models.Model):
         validators=[
             MaxValueValidator(100),
             MinValueValidator(0)])
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2,
+                                validators=[MinValueValidator(0.00)])
     on_sale = models.BooleanField(default=False, null=True, blank=True)
+    on_sale_price = models.DecimalField(max_digits=6, decimal_places=2,
+                                        null=True, blank=True,
+                                        validators=[MinValueValidator(0.00)])
     date_added = models.DateTimeField(auto_now_add=True)
     liked = models.BooleanField(default=False)
     quantity_sold = models.PositiveIntegerField(default=0, null=False,

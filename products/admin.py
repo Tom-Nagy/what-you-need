@@ -42,6 +42,7 @@ class ProductAdmin(admin.ModelAdmin):
         'quantity',
         'price',
         'on_sale',
+        'on_sale_price',
         'rating',
         'date_added',
         'image',
