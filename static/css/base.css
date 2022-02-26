@@ -433,7 +433,11 @@ input[name='q']::placeholder {
 
 .category-card-body{
     padding: 18px 3px 3px 3px;
-    overflow: hidden;    
+        
+}
+
+.category-card-img {
+    overflow: hidden;
 }
 
 /* ------------------------------------------- home page */

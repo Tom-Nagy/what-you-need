@@ -113,7 +113,9 @@
                                         <div class="card h-100">
                                             <div class="card-body category-card-body">
                                                 <h4 class="card-title">{{ cat.friendly_name }}</h4>
-                                                <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
+                                                <div class="category-card-img">
+                                                    <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
