@@ -308,9 +308,10 @@ Navigation menu done with a tutorial from adapted for this project.
     position: absolute;
     top: 50%;
     left: -50%;
-    transform: translate(-75%, 15%);
+    transform: translate(-75%, 7%);
     width: 600px;
     min-height: 30vh;
+    max-height: 75vh;
     font-size: 1rem;
 }
 
@@ -350,11 +351,6 @@ Navigation menu done with a tutorial from adapted for this project.
     box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
 }
 
-.category-card-body{
-    padding: 18px 3px 3px 3px;
-    overflow: hidden;    
-}
-
 .category-card-sm:hover .category-card-body img,
 .category-card-lg:hover .category-card-body img {
     transform: scale(1.2);
@@ -383,6 +379,21 @@ Navigation menu done with a tutorial from adapted for this project.
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.categories-container-sm {
+    overflow-y: auto;
+    padding: 3px;
+    width: 300px;
+    margin: 0;
+}
+
+.categories-container-lg {
+    overflow-y: auto;
+    padding: 3px;
+    width: 600px;
+    max-height: 60vh;
+    margin: 0;
+}
+
 .category-card-sm {
     padding: 3px;
 }
@@ -397,22 +408,15 @@ Navigation menu done with a tutorial from adapted for this project.
     line-height: 1rem;
 }
 
-.categories-container-sm {
-    overflow-y: auto;
-    padding: 3px;
-    width: 300px;
-    margin: 0;
-}
-
-.categories-container-lg {
-    overflow-y: auto;
-    padding: 3px;
-    width: 600px;
-    margin: 0;
-}
 input[name='q']::placeholder {
     color: #0d0d0d80;
 }
+
+.category-card-body{
+    padding: 18px 3px 3px 3px;
+    overflow: hidden;    
+}
+
 /* ------------------------------------------- home page */
 
 .home-image {
