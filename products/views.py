@@ -18,10 +18,15 @@ def all_products(request):
     ''' A view to display all products, including sorting and searching. '''
 
     products = Product.objects.all()
+    exclusive_plants = False
     # Reset all the product's liked filed to False
+    # Look if there are exclusive plants
     for product in products:
         product.liked = False
         product.save()
+
+        if product.category.name == 'exclusive_plants':
+            exclusive_plants = True
 
     user_profile = None
     user_wishlist = None
@@ -51,6 +56,8 @@ def all_products(request):
         if need_new_queryset:
             # Get the updated query set
             products = Product.objects.all()
+    else:
+        products = Product.objects.exclude(category__name='exclusive_plants')
 
     query = None
     category_selected = None
@@ -96,30 +103,15 @@ def all_products(request):
                 today = datetime.datetime.now().astimezone()
                 two_month = float(86400)
                 new_products = []
-                if user_profile:
-                    print(f'inside user profile {user_profile}')
-                    for product in products:
-                        time_diff = today - product.date_added
-                        time_diff = divmod(time_diff.total_seconds(),
-                                           60)
-                        time_diff_in_min = time_diff[0]
+                for product in products:
+                    time_diff = today - product.date_added
+                    time_diff = divmod(time_diff.total_seconds(),
+                                        60)
+                    time_diff_in_min = time_diff[0]
 
-                        if time_diff_in_min < two_month:
-                            new_products.append(product)
-                    products = new_products
-                else:
-                    print(f'inside else of user profile {user_profile}')
-                    for product in products:
-                        if product.category.name != 'exclusive_plants':
-                            print(f'prod cat {product.category}')
-                            time_diff = today - product.date_added
-                            time_diff = divmod(time_diff.total_seconds(),
-                                               60)
-                            time_diff_in_min = time_diff[0]
-
-                            if time_diff_in_min < two_month:
-                                new_products.append(product)
-                    products = new_products
+                    if time_diff_in_min < two_month:
+                        new_products.append(product)
+                products = new_products
 
             else:
                 products = products.filter(category__name=category_selected)
@@ -149,6 +141,7 @@ def all_products(request):
         'like_icon': True,
         'need_sorting': True,
         'products': products,
+        'exclusive_plants': exclusive_plants,
         'search_term': query,
         'category_selected': category_selected,
         'current_category': current_category,

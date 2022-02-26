@@ -147,6 +147,21 @@
                         </div>
                     </div>
                 {% endfor %}
+            {% elif not user and exclusive_plants %}
+                <div class="col-12 text-center mt-5">
+                    <p class="text-center mx-auto pb-4">
+                        You have to be registered to see those plants !
+                    </p>
+                    <p class="text-center mx-auto pb-4">
+                        <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                        class="links-inline-style">sign-in</a> or
+                        <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                        class="links-inline-style"> create an account</a>
+                    </p>
+
+                    <a href="{% url 'home' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back home</a>
+                    <a href="{% url 'products' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back to the garden</a>
+                </div>
             {% else %}
                 <div class="col-12 text-center mt-5">
                     <p class="text-center mx-auto pb-4">
