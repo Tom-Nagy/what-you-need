@@ -146,3 +146,6 @@ btn-file
 shadow-sm
 Wishlists
 wishlists
+btn-block
+btn-link
+tabindex

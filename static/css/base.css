@@ -1,4 +1,4 @@
-
+/* ------------------------------------ Main content config */
 .colors {
     color: #03a65a; /* navbar */
     color: #078c5b; /* buttons background */
@@ -6,8 +6,6 @@
     color: #052614; /* buttons */
     color: #0d0d0d;
 }
-
-/* ------------------------------------ Main content config */
 
 html {
     min-height: 100%;
@@ -48,8 +46,27 @@ a {
     cursor: pointer;
 }
 
-a:hover {
+.btn:hover,
+.btn:active,
+.btn:focus,
+button:hover,
+button:active,
+button:focus,
+a:hover,
+a:active,
+a:focus {
     text-decoration: none;
+    color: #052614;
+    text-shadow: .5px 1px 2px #07593b;
+}
+
+/* colors */
+.light-green {
+    color: #07593b;
+}
+
+.dark-green {
+    color: #052614;
 }
 
 .icon {
@@ -796,7 +813,10 @@ input[name='q']::placeholder {
 
     -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
     box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+}
 
+.wishlist-card-body {
+    padding: 3px;
 }
 
 /* --------------------------------------- Forms */
