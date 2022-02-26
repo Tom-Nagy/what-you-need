@@ -1,0 +1,44 @@
+<div class="dropdown">
+    <!-- Dropdown button/icon -->
+    
+    <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{item.product.id}}"
+    data-toggle="dropdown" aria-expanded="false">
+        Move to wishlist
+    </button>
+    <!-- dropdown choices -->
+    <div class="dropdown-menu wishlist-dropdown-menu" aria-labelledby="wishlist-dropdown-{{item.product.id}}">
+        {% if user %}
+            {% if user_wishlist %}
+                {% if liked_product %}
+                    <p class="dropdown-header">Liked plant</p>
+                {% endif %}
+                    <p class="dropdown-header">Add to:</p>
+                {% for wishlist in user_wishlist %}
+                    <form action="{% url 'add_to_wishlist' item.product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="dropdown-item" type="submit">{{wishlist.name}}</button>
+                        <input type="hidden" name="wishlist_id" value="{{ wishlist.id }}">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <input type="hidden" name="delete_product" value="{{ item.item_id }}">
+                    </form>
+                {% endfor %}
+            {% else %}
+                <form action="{% url 'add_to_wishlist' item.product.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="dropdown-item" type="submit">wishlist</button>
+                    <input type="hidden" name="default_wishlist">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <input type="hidden" name="delete_product" value="{{ item.product.id }}">
+                </form>
+            {% endif %}
+        {% else %}
+            <p class="small mb-0">
+                <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                class="links-inline-style">sign-in</a> or
+                <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                class="links-inline-style"> create an account</a><br/>
+                 to save products.
+            </p>
+        {% endif %}
+    </div>
+</div>

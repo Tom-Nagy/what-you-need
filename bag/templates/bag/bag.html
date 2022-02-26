@@ -152,13 +152,7 @@
                                 </div>
                                 <!-- move to wishlist -->
                                 <div class="col-5 text-center">
-                                    <form action="" method="POST">
-                                        {% csrf_token %}
-                                        <button class="move-to-wishlist-btn" type="submit" name="add_to_wishlist" data-item_id="{{ item.product.id }}">
-                                            move to wishlist
-                                        </button>
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                    </form>
+                                    {% include 'bag/includes/move_to_wishlist.html' %}
                                 </div>
                                 <!-- Remove product -->
                                 <div class="col-2 text-center">

@@ -4,13 +4,52 @@ from django.shortcuts import (render, redirect, reverse, get_object_or_404,
 from django.contrib import messages
 
 from products.models import Product
+from profiles.models import UserProfile
 
 
 def view_bag(request):
     ''' A view that return the bag contents page '''
+
+    products = Product.objects.all()
+    # Reset all the product's liked filed to False
+    for product in products:
+        product.liked = False
+        product.save()
+
+    user_profile = None
+    user_wishlist = None
+    need_new_queryset = False
+    # Get user profile and associated wishlist
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user__username=request.user)
+        user_wishlist = user_profile.wishlist.all()
+
+        # check for saved products in a user's wishlist
+        # and update liked field accordingling
+        if user_wishlist:
+            for wishlist in user_wishlist:
+                wishlist_items = wishlist.wishlist_items.all()
+                if wishlist_items:
+                    for item in wishlist_items:
+                        if item.product:
+                            product_id = item.product.id
+                            if product_id:
+                                liked_product = \
+                                    Product.objects.get(id=product_id)
+                                liked_product.liked = True
+                                liked_product.save()
+
+                                need_new_queryset = True
+
+    if need_new_queryset:
+        # Get the updated query set
+        products = Product.objects.all()
+
     template = 'bag/bag.html'
     context = {
         'on_bag_page': True,
+        'user_profile': user_profile,
+        'user_wishlist': user_wishlist,
     }
     return render(request, template, context)
 
@@ -106,7 +145,7 @@ def remove_from_bag(request, item_id):
             bag_item_quantity = bag[item_id]
         else:
             messages.error(request,
-                           'It seems that this item is not in your bag \
+                           'It seems that this plant is not in your bag \
                            If you need assistance, please contact us')
             redirect(reverse('view_bag'))
 
@@ -119,5 +158,5 @@ def remove_from_bag(request, item_id):
         return HttpResponse(status=200)
 
     except Exception as e:
-        messages.error(request, f'Error removing item: {e}')
+        messages.error(request, f'Error removing plant: {e}')
         return HttpResponse(status=500)

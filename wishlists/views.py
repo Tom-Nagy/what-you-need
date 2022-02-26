@@ -1,6 +1,7 @@
 ''' Views to manage and render the wishlists pages '''
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import (render, redirect, reverse, get_object_or_404,
+                              HttpResponse)
 from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -131,11 +132,36 @@ def add_to_wishlist(request, product_id):
         wishlist_item.product = liked_product
         wishlist_item.name = liked_product.name
         wishlist_item.save()
-        messages.success(request, f'{liked_product.name} saved to \
-                                    {wishlist.name}')
-        return redirect(redirect_url)
 
-    return redirect(reverse('all_products'))
+        # Delete the product from the bag
+        if 'delete_product' in request.POST:
+            item_id = request.POST.get('delete_product')
+            bag = request.session.get('bag', {})
+            bag_item_quantity = 0
+
+            if item_id in list(bag.keys()):
+                bag_item_quantity = bag[item_id]
+
+                liked_product.quantity += bag_item_quantity
+                liked_product.save()
+                bag.pop(item_id)
+
+                messages.success(request, f'{liked_product.name} \
+                                            moved to {wishlist}')
+                request.session['bag'] = bag
+                return redirect('view_bag')
+            else:
+                messages.error(request,
+                                'It seems that we can\'t move this plant!'
+                                'If you need assistance, please contact us')
+                redirect(reverse('view_bag'))
+
+        else:
+            messages.success(request, f'{liked_product.name} saved \
+                                        to {wishlist.name}')
+            return redirect(redirect_url)
+
+    return redirect(redirect_url)
 
 
 @login_required
