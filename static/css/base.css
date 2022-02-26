@@ -311,8 +311,9 @@ Navigation menu done with a tutorial from adapted for this project.
     transform: translate(-75%, 7%);
     width: 600px;
     min-height: 30vh;
-    max-height: 75vh;
     font-size: 1rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* customised dropup position for small screen */
@@ -343,8 +344,6 @@ Navigation menu done with a tutorial from adapted for this project.
     background-clip: padding-box;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 0.25rem;
-    overflow-x: hidden;
-    overflow-y: auto;
     z-index: 1031;
 
     -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
@@ -389,8 +388,7 @@ Navigation menu done with a tutorial from adapted for this project.
 .categories-container-lg {
     overflow-y: auto;
     padding: 3px;
-    width: 600px;
-    max-height: 60vh;
+    max-width: 600px;
     margin: 0;
 }
 
@@ -789,6 +787,18 @@ input[name='q']::placeholder {
     vertical-align: middle;
 }
 
+/* wishlist dropdown menu position override */
+.wishlist-dropdown-menu {
+    transform: translate3d(-180px, 22px, 0px) !important;
+    padding: 6px !important;
+    width: max-content !important;
+    z-index: 1031;
+
+    -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+    box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
+
+}
+
 /* --------------------------------------- Forms */
 
 .allauth-form-inner-content p {
@@ -884,18 +894,16 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
-/* wishlist dropdown menu position override */
-.wishlist-dropdown-menu {
-    transform: translate3d(-180px, 22px, 0px) !important;
-    padding: 6px !important;
-    width: max-content !important;
-
-    -webkit-box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
-    box-shadow: 0 0 0 2000px rgba(0,0,0,.5);
-
-}
-
 /* --------------------------------------- Media queries */
+
+@media (max-width: 425px) {
+    .prod-detail-add-to-bag-btn-wrapper {
+        position: relative;
+        left: 8%;
+        top: 0;
+        margin-bottom: 6px;
+    }
+}
 
 @media (max-width: 720px) {
     .landing-page-container {
@@ -1008,5 +1016,13 @@ input[name='q']::placeholder {
     }
     .scroll-to-top {
         right: 340px;
+    }
+}
+
+@media(max-height: 730px) {
+    .search-dropdown-container-lg{
+        height: calc(100vh - 140px);
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }

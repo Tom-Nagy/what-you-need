@@ -95,7 +95,7 @@
             </div>
             <div class="col-12 col-md-8 col-lg-6">
                 <!-- Add to bag with quantity selector -->
-                <form class="form w-25 d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
+                <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="prod-detail-qty-input-wrapper">
                         <div class="form-group">

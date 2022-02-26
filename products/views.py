@@ -102,7 +102,7 @@ def all_products(request):
                                        60)
                     time_diff_in_min = time_diff[0]
 
-                    if time_diff_in_min < float(31680):
+                    if time_diff_in_min < two_month:
                         new_products.append(product)
                 products = new_products
             else:
