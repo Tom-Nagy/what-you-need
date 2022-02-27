@@ -7,7 +7,7 @@ Order Date: {{ order.date }}
 
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
-Dicoount: €{{ order.discount }}
+{% if order.discount != 0.00 %}Dicount: €{{ order.discount }}{% endif %}
 Grand Total: €{{ order.grand_total }}
 
 Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.

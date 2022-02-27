@@ -72,7 +72,10 @@ class Order(models.Model):
 
         for item in self.lineitems.all():
             for x in range(int(item.quantity)):
-                product_price_list.append(item.product.price)
+                if item.product.on_sale:
+                    product_price_list.append(item.product.on_sale_price)
+                else:
+                    product_price_list.append(item.product.price)
         product_price_list.sort()
 
         # Every 3 items purchase the least expensive is offered.
