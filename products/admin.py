@@ -35,6 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
 
     inlines = (ProductReviewAdminInline,)
     readonly_fields = ('quantity_sold', 'rating',)
+    exclude = ('liked',)
 
     list_display = (
         'name',

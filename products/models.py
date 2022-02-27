@@ -62,6 +62,9 @@ class Product(models.Model):
     on_sale_price = models.DecimalField(max_digits=6, decimal_places=2,
                                         null=True, blank=True,
                                         validators=[MinValueValidator(0.00)])
+    selling_price = models.DecimalField(max_digits=6, decimal_places=2,
+                                        null=True, blank=True,
+                                        validators=[MinValueValidator(0.00)])
     date_added = models.DateTimeField(auto_now_add=True)
     liked = models.BooleanField(default=False)
     quantity_sold = models.PositiveIntegerField(default=0, null=False,
@@ -70,6 +73,14 @@ class Product(models.Model):
     def __str__(self):
         ''' String method to return the name of the Product '''
         return str(self.name)
+
+    def update_selling_price(self):
+        ''' Update the selling price of a product each time it is saved '''
+        if self.on_sale_price:
+            self.selling_price = self.on_sale_price
+        else:
+            self.selling_price = self.price
+        self.save()
 
     def update_rating(self):
         ''' Update product rating each time a review is added '''

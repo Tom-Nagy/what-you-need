@@ -48,7 +48,6 @@ def order_history(request):
     orders = user_profile.orders.all()
     orders = orders.order_by('-date')
 
-
     template = 'profiles/order_history.html'
     context = {
         'orders': orders,

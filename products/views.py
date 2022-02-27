@@ -22,8 +22,9 @@ def all_products(request):
     # Reset all the product's liked filed to False
     # Look if there are exclusive plants
     for product in products:
-        product.liked = False
-        product.save()
+        if product.liked is True:
+            product.liked = False
+            product.save()
 
         if product.category.name == 'exclusive_plants':
             exclusive_plants = True
@@ -71,9 +72,12 @@ def all_products(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
+            print(sort)
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
+            elif sortkey == 'price':
+                sortkey = 'selling_price'
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -82,6 +86,7 @@ def all_products(request):
                     direction = '(high to low)'
                 else:
                     direction = '(low to high)'
+
             products = products.order_by(sortkey)
 
         # Search by category functionality
@@ -106,7 +111,7 @@ def all_products(request):
                 for product in products:
                     time_diff = today - product.date_added
                     time_diff = divmod(time_diff.total_seconds(),
-                                        60)
+                                       60)
                     time_diff_in_min = time_diff[0]
 
                     if time_diff_in_min < two_month:
@@ -159,8 +164,9 @@ def product_detail(request, product_id):
     exclusive_plants = False
 
     # reset product's liked field in case theproduct is accessed by url
-    product.liked = False
-    product.save()
+    if product.liked is True:
+        product.liked = False
+        product.save()
 
     if product.category.name == 'exclusive_plants':
         exclusive_plants = True
@@ -214,6 +220,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
+            product.update_selling_price()
             messages.success(request, 'Product added successfully')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
@@ -242,6 +249,7 @@ def edit_product(request, product_id):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
+            product.update_selling_price()
             messages.success(request, 'Product updated successfully!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
@@ -302,16 +310,3 @@ def add_review(request, product_id):
             return redirect(reverse('product_detail', args=[product.id]))
 
     return redirect(reverse('product_detail', args=[product.id]))
-
-
-# @login_required
-# def delete_review(request, review_id):
-#     ''' Delete a review from the store (admin only)'''
-#     if not request.user.is_superuser:
-#         messages.error(request, 'Sorry, only store owners can do that.')
-#         return redirect(reverse('home'))
-
-#     review = get_object_or_404(ProductReview, pk=review_id)
-#     review.delete()
-#     messages.success(request, 'Review deleted')
-#     return redirect(reverse('all_reviews'))
