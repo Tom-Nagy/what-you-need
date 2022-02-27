@@ -72,7 +72,7 @@ class Order(models.Model):
 
         for item in self.lineitems.all():
             for x in range(int(item.quantity)):
-                if item.product.on_sale:
+                if item.product.on_sale and item.product.on_sale_price:
                     product_price_list.append(item.product.on_sale_price)
                 else:
                     product_price_list.append(item.product.price)
@@ -132,7 +132,7 @@ class OrderLineItem(models.Model):
         Override the original save method to set the lineitem total
         and update the order total.
         '''
-        if self.product.on_sale:
+        if self.product.on_sale and item.product.on_sale_price:
             self.lineitem_total = self.quantity * self.product.on_sale_price
         else:
             self.lineitem_total = self.quantity * self.product.price

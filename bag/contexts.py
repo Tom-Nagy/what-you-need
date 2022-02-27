@@ -23,7 +23,7 @@ def bag_contents(request):
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
-        if product.on_sale:
+        if product.on_sale and product.on_sale_price:
             total += quantity * product.on_sale_price
             product_count += quantity
             product_subtotal = quantity * product.on_sale_price
@@ -38,7 +38,7 @@ def bag_contents(request):
             took_last_item = False
 
         for prices in range(quantity):
-            if product.on_sale:
+            if product.on_sale and product.on_sale_price:
                 products_price_list.append(float(product.on_sale_price))
             else:
                 products_price_list.append(float(product.price))

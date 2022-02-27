@@ -57,7 +57,11 @@
                                         <div class="col-12 text-left">
                                             {% if product.on_sale %}
                                                 <span class="striked text-muted">€ {{ product.price }}</span>
-                                                <span class="lead"><strong>€ {{ product.on_sale_price }}</strong></span>
+                                                {% if product.on_sale_price %}
+                                                    <span class="lead"><strong>€ {{ product.on_sale_price }}</strong></span>
+                                                {% else %}
+                                                    <span class="lead"><strong>€ {{ product.price }}</strong></span>
+                                                {% endif %}
                                             {% else %}
                                                 <span><strong>€ {{ product.price }}</strong></span>
                                             {% endif %}
