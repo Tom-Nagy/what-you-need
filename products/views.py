@@ -156,9 +156,14 @@ def product_detail(request, product_id):
     ''' A view to display details of individual product. '''
 
     product = get_object_or_404(Product, pk=product_id)
+    exclusive_plants = False
+
     # reset product's liked field in case theproduct is accessed by url
     product.liked = False
     product.save()
+
+    if product.category.name == 'exclusive_plants':
+        exclusive_plants = True
 
     review_form = ProductReviewForm()
     reviews = ProductReview.objects.filter(product=product)
@@ -191,6 +196,7 @@ def product_detail(request, product_id):
         'user': user_profile,
         'user_wishlist': user_wishlist,
         'product': product,
+        'exclusive_plants': exclusive_plants,
         'review_form': review_form,
         'reviews': reviews,
     }

@@ -4,183 +4,200 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 p-3">
-                <div class="card card-product">
-                    <div class="row no-gutters">
-                        <div class="col-12 col-md-4 text-center">
-                            {% if product.image %}
-                                <a href="{{ product.image.url }}" target="_blank" aria-label="Link to view the image.">
-                                    <img class="img-fluid card-product-images" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                </a>
+            {% if not user and exclusive_plants %}
+                <div class="col-12 text-center mt-5">
+                    <p class="text-center mx-auto pb-4">
+                        You have to be registered to see this plant !
+                    </p>
+                    <p class="text-center mx-auto pb-4">
+                        <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                        class="links-inline-style">sign-in</a> or
+                        <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                        class="links-inline-style"> create an account</a>
+                    </p>
+
+                    <a href="{% url 'home' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back home</a>
+                    <a href="{% url 'products' %}" aria-label="link to home page" class="keep-shop-btn m-2">Back to the garden</a>
+                </div>
+            {% else %}
+                <div class="col-12 col-md-10 col-lg-8 p-3">
+                    <div class="card card-product">
+                        <div class="row no-gutters">
+                            <div class="col-12 col-md-4 text-center">
+                                {% if product.image %}
+                                    <a href="{{ product.image.url }}" target="_blank" aria-label="Link to view the image.">
+                                        <img class="img-fluid card-product-images" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </a>
+                                {% else %}
+                                    <img class="img-fluid card-product-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <div class="card-body card-product-body">
+                                    <div class="row no-gutters">
+                                        <div class="col">
+                                            <h3 class="card-title card-product-title">{{ product.name }}</h3>
+                                        </div>
+                                        <div class="col">
+                                            <p class="text-right">
+                                                {% if product.rating %}
+                                                    {{ product.rating }}<span class="small text-muted">/5</span>
+                                                    <span class="rating-icon"><i class="fas fa-star"></i></span>
+                                                {% else %}
+                                                    <span><small class="text-muted">No rating</small></span>
+                                                    <i class="fas fa-star"></i>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        {% if product.scientific_name %}
+                                            <div class="col-12 text-left">
+                                                <span class="text-muted">{{ product.scientific_name }}</span>
+                                            </div>
+                                        {% endif %}
+                                        <div class="col-12 text-left">
+                                            {% if product.on_sale %}
+                                                <span class="striked text-muted">€ {{ product.price }}</span>
+                                                <span class="lead"><strong>€ {{ product.on_sale_price }}</strong></span>
+                                            {% else %}
+                                                <span><strong>€ {{ product.price }}</strong></span>
+                                            {% endif %}
+                                        </div>
+                                        {% if product.category %}
+                                            <div class="col-12 text-left">
+                                                <a href="{% url 'products' %}?category={{ product.category.name }}" 
+                                                aria-label="Link to {{ product.category.friendly_name }} category." 
+                                                class="card-product-category text-muted">{{ product.category.friendly_name }}</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-12">
+                                            <p class="card-text card-product-description">
+                                                {{ product.description }}<br>
+                                            </p>
+                                            {% if product.height %}
+                                                <p class="card-text mt-2 mb-0 mb-mb-1">Height: {{ product.height }} cms</p>
+                                            {% endif %}
+                                            {% if product.diameter %}
+                                                <p class="card-text mb-1 mb-mb-2">Diameter: {{ product.diameter }} cms</p>
+                                            {% endif %}
+                                            {% if product.quantity == 0 %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-danger badge-product-quantity">
+                                                        Out of stock</span>
+                                                    <span class="card-text my-0"><small class="text-muted">
+                                                        It will be back in stock soon</small></span>
+                                                </p>
+                                            {% elif product.quantity <= 5 %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-warning badge-product-quantity">
+                                                        Only {{ product.quantity }} left</span>
+                                                </p>
+                                            {% else %}
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-success badge-product-quantity">
+                                                        In stock</span>
+                                                </p>
+                                            {% endif %}
+                                            {% if request.user.is_superuser %}
+                                                <p class="text-right mb-2">
+                                                    <a class="text-info" href="{% url 'edit_product' product.id %}" 
+                                                    aria-label="Link to edit product page.">Edit Product</a> |
+                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}" 
+                                                    aria-label="Delete product.">Delete Product</a>
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-6">
+                    <!-- Add to bag with quantity selector -->
+                    <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="prod-detail-qty-input-wrapper">
+                            <div class="form-group">
+                                <div class="input-group position-relative">
+                                    <div class="input-group-prepend">
+                                        <button class="decrement-qty" 
+                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                            <span>
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <input class="form-control qty_input text-center" 
+                                        id="id_qty_{{ product.id }}" type="number" name="quantity" 
+                                        value="1" min="1" max="{{ product.quantity }}" data-item_id="{{ product.id }}">
+                                    <div class="input-group-append">
+                                        <button class="increment-qty"
+                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                            <span>
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <!-- Quantity feedback -->
+                                    <div class="input-qty-feedback" id="too_high_qty_{{ product.id }}">
+                                        <small class="badge badge-warning">
+                                            We dont have that many! max = {{ product.quantity }}
+                                        </small>
+                                    </div>
+                                    <div class="input-qty-feedback" id="too_small_qty_{{ product.id }}">
+                                        <small class="badge badge-warning">
+                                            That is too little! min = 1
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prod-detail-add-to-bag-btn-wrapper">
+                            {% if product.quantity == 0 %}
+                                <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
+                                    Add to bag
+                                </button>
                             {% else %}
-                                <img class="img-fluid card-product-images" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}">
+                                <button class="add-to-bag-btn" type="submit">
+                                    Add to bag
+                                </button>
                             {% endif %}
                         </div>
-                        <div class="col-12 col-md-8">
-                            <div class="card-body card-product-body">
-                                <div class="row no-gutters">
-                                    <div class="col">
-                                        <h3 class="card-title card-product-title">{{ product.name }}</h3>
-                                    </div>
-                                    <div class="col">
-                                        <p class="text-right">
-                                            {% if product.rating %}
-                                                {{ product.rating }}<span class="small text-muted">/5</span>
-                                                <span class="rating-icon"><i class="fas fa-star"></i></span>
-                                            {% else %}
-                                                <span><small class="text-muted">No rating</small></span>
-                                                <i class="fas fa-star"></i>
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                    {% if product.scientific_name %}
-                                        <div class="col-12 text-left">
-                                            <span class="text-muted">{{ product.scientific_name }}</span>
-                                        </div>
-                                    {% endif %}
-                                    <div class="col-12 text-left">
-                                        {% if product.on_sale %}
-                                            <span class="striked text-muted">€ {{ product.price }}</span>
-                                            <span class="lead"><strong>€ {{ product.on_sale_price }}</strong></span>
-                                        {% else %}
-                                            <span><strong>€ {{ product.price }}</strong></span>
-                                        {% endif %}
-                                    </div>
-                                    {% if product.category %}
-                                        <div class="col-12 text-left">
-                                            <a href="{% url 'products' %}?category={{ product.category.name }}" 
-                                            aria-label="Link to {{ product.category.friendly_name }} category." 
-                                            class="card-product-category text-muted">{{ product.category.friendly_name }}</a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-12">
-                                        <p class="card-text card-product-description">
-                                            {{ product.description }}<br>
-                                        </p>
-                                        {% if product.height %}
-                                            <p class="card-text mt-2 mb-0 mb-mb-1">Height: {{ product.height }} cms</p>
-                                        {% endif %}
-                                        {% if product.diameter %}
-                                            <p class="card-text mb-1 mb-mb-2">Diameter: {{ product.diameter }} cms</p>
-                                        {% endif %}
-                                        {% if product.quantity == 0 %}
-                                            <p class="card-text">
-                                                <span class="badge badge-pill badge-danger badge-product-quantity">
-                                                    Out of stock</span>
-                                                <span class="card-text my-0"><small class="text-muted">
-                                                    It will be back in stock soon</small></span>
-                                            </p>
-                                        {% elif product.quantity <= 5 %}
-                                            <p class="card-text">
-                                                <span class="badge badge-pill badge-warning badge-product-quantity">
-                                                    Only {{ product.quantity }} left</span>
-                                            </p>
-                                        {% else %}
-                                            <p class="card-text">
-                                                <span class="badge badge-pill badge-success badge-product-quantity">
-                                                    In stock</span>
-                                            </p>
-                                        {% endif %}
-                                        {% if request.user.is_superuser %}
-                                            <p class="text-right mb-2">
-                                                <a class="text-info" href="{% url 'edit_product' product.id %}" 
-                                                aria-label="Link to edit product page.">Edit Product</a> |
-                                                <a class="text-danger" href="{% url 'delete_product' product.id %}" 
-                                                aria-label="Delete product.">Delete Product</a>
-                                            </p>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                    <!-- Add to wishlist dropdown-->
+                    <div class="d-inline-block float-right">
+                        {% include 'products/includes/add_to_wishlist.html' %}
+                    </div>
+                    <!-- if product = 0 disable buy button 888888888888888888888888888888-->
+                    <div class="d-inline-block float-right mr-4">
+                        <a href="#" class="buy-now-btn" aria-label="Link to shopping bag page">Buy now</a>
+                    </div>
+                    <!-- Keep shopping buttons -->
+                    <div class="row">
+                        <div class="col-12 my-2 text-center">
+                            <a href="{% url 'products' %}" aria-label="Link to all products page." 
+                                class="keep-shop-btn">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span>Keep shopping | All products</span>
+                            </a>
+                        </div>
+                        <div class="col-12 mt-2 text-center">
+                            <a href="{% url 'products' %}?category={{product.category.name}}" aria-label="Link to all products page." 
+                                class="keep-shop-btn">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span>Shop {{ product.category.friendly_name }}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-8 col-lg-6">
-                <!-- Add to bag with quantity selector -->
-                <form class="form d-inline-block" action="{% url 'add_to_bag' product.id %}" method="POST">
-                    {% csrf_token %}
-                    <div class="prod-detail-qty-input-wrapper">
-                        <div class="form-group">
-                            <div class="input-group position-relative">
-                                <div class="input-group-prepend">
-                                    <button class="decrement-qty" 
-                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                        <span>
-                                            <i class="fas fa-minus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input class="form-control qty_input text-center" 
-                                    id="id_qty_{{ product.id }}" type="number" name="quantity" 
-                                    value="1" min="1" max="{{ product.quantity }}" data-item_id="{{ product.id }}">
-                                <div class="input-group-append">
-                                    <button class="increment-qty"
-                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                        <span>
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <!-- Quantity feedback -->
-                                <div class="input-qty-feedback" id="too_high_qty_{{ product.id }}">
-                                    <small class="badge badge-warning">
-                                        We dont have that many! max = {{ product.quantity }}
-                                    </small>
-                                </div>
-                                <div class="input-qty-feedback" id="too_small_qty_{{ product.id }}">
-                                    <small class="badge badge-warning">
-                                        That is too little! min = 1
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="prod-detail-add-to-bag-btn-wrapper">
-                        {% if product.quantity == 0 %}
-                            <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
-                                Add to bag
-                            </button>
-                        {% else %}
-                            <button class="add-to-bag-btn" type="submit">
-                                Add to bag
-                            </button>
-                        {% endif %}
-                    </div>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                </form>
-                <!-- Add to wishlist dropdown-->
-                <div class="d-inline-block float-right">
-                    {% include 'products/includes/add_to_wishlist.html' %}
-                </div>
-                <!-- if product = 0 disable buy button 888888888888888888888888888888-->
-                <div class="d-inline-block float-right mr-4">
-                    <a href="#" class="buy-now-btn" aria-label="Link to shopping bag page">Buy now</a>
-                </div>
-                <!-- Keep shopping buttons -->
-                <div class="row">
-                    <div class="col-12 my-2 text-center">
-                        <a href="{% url 'products' %}" aria-label="Link to all products page." 
-                            class="keep-shop-btn">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Keep shopping | All products</span>
-                        </a>
-                    </div>
-                    <div class="col-12 mt-2 text-center">
-                        <a href="{% url 'products' %}?category={{product.category.name}}" aria-label="Link to all products page." 
-                            class="keep-shop-btn">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Shop {{ product.category.friendly_name }}</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
         </div>
         <!-- Product reviews -->
         {% include 'products/includes/reviews.html' %}
