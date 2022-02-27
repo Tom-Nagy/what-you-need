@@ -83,7 +83,10 @@ def add_to_bag(request, item_id):
         return redirect(redirect_url)
 
     request.session['bag'] = bag
-    return redirect(redirect_url)
+    if 'buy_now' in request.POST:
+        return redirect('view_bag')
+    else:
+        return redirect(redirect_url)
 
 
 def adjust_bag(request, item_id):

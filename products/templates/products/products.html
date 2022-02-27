@@ -120,10 +120,23 @@
                                 </div>
                                 <!-- Buy now button -->
                                 <div class="col-4 col-lg-3 text-center">
-                                    <a href="#" class="buy-now-btn" aria-label="Link to shopping bag page">Buy now</a>
+                                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if product.quantity == 0 %}
+                                            <button class="buy-now-btn" title="Out of stock, cannot buy" disabled>
+                                                Buy now
+                                            </button>
+                                        {% else %}
+                                            <button class="buy-now-btn" type="submit">
+                                                Buy now
+                                            </button>
+                                        {% endif %}
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="buy_now">
+                                    </form>
                                 </div>
+                                <!-- Add to bag -->
                                 <div class="col-4 col-lg-3 text-center">
-                                    <!-- Add to bag -->
                                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                                         {% csrf_token %}
                                         {% if product.quantity == 0 %}
@@ -135,7 +148,7 @@
                                                 Add to bag
                                             </button>
                                         {% endif %}
-                                        <input type="hidden" name="quantity" value="1" data-item_id="{{ product.id }}">
+                                        <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     </form>
                                 </div>
