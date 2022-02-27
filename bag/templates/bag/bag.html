@@ -68,7 +68,12 @@
                                                 <h5 class="card-title">{{ item.product.name }}</h5>
                                             </div>
                                             <div class="col-12 text-left">
-                                                <span><strong>€ {{ item.product.price }}</strong></span>
+                                                {% if item.product.on_sale %}
+                                                    <span class="striked text-muted">€ {{ item.product.price }}</span>
+                                                    <span><strong>€ {{ item.product.on_sale_price }}</strong></span>
+                                                {% else %}
+                                                    <span><strong>€ {{ item.product.price }}</strong></span>
+                                                {% endif %}
                                             </div>
                                             <div class="col-12">
                                                 {% if item.product.quantity == 0 %}
@@ -194,7 +199,13 @@
                                     <tr>
                                         <td>{{ item.product.name }}</td>
                                         <td>{{ item.quantity }}</td>
-                                        <td>€ {{ item.product.price }}</td>
+                                        <td>
+                                            {% if item.product.on_sale %}
+                                                € {{ item.product.on_sale_price }}
+                                            {% else %}
+                                                € {{ item.product.price }}
+                                            {% endif %}
+                                        </td>
                                         <td>€ {{ item.product_subtotal }}</td>
                                     </tr>
                                 {% endfor %}
