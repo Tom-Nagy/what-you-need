@@ -11,7 +11,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         ''' Form meta properties '''
         model = Product
-        fields = '__all__'
+        exclude = ('liked', 'quantity_sold',)
 
     # Replace the image field the the custom widget
     image = forms.ImageField(label='Image',
