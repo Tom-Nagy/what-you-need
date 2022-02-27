@@ -72,7 +72,6 @@ def all_products(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            print(sort)
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
@@ -94,7 +93,8 @@ def all_products(request):
             category_selected = request.GET['category']
 
             if category_selected == 'best_seller':
-                products = products.filter(rating=5)
+                products = products.order_by('-quantity_sold')[:5]
+
                 print(f'best seller products  ===>>> {products}')
             elif category_selected == 'special_deals':
                 products = products.filter(on_sale=True)

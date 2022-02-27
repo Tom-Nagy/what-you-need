@@ -41,16 +41,15 @@ class StripeWebhookHandler:
             [cust_email]
         )
 
-    # def _update_product_quantity_sold(self, order):
-    #     ''' update the quantity sold field of the products ordered '''
-    #     order_line_items = order.lineitems.all()
-    #     print('inside the update quantity')
-    #     for item in order_line_items:
-    #         product = Product.objects.get(id=item.product.id)
-    #         quantity_sold = product.quantity_sold
-    #         new_quantity_sold = quantity_sold + item.quantity
-    #         product.quantity_sold = new_quantity_sold
-    #         product.save()
+    def _update_product_quantity_sold(self, order):
+        ''' update the quantity sold field for the products ordered '''
+        order_line_items = order.lineitems.all()
+        for item in order_line_items:
+            product = get_object_or_404(Product, pk=item.product.id)
+            quantity_sold = product.quantity_sold
+            total_quantity_sold = quantity_sold + item.quantity
+            product.quantity_sold = total_quantity_sold
+            product.save()
 
     def handle_event(self, event):
         ''' Hanlde a generic/unknown/unexpected webhook event '''
@@ -123,6 +122,7 @@ class StripeWebhookHandler:
                 time.sleep(1)
 
         if order_exists:
+            self._update_product_quantity_sold(order)
             self._send_confirmation_email(order)
             return HttpResponse(
                     content=f'Webhook received {event["type"]} | \
@@ -159,7 +159,6 @@ class StripeWebhookHandler:
                 return HttpResponse(content=f'Webhook received {event["type"]} \
                                               | ERROR: {e}', status=500)
 
-        print('befor the fucntion is called but here the payement should have been throught')
         self._update_product_quantity_sold(order)
         self._send_confirmation_email(order)
         return HttpResponse(
