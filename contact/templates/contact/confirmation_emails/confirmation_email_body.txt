@@ -1,0 +1,19 @@
+Thank you for getting in touch.
+
+This is a confirmation that we received your message as shown below.
+We will do our best to come back to you within two working days.
+
+Subject: {{ message.subject }}
+Message Date: {{ message.date_time }}
+
+Message:
+{{ message.body }}
+
+If you have any questions, in the meantime feel free to contact us at {{ contact_email }},
+by reply to this email or by the contact us form on the website.
+
+Thank you for your time!
+
+Sincerely,
+
+What You Need

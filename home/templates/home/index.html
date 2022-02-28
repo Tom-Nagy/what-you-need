@@ -57,7 +57,7 @@
                 <!-- Contact us from -->
                 <a id="contact-us" class="home-page-internal-link"></a>
                 <h3 class="home-page-section">Contact us</h3>
-                <form action="#" method="POST" class="contact-us-form">
+                <form action="{% url 'contact_us' %}" method="POST" class="contact-us-form">
                     {% csrf_token %}
                     {{ contact_form|crispy }}
                     <div class="text-center">
