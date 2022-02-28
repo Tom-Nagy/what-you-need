@@ -187,7 +187,7 @@ def product_detail(request, product_id):
             for wishlist in user_wishlist:
                 wishlist_items = wishlist.wishlist_items.all()
                 for item in wishlist_items:
-                    if item:
+                    if item.product:
                         product_id = item.product.id
                         if product_id == product.id:
                             liked_product = Product.objects.get(id=product_id)
