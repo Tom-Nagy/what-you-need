@@ -473,7 +473,7 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 * Potted plant photo by [Kelsey Brown](https://unsplash.com/@kelseybrownart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/collections/z3tT15aKtnE/ms4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 * From [stock adobe](https://stock.adobe.com):
-  * Plant pictures for error pages:
+  * Pictures for error pages:
     * By Kurt [no coca drugs](https://stock.adobe.com/uk/images/no-coca-drugs/201656977?prev_url=detail)
     * By Ekaterina Mikhailova [404 error page not found concept with undersea world isolated on white background. The Angler fish swims on depth among other fish, the colorful underwater world with seawood and sand - flat vector](https://stock.adobe.com/uk/images/404-error-page-not-found-concept-with-undersea-world-isolated-on-white-background-the-angler-fish-swims-on-depth-among-other-fish-the-colorful-underwater-world-with-seawood-and-sand-flat-vector/201849396)
     * By dabflyer [Laptop screen, cloud server, Exclamation mark danger. Vector 3d symbol, isometric, color web icons, new flat style. Creative design idea, concept for infographics](https://stock.adobe.com/uk/images/laptop-screen-cloud-server-exclamation-mark-danger-vector-3d-symbol-isometric-color-web-icons-new-flat-style-creative-design-idea-concept-for-infographics/444681075?prev_url=detail)
