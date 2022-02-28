@@ -427,7 +427,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 * Bug:
   * The quantity return to the selector input is equal to the max quantity - 1.
 * Fix:
-  * return set the new value after the handleEnableDisable function is called and outside the if statement.
+  * At the moment considering thi bug not critical, I have decided to add 1 to the quantity returned to the input.
+
+* Styles are not displaying as intented on safary for the navbar on small screen.
 
 ## Credits
 
@@ -444,6 +446,9 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 * For sorting a list and returning a list:
   * Credit to venpa from [Stackoverflow post](https://stackoverflow.com/questions/22117834/how-do-i-return-a-list-of-the-3-lowest-values-in-another-list)
+
+* For display messages using extra_tags:
+  * Credit to birophilo from [Stackoverflow post](https://stackoverflow.com/questions/43588876/how-can-i-add-additional-data-to-django-messages)
 
 ### Content
 

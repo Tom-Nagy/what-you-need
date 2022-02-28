@@ -69,13 +69,14 @@ def add_to_bag(request, item_id):
             product.save()
             messages.success(request,
                              f'Added {quantity} more {product.name}'
-                             'to your bag')
+                             'to your bag', extra_tags='bag_item_qty_changed')
         else:
             bag[item_id] = quantity
             product.quantity -= quantity
             product.save()
             messages.success(request,
-                             f'{quantity} {product.name} added to your bag')
+                             f'{quantity} {product.name} added to your bag',
+                             extra_tags='bag_item_qty_changed')
     else:
         messages.error(request,
                        f'The quantity selected for {product.name}'
