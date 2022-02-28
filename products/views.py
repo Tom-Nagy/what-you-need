@@ -187,13 +187,14 @@ def product_detail(request, product_id):
             for wishlist in user_wishlist:
                 wishlist_items = wishlist.wishlist_items.all()
                 for item in wishlist_items:
-                    product_id = item.product.id
-                    if product_id == product.id:
-                        liked_product = Product.objects.get(id=product_id)
-                        liked_product.liked = True
-                        liked_product.save()
-                        # Get the updated product
-                        product = get_object_or_404(Product, pk=product_id)
+                    if item:
+                        product_id = item.product.id
+                        if product_id == product.id:
+                            liked_product = Product.objects.get(id=product_id)
+                            liked_product.liked = True
+                            liked_product.save()
+                            # Get the updated product
+                            product = get_object_or_404(Product, pk=product_id)
 
     template = 'products/product_detail.html'
     context = {

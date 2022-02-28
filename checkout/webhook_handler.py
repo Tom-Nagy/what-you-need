@@ -77,7 +77,11 @@ class StripeWebhookHandler:
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
-            profile = UserProfile.objects.get(user__username=username)
+            try:
+                profile = UserProfile.objects.get(user__username=username)
+            except UserProfile.DoesNotExist:
+                profile = UserProfile.objects.create()
+                profile.save()
             if save_info:
                 profile.default_full_name = shipping_details.name
                 profile.default_email = billing_details.email

@@ -100,10 +100,12 @@ def add_to_wishlist(request, product_id):
     '''
     Add a product to a wishlist or to the default wishlist if none created.
     '''
+    print(f'request.path ====... {request.path}')
     liked_product = get_object_or_404(Product, pk=product_id)
     user_profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         redirect_url = request.POST.get('redirect_url')
+        print(f'redirect url ===> {redirect_url}')
         wishlist = None
 
         # if no wishlist owned/created
@@ -152,16 +154,16 @@ def add_to_wishlist(request, product_id):
                 return redirect('view_bag')
             else:
                 messages.error(request,
-                                'It seems that we can\'t move this plant!'
-                                'If you need assistance, please contact us')
-                redirect(reverse('view_bag'))
+                               'It seems that we can\'t move this plant!'
+                               'If you need assistance, please contact us')
+                redirect('view_bag')
 
         else:
             messages.success(request, f'{liked_product.name} saved \
                                         to {wishlist.name}')
             return redirect(redirect_url)
 
-    return redirect(redirect_url)
+    return redirect('home')
 
 
 @login_required
