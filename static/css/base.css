@@ -923,6 +923,12 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+/* contact us */
+.contact-us-form {
+    max-width: 60ch;
+    padding: 3px;
+}
+
 /* --------------------------------------- Media queries */
 
 @media (max-width: 425px) {
