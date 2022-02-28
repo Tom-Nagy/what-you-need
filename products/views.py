@@ -93,7 +93,7 @@ def all_products(request):
             category_selected = request.GET['category']
 
             if category_selected == 'best_seller':
-                products = products.order_by('-quantity_sold')[:5]
+                products = products.order_by('-quantity_sold')[:6]
 
                 print(f'best seller products  ===>>> {products}')
             elif category_selected == 'special_deals':
