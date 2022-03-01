@@ -40,8 +40,8 @@
                 <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-profile-lg">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                            <a href="{% url 'add_product' %}" aria-label="Link to add product page." 
-                            class="dropdown-item">Product Management</a>
+                            <a href="{% url 'store_management' %}" aria-label="Link to store management page." 
+                            class="dropdown-item">Store Management</a>
                         {% endif %}
                         <a href="{% url 'profile' %}" aria-label="Link to account details page." 
                         class="dropdown-item">Account details</a>

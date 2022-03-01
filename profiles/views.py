@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from checkout.models import Order
+from products.models import Product
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -71,6 +72,24 @@ def view_past_order_history(request, order_number):
     context = {
         'order': order,
         'from_order_history': True,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def store_management(request):
+    ''' Access to store management page '''
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    product_out_of_stock = Product.objects.filter(quantity=0)
+    # product_low_stock = Product.objects.filter(quantity<=5)
+
+    template = 'profiles/store_management.html'
+    context = {
+        'product_out_of_stock': product_out_of_stock,
     }
 
     return render(request, template, context)

@@ -9,4 +9,6 @@ urlpatterns = [
     path('order_history/', views.order_history, name='order_history'),
     path('view_past_order_history/<order_number>/',
          views.view_past_order_history, name='view_past_order_history'),
+    path('store_management/', views.store_management,
+         name='store_management'),
 ]

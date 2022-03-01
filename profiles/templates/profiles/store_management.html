@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}- Store Management{% endblock %}
+
+{% block content %}
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mx-auto mt-3 mb-5 text-center page-heading">Store Management</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{% url 'add_product' %}" aria-label="Link to add product page." class="form-btn mx-3">
+                    Add a product
+                </a>
+                <a href="{% url 'message_received' %}" aria-label="Link to message received page." class="form-btn mx-3">
+                    See messages
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-5">
+                <h3 class="subheading mb-3">Stock alert</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 col-md-4">
+                <!-- Out of sctock accordion -->
+                <div class="accordion mb-3">
+                    <div class="card">
+                        <div class="card-header" id="out-of-stock-header">
+                            <h2 class="mb-0 d-inline-block">
+                            <button class="btn btn-link btn-block text-left collapsed px-md-5 light-green" type="button" 
+                            data-toggle="collapse" data-target="#out-of-stock" 
+                            aria-expanded="false" aria-controls="out-of-stock">
+                                Out Of Stock
+                            </button>
+                            
+                        </div>
+                        <!-- Ptoducts out of stock -->
+                        <div id="out-of-stock" class="collapse" aria-labelledby="out-of-stock-header">
+                            <div class="card-body wishlist-card-body">
+                                {% with product_out_of_stock as products %}
+                                    {% if products %}
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-sm">
+                                                <tbody>
+                                                    {% for product in products %}
+                                                        {% include 'profiles/includes/stock_alert_items.html' %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p>There are no product out of stock.</p>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

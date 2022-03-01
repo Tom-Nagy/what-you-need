@@ -1,0 +1,51 @@
+<!-- Large screen display -->
+<tr class="d-none d-md-table-row">
+    <td class="align-middle">
+        {% if product.image %}
+            <a href="{{ product.image }}" target="_blank" aria-label="Link to view the image.">
+                <img class="img-fluid card-products-images" 
+                    src="{{ product.image.url }}" alt="{{ product.name }}"
+                    height="60" width="60">
+            </a>
+        {% else %}
+            <img class="img-fluid card-products-images" 
+                src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}"
+                height="60" width="60">
+        {% endif %}
+    </td>
+    <td class="align-middle text-left">
+        <a href="{% url 'product_detail' product.id %}" class="light-green" aria-label="Link to {{ product.name }} details">
+            {{ product.name }}
+        </a>
+    </td>
+    <td>
+        {% if product.quantity != 0 %}
+            quantity: {{ product.quantity }}
+        {% endif %}
+    </td>
+</tr>
+
+<!-- Small screen display -->
+<tr class="d-table-row d-md-none">
+    <td class="align-middle">
+        {% if product.image %}
+            <a href="{{ product.image }}" target="_blank" aria-label="Link to view the image.">
+                <img class="img-fluid card-products-images" 
+                    src="{{ product.image.url }}" alt="{{ product.name }}"
+                    height="60" width="60">
+            </a>
+        {% else %}
+            <img class="img-fluid card-products-images" 
+                src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}"
+                height="60" width="60">
+        {% endif %}
+        <span class="ml-2">
+            <a href="{% url 'product_detail' product.id %}" class="light-green" aria-label="Link to {{ product.name }} details">
+                {{ product.name }}
+            </a>
+        </span>
+        {% if product.quantity != 0 %}
+            <span>Qty: {{ product.quantity }}</span>
+        {% endif %}
+    </td>
+</tr>
