@@ -18,7 +18,7 @@
             {{ product.name }}
         </a>
     </td>
-    <td>
+    <td class="align-middle text-center">
         {% if product.quantity != 0 %}
             qty: {{ product.quantity }}
         {% endif %}
@@ -49,7 +49,7 @@
             </a>
         </span>
         {% if product.quantity != 0 %}
-            <span>qty: {{ product.quantity }}</span>
+            <span class="float-right mt-3">qty: {{ product.quantity }}</span>
         {% endif %}
         <p class="text-right mb-1">
             <a class="text-info" href="{% url 'edit_product' product.id %}" 

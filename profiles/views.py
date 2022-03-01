@@ -85,11 +85,16 @@ def store_management(request):
         return redirect(reverse('home'))
 
     product_out_of_stock = Product.objects.filter(quantity=0)
-    # product_low_stock = Product.objects.filter(quantity<=5)
+    product_low_stock = []
+    products = Product.objects.all()
+    for product in products:
+        if product.quantity != 0 and product.quantity <= 5:
+            product_low_stock.append(product)
 
     template = 'profiles/store_management.html'
     context = {
         'product_out_of_stock': product_out_of_stock,
+        'product_low_stock': product_low_stock,
     }
 
     return render(request, template, context)
