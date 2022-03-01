@@ -1,0 +1,85 @@
+
+<!-- Small screen display -->
+<div class="d-table-row d-md-none">
+    {% if item and item.product %}
+        <div class="align-middle p-3">
+            <span class="float-right m-2">
+                € {{ item.product.price }}
+            </span>
+            {% if item.product.image %}
+                <a href="{{ item.product.image }}" target="_blank" aria-label="Link to view the image.">
+                    <img class="img-fluid card-products-images" 
+                        src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                        height="60" width="60">
+                </a>
+            {% else %}
+                <img class="img-fluid card-products-images" 
+                    src="{{ MEDIA_URL }}no-image.jpg" alt="{{ item.product.name }}"
+                    height="60" width="60">
+            {% endif %}
+            <span class="ml-2">
+                <a href="{% url 'product_detail' item.product.id %}" class="light-green" aria-label="Link to {{ item.product.name }} details">
+                    {{ item.product.name }}
+                </a>
+            </span>
+            {% if item.product.quantity == 0 %}
+                <p class="card-text mt-2">
+                    <span class="badge badge-pill badge-danger badge-product-quantity">
+                        Out of stock
+                    </span><br/>
+                    <span class="card-text my-0 small text-muted">
+                        It will be back in stock soon
+                    </span>
+                </p>
+            {% elif item.product.quantity <= 5 %}
+                <p class="card-text mt-2">
+                    <span class="badge badge-pill badge-warning badge-product-quantity">
+                        Only {{ item.product.quantity }} left</span>
+                </p>
+            {% else %}
+                <p class="card-text mt-2">
+                    <span class="badge badge-pill badge-success badge-product-quantity">
+                        In stock</span>
+                </p>
+            {% endif %}
+            <div class="d-flex justify-content-center my-3">
+                <!-- Add to bag -->
+                <form class="form mr-1 d-inline-block" action="{% url 'add_to_bag' item.product.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if item.product.quantity == 0 %}
+                        <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
+                            Add to bag
+                        </button>
+                    {% else %}
+                        <button class="add-to-bag-btn" type="submit">
+                            Add to bag
+                        </button>
+                    {% endif %}
+                    <input type="hidden" name="quantity" value="1" data-item_id="{{ item.product.id }}">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
+                <!-- Remove Item -->
+                <form class="form ml-1 d-inline-block" action="{% url 'remove_from_wishlist' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="delete-prod-btn" type="submit" aria-label="Remove product from wishlist.">
+                        Remove
+                    </button>
+                    <input type="hidden" name="wishlist_id" value="{{ wishlist.id }}">
+                </form>
+            </div>
+        </div>
+    {% elif item and not item.product %}
+        <div class="align-middle text-center p-3">
+            {{ item.name }} is not available anymore. Sorry about any inconvenience.
+        
+            <!-- Remove Item -->
+            <form class="form" action="{% url 'remove_from_wishlist' item.id %}" method="POST">
+                {% csrf_token %}
+                <button class="delete-prod-btn" type="submit" aria-label="Remove product from wishlist.">
+                    Remove
+                </button>
+                <input type="hidden" name="wishlist_id" value="{{ wishlist.id }}">
+            </form>
+        </div>
+    {% endif %}
+</div>

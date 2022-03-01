@@ -19,11 +19,12 @@
                         <div class="card">
                             <div class="card-header" id="id_header_{{wishlist.id}}">
                                 <h2 class="mb-0 d-inline-block">
-                                <button class="btn btn-link btn-block text-left collapsed px-md-5 light-green" type="button" 
-                                data-toggle="collapse" data-target="#id_{{wishlist.id}}" 
-                                aria-expanded="false" aria-controls="id_{{wishlist.name}}">
-                                    {{ wishlist.name }}
-                                </button>
+                                    <button class="btn btn-link btn-block text-left collapsed px-md-5 light-green" type="button" 
+                                    data-toggle="collapse" data-target="#id_{{wishlist.id}}" 
+                                    aria-expanded="false" aria-controls="id_{{wishlist.id}}">
+                                        {{ wishlist.name }}
+                                    </button>
+                                </h2>
                                 <!-- Modal form for editing wishlist name -->
                                 <div class="modal fade" id="modal_id_{{wishlist.id}}" tabindex="-1" 
                                 aria-labelledby="modal_label_{{wishlist.id}}" aria-hidden="true">
@@ -49,7 +50,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </h2>
                                 <!-- Rename wishlist -->
                                 <div class="float-right edit-delete-wishlist-wrapper">
                                     <a class="text-info mr-2" role="button" href="#" data-toggle="modal" data-target="#modal_id_{{wishlist.id}}"
@@ -70,15 +70,18 @@
                                 <div class="card-body wishlist-card-body">
                                     {% with wishlist.wishlist_items.all as items %}
                                         {% if items %}
-                                            <div class="table-responsive">
+                                            <div class="table-responsive d-none d-md-block">
                                                 <table class="table table-hover table-sm">
                                                     <tbody>
                                                         {% for item in items %}
-                                                            {% include 'wishlists/includes/wishlist_items.html' %}
+                                                            {% include 'wishlists/includes/wishlist_items_lg.html' %}
                                                         {% endfor %}
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            {% for item in items %}
+                                                {% include 'wishlists/includes/wishlist_items_sm.html' %}
+                                            {% endfor %}
                                         {% else %}
                                             <p>Your wishlist is empty!</p>
                                             <a href="{% url 'products' %}" aria-label="Link to all products page." 

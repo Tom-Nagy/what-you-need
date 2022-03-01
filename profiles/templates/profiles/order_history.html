@@ -18,11 +18,11 @@
         <div class="row justify-content-center">
             <!-- User orders details -->
             {% if orders %}
-                <div class="col-12 col-md-10">
+                <div class="col-md-10 d-none d-md-block">
                     <div class="order-history table-responsive">
                         <table class="table table-hover table-sm">
                             <thead>
-                                <tr class="d-none d-md-table-row">
+                                <tr>
                                     <th scope="col">Order Number</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Items</th>
@@ -33,12 +33,16 @@
                                 {% for order in orders %}
                                     <!-- large screen order display -->
                                     {% include 'profiles/includes/order_history_lg.html' %}
-                                    <!-- small screen order display -->
-                                    {% include 'profiles/includes/order_history_sm.html' %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="col-12 d-block d-md-none">
+                    {% for order in orders %}
+                        <!-- small screen order display -->
+                        {% include 'profiles/includes/order_history_sm.html' %}
+                    {% endfor %}
                 </div>
             {% else %}
                 <div class="col text-center">
@@ -53,4 +57,5 @@
                 </div>
             {% endif %}
         </div>
+    </div>
 {% endblock %}

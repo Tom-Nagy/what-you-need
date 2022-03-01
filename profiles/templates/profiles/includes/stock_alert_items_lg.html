@@ -1,0 +1,30 @@
+<!-- Large screen display -->
+<tr>
+    <td class="align-middle">
+        {% if product.image %}
+            <a href="{{ product.image }}" target="_blank" aria-label="Link to view the image.">
+                <img class="img-fluid card-products-images" 
+                    src="{{ product.image.url }}" alt="{{ product.name }}"
+                    height="60" width="60">
+            </a>
+        {% else %}
+            <img class="img-fluid card-products-images" 
+                src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.name }}"
+                height="60" width="60">
+        {% endif %}
+    </td>
+    <td class="align-middle text-left">
+        <a href="{% url 'product_detail' product.id %}" class="light-green" aria-label="Link to {{ product.name }} details">
+            {{ product.name }}
+        </a>
+    </td>
+    <td class="align-middle text-center">
+        {% if product.quantity != 0 %}
+            qty: {{ product.quantity }}
+        {% endif %}
+    </td>
+    <td class="align-middle text-center">
+        <a class="text-info" href="{% url 'edit_product' product.id %}" 
+        aria-label="Link to edit product page.">Edit</a>
+    </td>
+</tr>

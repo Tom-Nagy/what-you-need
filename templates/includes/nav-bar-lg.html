@@ -7,129 +7,129 @@
         title="Link to the home page." height="62" width="62" />
         
     </a>
-        <ul class="list-inline list-unstyled text-center my-0 flex-fill">
-            <!-- Home -->
-            <li class="list-inline-item nav-item dropdown mr-5 {% if on_home_page %}on-page{% endif %}">
-                <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home-lg" data-toggle="dropdown" 
-                aria-expanded="false">
-                    <div class="text-center nav-icons-wrapper-lg">
-                        <div><i class="fas fa-home"></i></div>
-                        <p class="my-0 small">Home</p>
-                    </div>
-                </a>
-                <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-home-lg">
-                    <a href="{% url 'home' %}" aria-label="Link to home landing page." 
-                    class="dropdown-item">Home</a>
-                    <a href="{% url 'home' %}#about-us" aria-label="Link to home  page about us section." 
-                    class="dropdown-item">About us</a>
-                    <a href="{% url 'home' %}#contact-us" aria-label="Link to home page contact us section." 
-                    class="dropdown-item">Contact us</a>
-                    <a href="{% url 'terms_and_conditions' %}" aria-label="Link to terms and conditions page." 
-                    class="dropdown-item">Ts & Cs</a>
+    <ul class="list-inline list-unstyled text-center my-0 flex-fill">
+        <!-- Home -->
+        <li class="list-inline-item nav-item dropdown mr-5 {% if on_home_page %}on-page{% endif %}">
+            <a href="#" role="button" class="nav-btn-home dropdown-toggle" id="dropdown-menu-home-lg" data-toggle="dropdown" 
+            aria-expanded="false">
+                <div class="text-center nav-icons-wrapper-lg">
+                    <div><i class="fas fa-home"></i></div>
+                    <p class="my-0 small">Home</p>
                 </div>
-            </li>
-            <!-- Profile -->
-            <li class="list-inline-item nav-item dropdown mr-5 {% if on_profile_page %}on-page{% endif %}">
-                <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile-lg" data-toggle="dropdown" 
-                aria-expanded="false">
-                    <div class="text-center nav-icons-wrapper-lg">
-                        <div><i class="fas fa-user"></i></div>
-                        <p class="my-0 small">Profile</p>
-                    </div>
-                </a>
-                <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-profile-lg">
-                    {% if request.user.is_authenticated %}
-                        {% if request.user.is_superuser %}
-                            <a href="{% url 'store_management' %}" aria-label="Link to store management page." 
-                            class="dropdown-item">Store Management</a>
-                        {% endif %}
-                        <a href="{% url 'profile' %}" aria-label="Link to account details page." 
-                        class="dropdown-item">Account details</a>
-                        <a href="{% url 'order_history' %}" aria-label="Link to your order history page" 
-                        class="dropdown-item">Order history</a>
-                        <a href="{% url 'all_wishlist' %}"  aria-label="Link to wishlist page." 
-                        class="dropdown-item">My wishlist</a>
-                        <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
-                        class="dropdown-item">Logout</a>
-                    {% else %}
-                        <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
-                        class="dropdown-item">Sign in</a>
-                        <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
-                        class="dropdown-item">Create an account</a>
+            </a>
+            <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-home-lg">
+                <a href="{% url 'home' %}" aria-label="Link to home landing page." 
+                class="dropdown-item">Home</a>
+                <a href="{% url 'home' %}#about-us" aria-label="Link to home  page about us section." 
+                class="dropdown-item">About us</a>
+                <a href="{% url 'home' %}#contact-us" aria-label="Link to home page contact us section." 
+                class="dropdown-item">Contact us</a>
+                <a href="{% url 'terms_and_conditions' %}" aria-label="Link to terms and conditions page." 
+                class="dropdown-item">Ts & Cs</a>
+            </div>
+        </li>
+        <!-- Profile -->
+        <li class="list-inline-item nav-item dropdown mr-5 {% if on_profile_page %}on-page{% endif %}">
+            <a href="#" role="button" class="nav-btn-profile dropdown-toggle" id="dropdown-menu-profile-lg" data-toggle="dropdown" 
+            aria-expanded="false">
+                <div class="text-center nav-icons-wrapper-lg">
+                    <div><i class="fas fa-user"></i></div>
+                    <p class="my-0 small">Profile</p>
+                </div>
+            </a>
+            <div class="dropdown-menu nav-list-option-lg" aria-labelledby="dropdown-menu-profile-lg">
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'store_management' %}" aria-label="Link to store management page." 
+                        class="dropdown-item">Store Management</a>
                     {% endif %}
+                    <a href="{% url 'profile' %}" aria-label="Link to account details page." 
+                    class="dropdown-item">Account details</a>
+                    <a href="{% url 'order_history' %}" aria-label="Link to your order history page" 
+                    class="dropdown-item">Order history</a>
+                    <a href="{% url 'all_wishlist' %}"  aria-label="Link to wishlist page." 
+                    class="dropdown-item">My wishlist</a>
+                    <a href="{% url 'account_logout' %}" aria-label="Link to log out page." 
+                    class="dropdown-item">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}" aria-label="Link to log in page." 
+                    class="dropdown-item">Sign in</a>
+                    <a href="{% url 'account_signup' %}" aria-label="Link to create an account page." 
+                    class="dropdown-item">Create an account</a>
+                {% endif %}
+            </div>
+        </li>
+        <!-- Bag -->
+        <li class="list-inline-item nav-item mr-5 {% if on_bag_page %}on-page{% endif %}">
+            <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
+            class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
+                <div class="text-center nav-icons-wrapper-lg">
+                    <div><i class="fas fa-shopping-bag"></i></div>
+                    <p class="my-0 small">
+                        {% if grand_total %}
+                            <span class="bag-icon-total">
+                                ${{ grand_total|floatformat:2 }}
+                            </span>
+                        {% else %}
+                            Empty
+                        {% endif %}
+                    </p>
                 </div>
-            </li>
-            <!-- Bag -->
-            <li class="list-inline-item nav-item mr-5 {% if on_bag_page %}on-page{% endif %}">
-                <a href="{% url 'view_bag' %}" aria-label="Link to shopping bag page." 
-                class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}">
-                    <div class="text-center nav-icons-wrapper-lg">
-                        <div><i class="fas fa-shopping-bag"></i></div>
-                        <p class="my-0 small">
-                            {% if grand_total %}
-                                <span class="bag-icon-total">
-                                    ${{ grand_total|floatformat:2 }}
-                                </span>
-                            {% else %}
-                                Empty
-                            {% endif %}
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <!-- Search -->
-            <li class="list-inline-item nav-item dropdown {% if on_product_page %}on-page{% endif %}">
-                <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search-lg" data-toggle="dropdown" 
-                aria-expanded="false">
-                    <div class="text-center nav-icons-wrapper-lg">
-                        <div><i class="fas fa-search"></i></div>
-                        <p class="my-0 small">Search</p>
-                    </div>
-                </a>
-                <div class="dropdown-menu search-dropdown-container-lg" aria-labelledby="dropdown-menu-search-lg">
-                    <!-- Search bar -->
-                    <div class="row justify-content-center">
-                        <div class="col-10">
-                            <form method="GET" action="{% url 'products' %}">
-                                <div class="input-group w100">
-                                    <input type="text" name="q" placeholder="Search for what you need"  aria-label="Search" 
-                                    class="form-control rounded">
-                                    <div class="input-group-append">
-                                        <button class="btn rounded" type="submit">
-                                            <span class="icon"><i class="fas fa-search"></i></span>
-                                        </button>
-                                    </div>
+            </a>
+        </li>
+        <!-- Search -->
+        <li class="list-inline-item nav-item dropdown {% if on_product_page %}on-page{% endif %}">
+            <a href="#" role="button" class="nav-btn-search dropdown-toggle" id="dropdown-menu-search-lg" data-toggle="dropdown" 
+            aria-expanded="false">
+                <div class="text-center nav-icons-wrapper-lg">
+                    <div><i class="fas fa-search"></i></div>
+                    <p class="my-0 small">Search</p>
+                </div>
+            </a>
+            <div class="dropdown-menu search-dropdown-container-lg" aria-labelledby="dropdown-menu-search-lg">
+                <!-- Search bar -->
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <form method="GET" action="{% url 'products' %}">
+                            <div class="input-group w100">
+                                <input type="text" name="q" placeholder="Search for what you need"  aria-label="Search" 
+                                class="form-control rounded">
+                                <div class="input-group-append">
+                                    <button class="btn rounded" type="submit">
+                                        <span class="icon"><i class="fas fa-search"></i></span>
+                                    </button>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
-                    <!-- Search categories options -->
-                    <div class="row categories-container-lg">
-                        {% if categories %}
-                            {% for cat in categories %}
-                                <div class="col-4 category-card-lg">
-                                    <a href="{% url 'products' %}?category={{ cat.name }}" 
-                                    aria-label="Link to {{ cat.friendly_name }} category.">
-                                        <div class="card h-100">
-                                            <div class="card-body category-card-body">
-                                                <h4 class="card-title">{{ cat.friendly_name }}</h4>
-                                                <div class="category-card-img">
-                                                    <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
-                                                </div>
+                </div>
+                <!-- Search categories options -->
+                <div class="row categories-container-lg">
+                    {% if categories %}
+                        {% for cat in categories %}
+                            <div class="col-4 category-card-lg">
+                                <a href="{% url 'products' %}?category={{ cat.name }}" 
+                                aria-label="Link to {{ cat.friendly_name }} category.">
+                                    <div class="card h-100">
+                                        <div class="card-body category-card-body">
+                                            <h4 class="card-title">{{ cat.friendly_name }}</h4>
+                                            <div class="category-card-img">
+                                                <img src="{{ cat.image.url }}" class="img-fluid" alt="{{ cat.friendly_name }}">
                                             </div>
                                         </div>
-                                    </a>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                    <!-- All products button -->
-                    <div class="row justify-content-center mt-2 mb-2">
-                        <div class="col text-center">
-                            <a href="{% url 'products' %}" class="keep-shop-btn" aria-label="Link to the all products page.">See all products</a>
-                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- All products button -->
+                <div class="row justify-content-center mt-2 mb-2">
+                    <div class="col text-center">
+                        <a href="{% url 'products' %}" class="keep-shop-btn" aria-label="Link to the all products page.">See all products</a>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </li>
+    </ul>
 </nav>

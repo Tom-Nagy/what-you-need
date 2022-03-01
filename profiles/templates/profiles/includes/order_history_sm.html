@@ -1,20 +1,19 @@
 <!-- small screen order display -->
-<tr class=" d-table-row d-md-none">
-    <td>
-        <p class="pt-3">{{ order.date }}</p>
-        <p>
-            <a href="{% url 'view_past_order_history' order.order_number %}" title="{{ order.order_number }}"
-            aria-label="Link to past order number {{order.order_number}}">
-                {{ order.order_number|truncatechars:12 }}
-            </a>
-            <span class="float-right">€ {{ order.grand_total }}</span>
-        </p>
-        <ul class="list-unstyled">
-            {% for item in order.lineitems.all %}
-                <li class="small">
-                    {{ item.quantity }} x {{ item.product.name }}
-                </li>
-            {% endfor %}
-        </ul>
-    </td>
-</tr>
+<hr>
+<div>
+    <p class="pt-3">{{ order.date }}</p>
+    <p>
+        <a href="{% url 'view_past_order_history' order.order_number %}" title="{{ order.order_number }}"
+        aria-label="Link to past order number {{order.order_number}}">
+            {{ order.order_number|truncatechars:12 }}
+        </a>
+        <span class="float-right">€ {{ order.grand_total }}</span>
+    </p>
+    <ul class="list-unstyled">
+        {% for item in order.lineitems.all %}
+            <li class="small">
+                {{ item.quantity }} x {{ item.product.name }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

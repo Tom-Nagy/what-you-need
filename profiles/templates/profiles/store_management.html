@@ -32,30 +32,35 @@
                     <div class="card">
                         <div class="card-header" id="out-of-stock-header">
                             <h2 class="mb-0 text-center">
-                            <button class="btn btn-link btn-block collapsed px-md-2 light-green" type="button" 
-                            data-toggle="collapse" data-target="#out-of-stock" 
-                            aria-expanded="false" aria-controls="out-of-stock">
-                                <span class="text-danger">
-                                    <i class="fas fa-exclamation-triangle"></i> 
-                                </span>
-                                <span class="font-weight-bold">Out Of Stock</span>
+                                <button class="btn btn-link btn-block collapsed px-md-2 light-green" type="button" 
+                                data-toggle="collapse" data-target="#out-of-stock" 
+                                aria-expanded="false" aria-controls="out-of-stock">
+                                    <span class="text-danger">
+                                        <i class="fas fa-exclamation-triangle"></i> 
+                                    </span>
+                                    <span class="font-weight-bold">Out Of Stock</span>
                                     <span class="small text-muted"> ({{product_out_of_stock|length}})</span>
-                            </button>
-                            
+                                </button>
+                            </h2>
                         </div>
                         <!-- Ptoducts out of stock -->
                         <div id="out-of-stock" class="collapse" aria-labelledby="out-of-stock-header">
                             <div class="card-body wishlist-card-body">
                                 {% with product_out_of_stock as products %}
                                     {% if products %}
-                                        <div class="table-responsive">
+                                        <div class="table-responsive d-none d-md-block">
                                             <table class="table table-hover table-sm">
                                                 <tbody>
                                                     {% for product in products %}
-                                                        {% include 'profiles/includes/stock_alert_items.html' %}
+                                                        {% include 'profiles/includes/stock_alert_items_lg.html' %}
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <div class="d-block d-md-none">
+                                            {% for product in products %}
+                                                {% include 'profiles/includes/stock_alert_items_sm.html' %}
+                                            {% endfor %}
                                         </div>
                                     {% else %}
                                         <p class="m-3">There are no product out of stock.</p>
@@ -72,33 +77,38 @@
                     <div class="card">
                         <div class="card-header" id="low-stock-header">
                             <h2 class="mb-0 text-center">
-                            <button class="btn btn-link btn-block collapsed px-md-5 light-green" type="button" 
-                            data-toggle="collapse" data-target="#low-stock" 
-                            aria-expanded="false" aria-controls="low-stock">
-                                <span class="text-warning">
-                                    <i class="fas fa-exclamation-triangle"></i> 
-                                </span>
-                                <span class="font-weight-bold">Low Stock</span>
-                                <span class="small text-muted"> ({{product_low_stock|length}})</span>
-                            </button>
-                            
+                                <button class="btn btn-link btn-block collapsed px-md-5 light-green" type="button" 
+                                data-toggle="collapse" data-target="#low-stock" 
+                                aria-expanded="false" aria-controls="low-stock">
+                                    <span class="text-warning">
+                                        <i class="fas fa-exclamation-triangle"></i> 
+                                    </span>
+                                    <span class="font-weight-bold">Low Stock</span>
+                                    <span class="small text-muted"> ({{product_low_stock|length}})</span>
+                                </button>
+                            </h2>
                         </div>
                         <!-- Ptoducts out of stock -->
                         <div id="low-stock" class="collapse" aria-labelledby="low-stock-header">
                             <div class="card-body wishlist-card-body">
                                 {% with product_low_stock as products %}
                                     {% if products %}
-                                        <div class="table-responsive">
+                                        <div class="table-responsive d-none d-md-block">
                                             <table class="table table-hover table-sm">
                                                 <tbody>
                                                     {% for product in products %}
-                                                        {% include 'profiles/includes/stock_alert_items.html' %}
+                                                        {% include 'profiles/includes/stock_alert_items_lg.html' %}
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <div class="d-block d-md-none">
+                                            {% for product in products %}
+                                                {% include 'profiles/includes/stock_alert_items_sm.html' %}
+                                            {% endfor %}
+                                        </div>
                                     {% else %}
-                                        <p class="m-3">There are no product out of stock.</p>
+                                        <p class="m-3">There are no product below a quantity of 5.</p>
                                     {% endif %}
                                 {% endwith %}
                             </div>
