@@ -22,7 +22,7 @@
     // Set the value to min or max depending on input after giving feedback
     $('.qty_input').change(function() {
         let itemId = $(this).data('item_id');
-        let currentInput = $(this)
+        let currentInput = $(this);
         let currentValue = parseInt($(`#id_qty_${itemId}`).val());
         let maxValue = parseInt($(`#id_qty_${itemId}`).attr('max'));
         if ( currentValue > maxValue ){
