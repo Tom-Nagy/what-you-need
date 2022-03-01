@@ -1,7 +1,7 @@
 <div class="dropdown">
     <!-- Dropdown button/icon -->
     {% if like_icon %}
-        <a class="wishlist-icon" href="#" type="button" title="{% if product.liked %}Saved{% else %}Add{% endif %} to a wishlist" 
+        <a class="wishlist-icon" href="#" role="button" title="{% if product.liked %}Saved{% else %}Add{% endif %} to a wishlist" 
         id="wishlist-dropdown-{{product.id}}" data-toggle="dropdown" aria-expanded="false">
             {% if product.liked %}
                 <i class="fas fa-heart"></i>
@@ -10,7 +10,7 @@
             {% endif %}
         </a>
     {% else %}
-        <button class="move-to-wishlist-btn dropdown-toggle" role="button" id="wishlist-dropdown-{{product.id}}"
+        <button class="move-to-wishlist-btn dropdown-toggle" id="wishlist-dropdown-{{product.id}}"
         data-toggle="dropdown" aria-expanded="false">
             Add to wishlist
         </button>
