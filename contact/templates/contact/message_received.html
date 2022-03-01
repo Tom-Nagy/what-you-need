@@ -26,18 +26,21 @@
                 {% if cust_messages %}
                     {% for msg in cust_messages %}
                         {% if msg %}
-                        <div class="card mb-3 message-card">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ msg.subject }}</h5>
-                                <p class="card-subtitle mb-2 text-muted">
-                                    from: {{ msg.sender }} <span class="small float-right my-1 my-md-0">{{ msg.date_time }}</span>
-                                </p>
-                                <p class="card-text pt-3 pt-md-0">
-                                    {{ msg.body }}
-                                </p>
-                                <a href="{% url 'delete_msg' msg.id %}" class="card-link delete-prod-btn">Delete message</a>
+                            <div class="card mb-3 message-card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ msg.subject }}</h5>
+                                    <p class="card-subtitle mb-2 text-muted">
+                                        from: {{ msg.sender }} <span class="small float-right my-1 my-md-0">{{ msg.date_time }}</span>
+                                    </p>
+                                    <p class="card-text pt-3 pt-md-0">
+                                        {{ msg.body }}
+                                    </p>
+                                    <a href="#" type="button" class="card-link delete-prod-btn" aria-label="Delete message"
+                                    data-toggle="modal" data-target="#modal_id_{{msg.id}}">Delete message</a>
+                                </div>
                             </div>
-                        </div>
+                            <!-- Modal form for deleting message confirmation -->
+                            {% include 'contact/includes/confirm_delete_msg.html' %}
                         {% endif %}
                     {% endfor %}
                 {% else %}
