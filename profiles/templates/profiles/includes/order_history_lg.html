@@ -1,0 +1,20 @@
+<!-- large screen order display -->
+<tr class="d-none d-md-table-row">
+    <td>
+        <a href="{% url 'view_past_order_history' order.order_number %}" title="{{ order.order_number }}"
+        aria-label="Link to past order number {{order.order_number}}">
+            {{ order.order_number|truncatechars:12 }}
+        </a>
+    </td>
+    <td>{{ order.date }}</td>
+    <td>
+        <ul class="list-unstyled">
+            {% for item in order.lineitems.all %}
+                <li class="small">
+                    {{ item.quantity }} x {{ item.product.name }}
+                </li>
+            {% endfor %}
+        </ul>
+    </td>
+    <td>€ {{ order.grand_total }}</td>
+</tr>
