@@ -7,13 +7,44 @@
     <div class="container position-relative">
         <div class="row">
             <div class="col-12">
+                <!-- back to store button -->
+                <div class="d-none d-md-block position-fixed">
+                    <span class="float-left">
+                        <a href="{% url 'store_management' %}" aria-label="Link to store management page." 
+                            class="light-btn">Back to Store</a>
+                    </span>
+                </div>
+                <!-- page heading -->
                 <h2 class="mx-auto my-3 text-center page-heading">Store Management</h2>
-                <h3 class="mx-auto mb-3 text-center subheading">Messages</h3>
+                <h3 class="mx-auto mb-3 text-center subheading">
+                    Messages <span class="small text-muted">({{ cust_messages|length }})</span>
+                </h3>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                {{cust_messages}}
+                {% if cust_messages %}
+                    {% for msg in cust_messages %}
+                        {% if msg %}
+                        <div class="card mb-3 message-card">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ msg.subject }}</h5>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    from: {{ msg.sender }} <span class="small float-right my-1 my-md-0">{{ msg.date_time }}</span>
+                                </p>
+                                <p class="card-text pt-3 pt-md-0">
+                                    {{ msg.body }}
+                                </p>
+                                <a href="{% url 'delete_msg' msg.id %}" class="card-link delete-prod-btn">Delete message</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                <p class="mx-auto text-center">
+                    There are no messages at the moment.
+                </p>
+                {% endif %}
             </div>
         </div>
 {% endblock %}

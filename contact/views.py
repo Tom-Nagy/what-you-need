@@ -1,7 +1,8 @@
 ''' View to manage contact us form '''
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.safestring import mark_safe
 
@@ -32,10 +33,11 @@ def contact_us(request):
         return redirect('home')
 
 
+@login_required
 def message_received(request):
     ''' Display message received '''
 
-    cust_messages = ContactUs.objects.all()
+    cust_messages = ContactUs.objects.all().order_by('-date_time')
 
     template = 'contact/message_received.html'
     context = {
@@ -43,3 +45,17 @@ def message_received(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_msg(request, msg_id):
+    ''' Delete a message from the store '''
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    msg = get_object_or_404(ContactUs, pk=msg_id)
+    msg.delete()
+
+    messages.success(request, 'Message deleted')
+    return redirect(reverse('message_received'))
