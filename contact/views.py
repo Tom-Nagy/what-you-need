@@ -1,12 +1,13 @@
 ''' View to manage contact us form '''
 
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.utils.safestring import mark_safe
 
-from contact.forms import ContactUsForm
 from profiles.models import UserProfile
+from .forms import ContactUsForm
+from .models import ContactUs
 
 
 @require_POST
@@ -29,3 +30,16 @@ def contact_us(request):
                                        f'{cust_message.sender}'))
 
         return redirect('home')
+
+
+def message_received(request):
+    ''' Display message received '''
+
+    cust_messages = ContactUs.objects.all()
+
+    template = 'contact/message_received.html'
+    context = {
+        'cust_messages': cust_messages,
+    }
+
+    return render(request, template, context)

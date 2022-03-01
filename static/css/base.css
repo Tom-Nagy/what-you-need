@@ -635,6 +635,7 @@ input[name='q']::placeholder {
     color: #0d0d0d;
 }
 
+.light-btn,
 .select-image-btn,
 .delete-prod-btn,
 .move-to-wishlist-btn,
@@ -654,6 +655,9 @@ input[name='q']::placeholder {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.45);
 }
 
+.light-btn:hover,
+.light-btn:focus,
+.light-btn:active,
 .select-image-btn:hover,
 .select-image-btn:focus,
 .select-image-btn:active,

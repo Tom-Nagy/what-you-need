@@ -4,7 +4,7 @@
 {% block extra_title %}- Store Management{% endblock %}
 
 {% block content %}
-    <div class="container position-relative">
+    <div class="container px-lg-5">
         <div class="row">
             <div class="col-12">
                 <h2 class="mx-auto mt-3 mb-5 text-center page-heading">Store Management</h2>
@@ -12,10 +12,10 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <a href="{% url 'add_product' %}" aria-label="Link to add product page." class="form-btn mx-3">
+                <a href="{% url 'add_product' %}" aria-label="Link to add product page." class="form-btn mx-md-3">
                     Add a product
                 </a>
-                <a href="{% url 'message_received' %}" aria-label="Link to message received page." class="form-btn mx-3">
+                <a href="{% url 'message_received' %}" aria-label="Link to message received page." class="form-btn mx-md-3">
                     See messages
                 </a>
             </div>
@@ -26,16 +26,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-10 col-md-4">
+            <div class="col-12 col-md-6">
                 <!-- Out of sctock accordion -->
                 <div class="accordion mb-3">
                     <div class="card">
                         <div class="card-header" id="out-of-stock-header">
-                            <h2 class="mb-0 d-inline-block">
-                            <button class="btn btn-link btn-block text-left collapsed px-md-5 light-green" type="button" 
+                            <h2 class="mb-0 text-center">
+                            <button class="btn btn-link btn-block collapsed px-md-2 light-green" type="button" 
                             data-toggle="collapse" data-target="#out-of-stock" 
                             aria-expanded="false" aria-controls="out-of-stock">
-                                Out Of Stock
+                                <span class="text-danger">
+                                    <i class="fas fa-exclamation-triangle"></i> 
+                                </span>
+                                <span class="font-weight-bold">Out Of Stock</span>
+                                    <span class="small text-muted"> ({{product_out_of_stock|length}})</span>
                             </button>
                             
                         </div>
@@ -54,7 +58,47 @@
                                             </table>
                                         </div>
                                     {% else %}
-                                        <p>There are no product out of stock.</p>
+                                        <p class="m-3">There are no product out of stock.</p>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <!-- low stock accordion -->
+                <div class="accordion mb-3">
+                    <div class="card">
+                        <div class="card-header" id="low-stock-header">
+                            <h2 class="mb-0 text-center">
+                            <button class="btn btn-link btn-block collapsed px-md-5 light-green" type="button" 
+                            data-toggle="collapse" data-target="#low-stock" 
+                            aria-expanded="false" aria-controls="low-stock">
+                                <span class="text-warning">
+                                    <i class="fas fa-exclamation-triangle"></i> 
+                                </span>
+                                <span class="font-weight-bold">Low Stock</span>
+                                <span class="small text-muted"> ({{product_low_stock|length}})</span>
+                            </button>
+                            
+                        </div>
+                        <!-- Ptoducts out of stock -->
+                        <div id="low-stock" class="collapse" aria-labelledby="low-stock-header">
+                            <div class="card-body wishlist-card-body">
+                                {% with product_low_stock as products %}
+                                    {% if products %}
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-sm">
+                                                <tbody>
+                                                    {% for product in products %}
+                                                        {% include 'profiles/includes/stock_alert_items.html' %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p class="m-3">There are no product out of stock.</p>
                                     {% endif %}
                                 {% endwith %}
                             </div>
