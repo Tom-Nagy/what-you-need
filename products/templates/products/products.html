@@ -137,7 +137,7 @@
                                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                                         {% csrf_token %}
                                         {% if product.quantity == 0 %}
-                                            <button class="buy-now-btn" title="Out of stock, cannot buy" disabled>
+                                            <button class="buy-now-btn striked" title="Out of stock, cannot buy" disabled>
                                                 Buy now
                                             </button>
                                         {% else %}
@@ -154,7 +154,7 @@
                                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                                         {% csrf_token %}
                                         {% if product.quantity == 0 %}
-                                            <button class="add-to-bag-btn" title="Out of stock, cannot add to bag" disabled>
+                                            <button class="add-to-bag-btn striked" title="Out of stock, cannot add to bag" disabled>
                                                 Add to bag
                                             </button>
                                         {% else %}
