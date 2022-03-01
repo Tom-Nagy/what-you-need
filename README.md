@@ -1,6 +1,6 @@
 # **What You Need** :seedling:
 
-![Mockup](mockup picture)
+![Mockup](documentation/mockup/mockup.png)
 
 **What You Need** is an e-commerce web application that propose a range of indoor and outdoor plants to make your home or office healthier and a bit more special.  
 This project is build with growth in mind and offer opportunities to add and improve features as the business develops.
@@ -14,7 +14,7 @@ You can make test payment with the following details:
 | 5555555555554444      | Mastercard       | Any 3 digits | Any future date |
 | 378282246310005       | American Express | Any 4 digits | Any future date |
 
-Visit the live Website : **[What You Need :arrow_right:](website link)**
+Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.herokuapp.com/)**
 
 ## Table of Content
 
