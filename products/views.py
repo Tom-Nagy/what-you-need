@@ -82,9 +82,15 @@ def all_products(request):
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-                    direction = '(high to low)'
+                    if sort == 'name':
+                        direction = '(Z to A)'
+                    else:
+                        direction = '(high to low)'
                 else:
-                    direction = '(low to high)'
+                    if sort == 'name':
+                        direction = '(A to Z)'
+                    else:
+                        direction = '(low to high)'
 
             products = products.order_by(sortkey)
 
