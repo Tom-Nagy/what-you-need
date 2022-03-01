@@ -1,11 +1,4 @@
 /* ------------------------------------ Main content config */
-.colors {
-    color: #03a65a; /* navbar */
-    color: #078c5b; /* buttons background */
-    color: #07593b; /* titles */
-    color: #052614; /* buttons */
-    color: #0d0d0d;
-}
 
 html {
     min-height: 100%;
@@ -31,7 +24,6 @@ h3, h4, h5, h6 {
 p {
     max-width: 60ch;
 }
-
 
 button,
 a {
@@ -675,7 +667,6 @@ input[name='q']::placeholder {
 .add-to-bag-btn:active {
     background-color: #078c5b;
     color: #fff;
-    font-size: 600;
 
     -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
@@ -730,7 +721,6 @@ input[name='q']::placeholder {
 .allauth-btn-style:active {
     background-color: #03a65a;
     color: #fff;
-    font-size: 800;
 
     -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
@@ -760,7 +750,6 @@ input[name='q']::placeholder {
 .cancel-btn:active {
     background-color: #dc354566;
     color: #0d0d0d;
-    font-size: 800;
 
     -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);

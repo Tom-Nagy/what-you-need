@@ -212,7 +212,7 @@
 {% block postloadjs %}
     {{ block.super }}
     {% include 'bag/includes/set_position_back_script.html' %}
-    <script type="text/javascript">
+    <script>
         /* jshint esversion: 8 */
         $('#back-to-top-link').click(function(e) {
             window.scrollTo(0,0)

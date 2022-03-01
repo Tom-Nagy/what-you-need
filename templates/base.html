@@ -109,10 +109,6 @@
             {% include 'includes/sorting-menu.html' %}
         {% endif %}
 
-        {% if need_sorting %}
-            {% include 'includes/sorting-menu.html' %}
-        {% endif %}
-
         {% block content %}
         {% endblock %}
 
@@ -131,7 +127,7 @@
         </footer>
 
         {% block postloadjs %}
-        <script type="text/javascript">
+        <script>
             // Display toasts messages
             $('.toast').toast('show');
         </script>
