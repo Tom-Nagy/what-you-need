@@ -16,7 +16,7 @@
                 <!-- Category and sorting display -->
                 {% if current_category %}
                     {% for c in current_category %}
-                        <h2 class="mx-auto text-center page-heading">
+                        <h2 class="mx-auto mt-3 mb-5 text-center page-heading">
                             {{ c.friendly_name }} 
                             <small class="text-muted sorting-text">
                                 {% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}
@@ -24,7 +24,7 @@
                         </h2>
                     {% endfor %}
                 {% else %}
-                    <h2 class="mx-auto text-center page-heading">
+                    <h2 class="mx-auto mt-3 mb-5 text-center page-heading">
                         All Plants 
                         <small class="text-muted sorting-text">
                             {% if current_sorting != 'None None' %}By {{ current_sorting }}{% endif %}
