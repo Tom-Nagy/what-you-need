@@ -1,7 +1,6 @@
 ''' Views to manage and render the wishlists pages '''
 
-from django.shortcuts import (render, redirect, reverse, get_object_or_404,
-                              HttpResponse)
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.safestring import mark_safe
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages

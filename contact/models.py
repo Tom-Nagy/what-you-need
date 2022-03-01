@@ -36,7 +36,7 @@ class ContactUs(models.Model):
 
     def confirmation_email_message_received(self):
         '''
-        Send email confirmation when a message is received/created/saved 
+        Send email confirmation when a message is received/created/saved
         '''
 
         cust_email = self.sender
