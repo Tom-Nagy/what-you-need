@@ -933,6 +933,11 @@ input[name='q']::placeholder {
     padding: 3px;
 }
 
+/* modal position */
+.modal-top-margin {
+    margin-top: 160px;
+}
+
 /* --------------------------------------- Media queries */
 
 @media (max-width: 425px) {

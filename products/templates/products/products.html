@@ -116,10 +116,12 @@
                                                     <p class="text-right mb-2">
                                                         <a class="text-info" href="{% url 'edit_product' product.id %}" 
                                                         aria-label="Link to edit product page.">Edit Product</a> |
-                                                        <a class="text-danger" href="{% url 'delete_product' product.id %}" 
-                                                        aria-label="Delete product.">Delete Product</a>
+                                                        <a href="#" class="text-danger" aria-label="Delete product."
+                                                        data-toggle="modal" data-target="#modal_id_{{product.id}}">Delete Product</a>
                                                     </p>
                                                 {% endif %}
+                                                <!-- Modal form for deleting message confirmation -->
+                                                {% include 'products/includes/confirm_delete_prod.html' %}
                                             </div>
                                         </div>
                                     </div>
