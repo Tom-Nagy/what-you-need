@@ -27,8 +27,8 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
     * [Account details](#Account-details)
     * [Orders history](#Orders-history)
     * [Wishlist](#Wishlist)
+    * [Store management](#Store-management)
     * [Product management](#Product-management)
-    * [Product](#Product)
 * [User Stories Testing](#User-Stories-Testing)
   * [Customer stories](#Customer-stories)
   * [Site owner/Admin stories](#Site-owner/Admin-stories)
@@ -371,7 +371,7 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
-#### Product management
+#### Store management
 
 When clicking on the profile icon, if the user is a superuser/Admin an extra link is displayed: Products management.
 
@@ -392,7 +392,7 @@ When clicking on the profile icon, if the user is a superuser/Admin an extra lin
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
-##### Product
+##### Product management
 
 The search and sort options for a superuser are the same as a user, so the superuser can browse the products exactly the same way. The difference is that with superuser credentials, when selecting a product, other options are available: Edit/Modify and Delete.
 
