@@ -56,7 +56,7 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
 
 ### Project Goals
 
-What You Need is an MVP(Model View Project) build for educational purposes that promotes green and healthy homes and offices.
+What You Need is an MVP build for educational purposes that promotes green and healthy homes and offices.
 
 In this year 2022 we can observe a shift in lifestyles needs and organisation. People that use to spend most of their time at work, now work part or full-time from home. And in general people are more aware of their direct environment.
 
@@ -160,9 +160,9 @@ The website will use well known and popular font that are used online in order t
 #### Icons
 
 * Some Font Awesome icons will be part of the website for better UX.
-* The [logo](documentation/logo/logo.png) and [favicon](documentation/favicon/favicon.ico) are the same image and use the color scheme of the website.
+* The [logo](documentation/logo/logo.jpg) and [favicon](documentation/favicon/favicon.ico) are the same image and use the color scheme of the website.
 
-![logo](documentation/logo/logo.png)
+![logo](documentation/logo/logo.jpg)
 
 #### Colors
 
@@ -177,8 +177,6 @@ The colours chosen for the website are simple and joyful. They are based on the 
 #### Images
 
 The images will be the one uploaded by website owner and/or Admin for products descriptions and website illustrations.  
-
-MAYBE IMAGES WILL BE UPLOADED USING A DATA FROM A WEBSITE 111111111111111111
 
 #### Styling/Feeling
 
@@ -223,7 +221,10 @@ For the full version:
 
 ### Different design
 
-After considering deadline and features priority, I decided to leave the support section for future features to implement. I once heard that the project is never finished, we just run out of time!
+After considering deadline and features priority, I decided to leave the add category and order issue page for future features to implement. I once heard that the project is never finished, we just run out of time!  
+It is important to note that adding category is available through the url /admin accessing django admin interface.
+
+As well, I have changed the product management page that consisted in "add a product" page to a store management page where you can admin can access "add a product", "see messages", and "stock alert". More details on those in the features.
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
