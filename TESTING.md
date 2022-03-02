@@ -180,12 +180,6 @@ Score given by the lighthouse are very good for the exception of performance iss
 * A back button allows the user to return the all products or the corresponding category search.
   * Upon clicking the user is redirected to the correct page.
 
-![Bag not empty](documentation/features/bag-not-empty.png)
-![Bag empty](documentation/features/bag-empty.png)
-![Removed from bag](documentation/features/remove-from-bag.png)
-![Moved from bag](documentation/features/moved-from-bag.png)
-![No reviews](documentation/features/no-reviews.png)
-
 [**:back:** *Table of Content*](#Table-of-Content)
 
 #### Review
@@ -193,13 +187,14 @@ Score given by the lighthouse are very good for the exception of performance iss
 * Reviews are displayed correctly.
   * Reviews are displayed from the most recent to the oldest.
   * If there is no review for a product, a message is displayed to the user.
+  * ![No reviews](documentation/features/no-reviews.png)
 * Submit a review is only available and displayed if signed-in.
   * A message informs the user that leaving a review is possible if signed-in.
 * Submitting a review is functional.
   * Rating must be given to submit.
-  * Content must be filled with a minimum of four characters.
-  * If the above is not conditions are not fulfilled, an error message appear and the review will not be submitted.
+  * ![Add rating filed](documentation/features/add-rating-filed.png)
 * Feedback is given on submit.
+  * ![Review posted feedback](documentation/features/review-posted.png)
 * The product rating is updated successfully on submit.
 
 [**:back:** *Table of Content*](#Table-of-Content)
@@ -208,7 +203,10 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 * Search bar is displayed.
   * When a user input a keyword, correct products are presented.
-  * When a user is clicking search with no input, an error message is displayed for feedback and user redirected ???????????///
+  * ![Search not found feedback](documentation/features/search-not-found.png)
+  * ![Search found feedback](documentation/features/search-found.png)
+  * When a user is clicking search with no input, an error message is displayed for feedback.
+  * ![Search with no input feedback](documentation/features/search-no-input.png)
   * The total number of products per search is displayed and adjust accordingly.
 * Search categories are displayed.
   * All categories are displayed.
@@ -216,6 +214,8 @@ Score given by the lighthouse are very good for the exception of performance iss
     * When a category is selected, it displays the correct products.
 * Sorting button is displayed with the search result page.
   * Sorting options are functional and display the correct content.
+  * ![Search options](documentation/features/search-options.png)
+  * ![Sorting options](documentation/features/sorting-options.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -223,25 +223,33 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 * Clicking on the Shopping bag icon brings the user to the correct page.
 * Products and related information are displayed correctly.
+  * ![Shopping bag](documentation/features/shopping-bag.png)
 * The quantity button to adjust the number of items is functional
   * User can adjust quantity by direct input.
   * User can adjust quantity by clicking the plus or minus button.
   * Quantity limits are functional the minimum being 1. EVEN BY DIRECT INPUT ??????????
   * Product quantity adjusts when clicking on the update button.
   * Feedback is given when quantity is changed.
+  * ![Bag quantity changed feedback](documentation/features/bag-qty-changed.png)
 * The delete item(s) button is displayed correctly.
   * On click item(s) are successfully removed.
   * Feedback is given when item(s) are removed.
+  * ![Removed from bag](documentation/features/remove-from-bag.png)
+  * Feedback is given when item(s) are moved to a wishlist.
+  * ![Moved from bag](documentation/features/moved-from-bag.png)
 * Subtotal is displayed correctly.
   * The subtotal adjusts with the quantity accordingly.
 * Delivery cost and Grand Total are displayed correctly.
   * Delivery cost and Grand Total adjust with items and quantity accordingly.
-* EXPLAIN DELIVERY COST METHOD / THRESHOLD ECT...
 * Keep shopping button is displayed correctly.
   * When keep shopping button is clicked, the user is directed to the all products page.
 * Proceed to checkout button is displayed correctly.
   * When proceed to checkout is clicked, the user is directed to the checkout page.
 * The shopping bag content remains in the browser unless the cache is clear or a purchase is made.
+* It is clear when the bag is empty or contains items.
+  * ![Bag empty](documentation/features/bag-empty.png)
+  * ![Bag not empty](documentation/features/bag-not-empty.png)
+  
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -267,40 +275,61 @@ Score given by the lighthouse are very good for the exception of performance iss
     * The order is created correctly in the database.
     * The email confirmation is correctly sent.
 
+![Checkout details information](documentation/features/checkout-details.png)
+![Checkout delivery information](documentation/features/checkout-delivery-info.png)
+![Checkout save information](documentation/features/checkout-save-info.png)
+![Order confirmation](documentation/features/order-confirmation.png)
+![Order confirmation email](documentation/features/order-confirmation-email.png)
+![Stripe feedback](documentation/stripe.png)
+
 [**:back:** *Table of Content*](#Table-of-Content)
 
 #### Create an account / Sign in
 
 * Clicking on the profile icon toggles different options depending on the user status:
   * If unregistered or logged-out customer: the options of Creating an account or signing-in are given.
-    * PICTURE
+    * ![Profile options when signed out](documentation/features/profile-signed-out.png)
   * If the customer is logged-in: the options of Account details, Orders history, My wishlist and Sign-out are given.
-    * PICTURE
+    * ![Profile options when signed in](documentation/features/profile-signed-in.png)
 * Create an account page is displayed correctly.
   * An option to sign-in is provided if already a customer.
   * If the form is not filled correctly the user will not be able to submit.
     * If the username/email already exist the user will have to choose a different one.
     * Feedback is given to the user.
+    * ![Create an account](documentation/features/create-an-account.png)
+    * ![Create an account fields validation](documentation/features/register-fields.png)
   * When the form is filled correctly, the user is directed to the verify email page and a feedback message appears.
+    * ![Verify email](documentation/features/verify-email.png)
     * The email confirmation is correctly sent to the email provided upon registration.
+    * ![Email validation](documentation/features/email-email-validation.png)
     * Clicking the link provided in the email confirmation directs the user to the confirm email address page.
+    * ![Confirm email](documentation/features/confirm-email.png)
     * When clicking on confirmation, the user is directed to the sign-in page.
     * A confirmation feedback message is displayed.
+    * ![Confirmed email](documentation/features/email-confirmed.png)
 * Sign-in page is displayed correctly.
   * If the form is not filled correctly the user will not be able to submit.
+    * ![Sign in fields feedback](documentation/features/sign-in-fields.png)
     * Username/email and password have to match for the user to sign-in.
     * An option to reset the password is provided if forgotten.
   * When the form is correctly filled, the user is successfully signed-in.
   * A successful feedback message is displayed.
+    * ![Signed in feedback](documentation/features/signed-in-feedback.png)
   * If forgotten password is clicked, the user is directed to the password reset page.
+    * ![Reset password](documentation/features/reset-password.png)
     * When clicking on reset password, upon giving a correct and existing email/username, the user receive an email to reset their password.
     * Feedback is given to the user if the username/email does not exist or if successful.
+    * ![Invalid email](documentation/features/invalid-email.png)
+    * ![Password reset email](documentation/features/password-reset-email.png)
     * In the email received, clicking on the link given to reset the password, the user will be directed to the change password page.
+    * ![Change password](documentation/features/change-password.png)
     * Clicking on change password upon entering a new correct password twice, a message informs the user that the password was successfully changed.
+    * ![Password changed](documentation/features/password-changed.png)
     * Signing-in with the new credentials will allow the user to access his account successfully.
     * If the user try to change his password with a previously used link he will be redirected to the bad token page explaining that the link was invalid. A new link is provided and directs the user to the reset password page.
 * Signing-out directs the user to the home page.
   * Feedback is message is displayed.
+    * ![Signed out feedback](documentation/features/signed-out-feedback.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
