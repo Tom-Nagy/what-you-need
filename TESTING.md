@@ -48,11 +48,7 @@ W3C Markup Validation Service and W3C CSS Validation Service have been used to c
 The results show no errors and the code is valid.
 
 * [W3C Markup Validation Service](https://validator.w3.org/)
-
 * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
-  * ![W3C CSS Validation Result](app/static/images/README-images/TESTING-images/code-validation/css-validator.png)
-
-[**:back:** *Table of Content*](#Table-of-Content)
 
 ### JSHint
 
@@ -61,30 +57,29 @@ The results are positive, and the code is valid.
 
 ### PEP8
 
-[PEP8 online](http://pep8online.com/) was used to validate the Python code for semantic and syntax errors. No warnings or error were found.  
-The results are positive, and the code is valid.
+[PEP8 online](http://pep8online.com/) was used to validate the Python code for semantic and syntax errors.  
+The results are positive, and the code is valid.  
 
-Exception:  
-one line of code is too long and correspond to the regex pattern variable for password validation.
+* 3 warnings were found:
+Two of those warnings are comming from signals beeing imported in apps.py of the checkout and products apps. They are designed to be used that way from my best knowledge and therefore were left with the warning.  
+the third warning is for 3 line too long from the Django boilerplate in settings.py. After discussing if I should mention this in the README with some colleagues, I realised that it was quite a pickle between beeing a professional or an amateur.
 
-### Regex
-
-[Regex101](https://regex101.com/) to check implementation of regex pattern.
+when running flake8 in the terminal the only other warnings are coming for auto-generated files from django (migrations).
 
 ## Lighthouse
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/?utm_source=devtools) is a tool provided by Google Chrome DevTools and allows to identify the site performance, accessibility and user experience on Mobile and Desktop.  
 All the pages from the website have been tested with Lighthouse.
 
-* The scores given by Lighthouse for:
+Score given by the lighthouse are very good for the exception of performance issue on smartphone and some contrast issue that are negligeable.
 
-  * **SEO** (Search Engine Optimization) show **Crawling and Indexing** issues with invalid robots.txt file. I have done some research but found the subject out of scope and myself in the complete dark, running out of time I decided to leave it the way it is.
-
-  * **Accessibility** show issues regarding contrast. Those apply to some material icons that are only esthetic element and provide no information to the user. ``aria-hidden="true"`` has been added to those elements
-
-  * **Accessibility** show issue regarding form label. This is raised by the fact that Materializecss used javascript to change the ``select`` tag to an input that does not have a corresponding label. So error is shown even though the select tag has a corresponding label. As well the date and time input have a default label and therefor through an error.
-
-  * **Best Practice** show issues regarding image size and more precisely the favicon size expectation against the size produced on the website. Even after changing to the expected size shown by the error, the issue still exist with different sizes. This is not a major issue and I decided to leave it that way at the moment.
+![lightouse score for home page](documentation/features/lighthouse-home.png)
+![lightouse score for shopping bag page](documentation/features/lighthouse-bag.png)
+![lightouse score for messages page](documentation/features/lighthouse-messages.png)
+![lightouse score for order history page](documentation/features/lighthouse-orders.png)
+![lightouse score for products page](documentation/features/lighthouse-products.png)
+![lightouse score for store management page](documentation/features/lighthouse-store.png)
+![lightouse score for wishlist page](documentation/features/lighthouse-wishlist.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
