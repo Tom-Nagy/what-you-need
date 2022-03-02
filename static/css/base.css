@@ -115,6 +115,11 @@ a:focus {
     text-decoration: line-through;
 }
 
+/* Override bootstarp backgoud color for better contrast */
+.badge-info {
+    background-color: #0d0d0d !important;
+}
+
 /* ------------------------------------- Small screen header */
 
 .header-container-sm {

@@ -40,7 +40,7 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
 
 ## Code Validation
 
-All code validation has been done using text input. The code was copied from the source code of the browser inspect page. This allows to check HTML without getting error because of Jinja template.
+All code validation has been done using text input. The code was copied from the source code in the browser. This allows to check HTML without getting error because of Jinja templating language.
 
 ### W3C
 
