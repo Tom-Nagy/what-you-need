@@ -23,7 +23,7 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
     * [Search](#Search)
     * [Shopping Bag](#Shopping-Bag)
     * [Checkout](#Checkout)
-    * [Create an account / Sign in](#Create-an-account-/-Sign-in)
+    * [Create an account / Sign in](#Create-an-account)
     * [Account details](#Account-details)
     * [Orders history](#Orders-history)
     * [Wishlist](#Wishlist)
