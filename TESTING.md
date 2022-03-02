@@ -112,9 +112,9 @@ Score given by the lighthouse are very good for the exception of performance iss
 #### Home
 
 * Clicking on the callout button brings the user to see all the products available on the website.
-* The contact-us button is functional and redirect the user to the correct page.
-* The About-us button is functional and redirect the user to the correct location.
-* The Terms and Conditions of Use button is functional and redirect the user to the correct location.
+* The contact-us button is functional and redirect the user to the correct page section.
+* The About-us button is functional and redirect the user to the correct page section.
+* The Terms and Conditions of Use button is functional and redirect the user to the correct page.
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -126,7 +126,10 @@ Score given by the lighthouse are very good for the exception of performance iss
   * Feedback is given to the user for requested fields and incorrect values.
 * When the form is filled in correctly the user can submit/send.
   * Feedback is given for successfully sending message.
-  * An email is sent to the website owner successfully.
+  * An email confirmation is sent to the user and the message is saved successfully.
+
+![Contact us empty field test](documentation/features/test-contact-us-field.png)
+![Contact us empty field test](documentation/features/contact-us-feedback.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -134,7 +137,7 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 * Stacking and display of the products is responsive.
 * The total number of products is displayed and adjust accordingly.
-  * A message informs the user that more detailed search is available through the search menu.
+* More detailed search is available through the search menu.
 * The sorting button is displayed and toggles when clicked.
   * Sorting options are functional and display the correct and appropriate content.
     * Price low to hight :heavy_check_mark:
@@ -143,25 +146,45 @@ Score given by the lighthouse are very good for the exception of performance iss
     * Name Abc :heavy_check_mark:
     * Name Zyx :heavy_check_mark:
 
+![Search options](documentation/features/search-options.png)
+![Sorting options](documentation/features/sorting-options.png)
+![Searching and sorting options](documentation/features/search-and-sort.png)
+
 [**:back:** *Table of Content*](#Table-of-Content)
 
 #### Product Details
 
 * Clicking on a product brings the user on the product details page.
 * All information are displayed.
+![Product details](documentation/features/product-details-input.png)
 * The quantity button to adjust the number of items is functional
   * User can adjust quantity by direct input.
+    * if a too small or too big number is entred in the input quantity, a message popup and the amout is set to the maximum or minimum.
   * User can adjust quantity by clicking the plus or minus button.
-  * Quantity limits are functional the minimum being 1. EVEN BY DIRECT INPUT ??????????
+  * Quantity limits are functional the minimum being 1.
+  * ![Minimum input](documentation/features/min-input.png)
 * Add to bag button is functional.
   * When clicked A feedback popup gives information to the user with the product name and quantity.
   * When the quantity of the product is adjusted, the correct amount is added to the bag.
+  * ![Added to bag](documentation/features/added-to-bag.png)
 * Reviews are displayed correctly.
   * To leave a review the user must be registered and signed-in.
-* A heart icon, for adding to the wishlist, is displayed correctly.
+  * ![Write reviews](documentation/features/write-reviews.png)
+  * ![Read reviews](documentation/features/review-signed-out.png)
+* A move to wishlist button is displayed correctly.
+  * ![Add to wishlist](documentation/features/test-add-wishlist.png)
   * To add an item to the wishlist, the user must be registered and signed-in.
+  * ![Add to wishlist signed out](documentation/features/add-to-wishlist-signed-out.png)
+  * If the item is in the wishlist already, feedback is given accordingly.
+  * ![Already in wishlist](documentation/features/already-in-wishlist.png)
 * A back button allows the user to return the all products or the corresponding category search.
   * Upon clicking the user is redirected to the correct page.
+
+![Bag not empty](documentation/features/bag-not-empty.png)
+![Bag empty](documentation/features/bag-empty.png)
+![Removed from bag](documentation/features/remove-from-bag.png)
+![Moved from bag](documentation/features/moved-from-bag.png)
+![No reviews](documentation/features/no-reviews.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
