@@ -347,12 +347,9 @@ The database design used is a relational database.
 Below is a representation of the database used for this project.
 ![Database Design](documentation/data-design/database-design.png)
 
-* The Category model **must** have a name, friendly name and a boolean field for registered user and the other fields are optional.
-* The Product model **must** have a category, name, friendly_name ................................................. 
-
 ### Database Structure
 
-Django, the framework used for the production of this project, is an MVP: Model View Product/Project ??????? This means that the project build with Django is divided in multiple apps. Its structure allows separation of concern and provide many built-in features.  
+Django, the framework used for the production of this project, is an MVP: Model View Product. This means that the project build with Django is divided in multiple apps. Its structure allows separation of concern and provide many built-in features.  
 The models define the data-structure.
 
 * In this project, the following models have been developed:
@@ -485,15 +482,27 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 
 ## Bugs
 
-* Expected result:
-  * When selecting a quantity for a product by entering value in the selector input (not using buttons), if the value entered is superior to the quantity of the product (quantity available), the value should be set to maximum quantity available.
-  This feature is handle by javascript in products/templates/products/include/quantity_input_script.html
-* Bug:
-  * The quantity return to the selector input is equal to the max quantity - 1.
-* Fix:
-  * At the moment considering thi bug not critical, I have decided to add 1 to the quantity returned to the input.
+1. Direct input in product quantity selector.
+    * Expected result:
+      * When selecting a quantity for a product by entering value in the selector input (not using buttons), if the value entered is superior to the quantity of the product (quantity available), the value should be set to maximum quantity available.
+      This feature is handle by javascript in products/templates/products/include/quantity_input_script.html
+    * Bug:
+      * The quantity return to the selector input is equal to the max quantity - 1.
+    * Fix:
+      * At the moment considering this bug not critical, I have decided to add 1 to the quantity returned to the input.
 
-* Styles are not displaying as intented on safary for the navbar on small screen.
+2. Styles on safary.
+    * Styles are not displaying as intented on safary for the navbar on small screen where we can see the that the before and after selector styled to hide some part of the navbar are misplaced.
+    * This bug has not been seen in other browser and is still present as it is considered very specific and not critical.
+
+3. Redirect url when adding to a wishlist.
+    * Expected result:
+      * When I coded the view for adding a product to a wishlist I intended for the user to be redirected on the same page that he was when doing it.
+    * Bug:
+      * If a user is browsing by category or sorting the content, when adding a product to a wishlist, the user willbe redirected to the all products page.
+    * Fix:
+      * This is actually not a bug, but rather a bad user experience. The redirected url works as intended rather than expected. Because when a user is browsing on the website on different categories, and sorting the content he actually is located on the all products page wich displays a tailorded content depending on the request.
+      * In the future feature to implement, it will be necessary to research the keywords present in the url in order to rediect the user where he was. This is not critical and will be fixed in a future version.
 
 ## Credits
 
