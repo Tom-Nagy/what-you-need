@@ -10,7 +10,6 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
   * [W3C](#W3C)
   * [JSHint](#JSHint)
   * [PEP8](#PEP8)
-  * [Regex](#Regex)
 * [Lighthouse](#Lighthouse)
 * [Cross Browsers Testing](#Cross-Browsers-Testing)
 * [Manual Testing](#Manual-Testing)
