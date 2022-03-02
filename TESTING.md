@@ -275,7 +275,7 @@ Score given by the lighthouse are very good for the exception of performance iss
 ![Checkout save information](documentation/features/checkout-save-info.png)
 ![Order confirmation](documentation/features/order-confirmation.png)
 ![Order confirmation email](documentation/features/order-confirmation-email.png)
-![Stripe feedback](documentation/stripe.png)
+![Stripe feedback](documentation/features/stripe.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
