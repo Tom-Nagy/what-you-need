@@ -252,7 +252,7 @@ To build this project, I use Django framework with the Django templating languag
   * By sorting
 
   * ![Callout button](documentation/features/callout-btn.png)
-  * ![Search options](documentation/features/search-options-btn.png)
+  * ![Search options](documentation/features/search-options.png)
   * ![Sorting options](documentation/features/sorting-options.png)
 
 * Shopping bag
