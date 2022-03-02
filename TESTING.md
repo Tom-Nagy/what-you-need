@@ -489,7 +489,7 @@ The search and sort options for a superuser are the same as a user, so the super
 2. As a customer, I want to easily identify if the product is available.
     * When browsing products, the user can find the most important information about an item without clicking on details:
       * Price / Rating / Stock availability.
-      * ![In stock](documentation/features/in_stock.png)
+      * ![In stock](documentation/features/in-stock.png)
       * ![Low stock](documentation/features/low-stock.png)
       * ![Out of stock](documentation/features/out-of-stock.png)
 
