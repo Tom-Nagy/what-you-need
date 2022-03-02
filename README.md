@@ -260,8 +260,8 @@ To build this project, I use Django framework with the Django templating languag
   * Add products to the bag
   * Remove/edit products in the bag
 
-  * ![Product card options](documentation/features/product-card-options-btn.png)
-  * ![Bag product options](documentation/features/bag-product-options-btn.png)
+  * ![Product card options](documentation/features/product-card-options.png)
+  * ![Bag product options](documentation/features/bag-product-options.png)
 
 * Checkout
   * Purchase item securely with Stripe payment system
@@ -291,7 +291,6 @@ To build this project, I use Django framework with the Django templating languag
   * ![Sign out](documentation/features/sign-out.png)
   * ![Profile options when signed in](documentation/features/profile-signed-in.png)
   * ![Profile options when signed out](documentation/features/profile-signed-out.png)
-  * ![Profile options when signed out](documentation/features/profile-signed-out.png)
   * ![Reset password](documentation/features/reset-password.png)
   * ![Account details](documentation/features/account-details.png)
   * ![Order history](documentation/features/order-history.png)
@@ -301,6 +300,8 @@ To build this project, I use Django framework with the Django templating languag
   * ![Add to wishlist](documentation/features/add-to-wishlist.png)
   * ![Write reviews](documentation/features/write-reviews.png)
   * ![Read reviews](documentation/features/review-signed-out.png)
+
+It is important to note that in the picture we see the None username as the user is superuser and was created from the console in the terminal. As it is a requirement when creating and account thi will never happen for a customer.
 
 * Admin
   * Access store management
