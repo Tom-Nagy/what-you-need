@@ -230,24 +230,38 @@ As well, I have changed the product management page that consisted in "add a pro
 
 ## Features
 
-To build this project, I use Django framework with the Jinja templating language. For consistency across the website some features will be repeated and functionality will be kept as simple and direct as possible.
+To build this project, I use Django framework with the Django templating language. For consistency across the website some features will be repeated and functionality will be kept as simple and direct as possible.
 
-* Navigation is always present and fix at the bottom of the page
+* Navigation is always present and fix at the bottom of the page on small screen and fix at the top of the page on large screen.
   * Home
   * Account/profile
   * Bag
   * Search
 
-* Browse product
-  * By clicking the callout button on the landing page
+  * ![Small navbar](documentation/features/navbar-sm.png)
+  * ![Large navbar](documentation/features/navbar-lg.png)
+
+* Send message to store owner.
+  * ![Contact us form](documentation/features/contact-us.png)
+
+* Browse products
+  * By clicking the callout button on the landing page: "Find What You Need Today!"
   * By clicking the search menu button/icon
   * By category
   * By typing in the search bar
+  * By sorting
+
+  * ![Callout button](documentation/features/callout-btn.png)
+  * ![Search options](documentation/features/search-options-btn.png)
+  * ![Sorting options](documentation/features/sorting-options.png)
 
 * Shopping bag
   * View the shopping bag
   * Add products to the bag
   * Remove/edit products in the bag
+
+  * ![Product card options](documentation/features/product-card-options-btn.png)
+  * ![Bag product options](documentation/features/bag-product-options-btn.png)
 
 * Checkout
   * Purchase item securely with Stripe payment system
@@ -255,14 +269,62 @@ To build this project, I use Django framework with the Jinja templating language
   * Payment confirmation
   * Order confirmation
 
+  * ![Checkout details information](documentation/features/checkout-details.png)
+  * ![Checkout delivery information](documentation/features/checkout-delivery-info.png)
+  * ![Checkout save information](documentation/features/checkout-save-info.png)
+  * ![Order confirmation](documentation/features/order-confirmation.png)
+  * ![Order confirmation email](documentation/features/order-confirmation-email.png)
+
 * Account/Profile
   * Create an account
   * Sign-in and sign-out
-  * Update account information
   * Change password if forgotten or unsecure
+  * Update account information
   * Access orders history
-  * File issue regarding an order
   * Access and update wishlist
+  * Access exclusive content
+  * Create, access and add to wishlist
+  * Read and right reviews giving product rating
+
+  * ![Create an account](documentation/features/create-an-account.png)
+  * ![Sign in](documentation/features/sign-in.png)
+  * ![Sign out](documentation/features/sign-out.png)
+  * ![Profile options when signed in](documentation/features/profile-signed-in.png)
+  * ![Profile options when signed out](documentation/features/profile-signed-out.png)
+  * ![Profile options when signed out](documentation/features/profile-signed-out.png)
+  * ![Reset password](documentation/features/reset-password.png)
+  * ![Account details](documentation/features/account-details.png)
+  * ![Order history](documentation/features/order-history.png)
+  * ![Exclusive content access](documentation/features/exclusive-content.png)
+  * ![Wishlist](documentation/features/wishlist.png)
+  * ![Wishlist content and options](documentation/features/wishlist-content.png)
+  * ![Add to wishlist](documentation/features/add-to-wishlist.png)
+  * ![Write reviews](documentation/features/write-reviews.png)
+  * ![Read reviews](documentation/features/review-signed-out.png)
+
+* Admin
+  * Access store management
+  * Add product
+  * Edit product
+  * Delete product
+  * See messages
+  * See stock alert
+
+  * ![Store management](documentation/features/store-management.png)
+  * ![Add product](documentation/features/add-product.png)
+  * ![Edit product](documentation/features/edit-product.png)
+  * ![Admin product options](documentation/features/admin-product-options.png)
+  * ![See messages](documentation/features/messages.png)
+  * ![Stock alert](documentation/features/stock-alert.png)
+
+It is important to note that ohter fucntionalities are available throught the url /admin accessing Django admin interface.
+
+* Defensive design
+  * Extra step to confirm the deletion of a product
+  * Extra step to confirm the deletion of a message
+
+  * ![Delete product defensive design](documentation/features/delete-product-defensive-design.png)
+  * ![Message defensive design](documentation/features/message-defensive-design.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
