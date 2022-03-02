@@ -179,6 +179,7 @@ def product_detail(request, product_id):
 
     review_form = ProductReviewForm()
     reviews = ProductReview.objects.filter(product=product)
+    reviews = reviews.order_by('-date_time')
 
     user_profile = None
     user_wishlist = None
