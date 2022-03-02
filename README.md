@@ -112,13 +112,12 @@ Both targeted audience are looking for plants to buy for their home, office(s) o
 
 1. As a customer, I want to easily identify what is the price of the product.
 2. As a customer, I want to easily identify if the product is available.
-3. As a customer, I want to choose the size and quantity of a product.
-4. As a customer, I want to add/remove/edit product(s) in my shopping bag.
-5. As a customer, I want to easily access my shopping bag.
-6. As a customer, I want to make a purchase.
-7. As a customer, I want the purchase process to be easy and secure.
-8. As a customer, I want to be notified of the purchase I have made and be provided with a receipt.
-9. As a customer, I want to contact the website owner about a past order.
+3. As a customer, I want to add/remove/edit product(s) in my shopping bag.
+4. As a customer, I want to easily access my shopping bag.
+5. As a customer, I want to make a purchase.
+6. As a customer, I want the purchase process to be easy and secure.
+7. As a customer, I want to be notified of the purchase I have made and be provided with a receipt.
+8. As a customer, I want to contact the website owner about a past order.
 
 ##### Sign-in and registration
 
@@ -134,9 +133,8 @@ Both targeted audience are looking for plants to buy for their home, office(s) o
 #### Site owner/Admin stories
 
 1. As an Admin, I want to add/edit/delete products.
-2. As an Admin, I want to add/edit/delete categories.
-3. As an Admin, I want to see orders.
-4. As an Admin, I want to manage customer queries.
+2. As an Admin, I want to see orders.
+3. As an Admin, I want to manage customer queries.
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -311,6 +309,7 @@ It is important to note that in the picture we see the None username as the user
   * See messages
   * See stock alert
 
+  * ![Admin profile options](documentation/features/admin-profile-options.png)
   * ![Store management](documentation/features/store-management.png)
   * ![Add product](documentation/features/add-product.png)
   * ![Edit product](documentation/features/edit-product.png)

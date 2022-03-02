@@ -26,13 +26,9 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
     * [Create an account / Sign in](#Create-an-account-/-Sign-in)
     * [Account details](#Account-details)
     * [Orders history](#Orders-history)
-    * [Report an issue](#Report-an-issue)
     * [Wishlist](#Wishlist)
     * [Product management](#Product-management)
-    * [Category](#Category)
     * [Product](#Product)
-    * [Orders](#Orders)
-  * [Conclusions and Notations](#Conclusions-and-Notations)
 * [User Stories Testing](#User-Stories-Testing)
   * [Customer stories](#Customer-stories)
   * [Site owner/Admin stories](#Site-owner/Admin-stories)
@@ -249,7 +245,6 @@ Score given by the lighthouse are very good for the exception of performance iss
 * It is clear when the bag is empty or contains items.
   * ![Bag empty](documentation/features/bag-empty.png)
   * ![Bag not empty](documentation/features/bag-not-empty.png)
-  
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -337,43 +332,23 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 * Account details page is displayed correctly.
 * If the user has not previously saved any information an empty form is displayed inviting the user to enter his information.
-  * The user has the option to save or delete his details.
+  * The user has the option to save his details.
+  * ![Account details](documentation/features/account-details.png)
+  * ![Profile updated feedback](documentation/features/profile-updated.png)
   * When saved information button is clicked, the user is given a feedback message.
     * The details are correctly saved in the database.
-  * When delete information button is clicked, the user is given a feedback message.
-    * The details are correctly deleted from the database.
 * If the user has previously saved delivery information a prefilled form is displayed.
-  * The user has the option to update or delete his details.
-  * When update information button is clicked, the user is given a feedback message.
-    * The details are correctly updated in the database.
-  * When delete information button is clicked, the user is given a feedback message.
-    * The details are correctly deleted from the database.
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
 #### Orders history
 
 * Orders history page is displayed correctly.
+* ![Order history](documentation/features/order-history.png)
 * Orders are displayed from the most recent to the oldest.
 * Clicking on the Order details button directs the user to the order details page correctly.
   * The order details page is displayed correctly.
-  * Report an issue button is displayed correctly.
   * The back button is displayed correctly and directs the user back to the orders history page.
-
-[**:back:** *Table of Content*](#Table-of-Content)
-
-#### Report an issue
-
-* Clicking on the report an issue button directs the user to the report an issue page correctly.
-  * The report an issue page is displayed correctly.
-  * If the form is not filled correctly the user will not be able to submit.
-    * Issue type must be selected.
-    * Issue description must be filled with a minimum of 25 characters.
-  * When the form is correctly filled the user is directed to the orders history page correctly.
-    * Feedback is given to the user.
-    * The issue status is displayed correctly on the corresponding order.
-    * The issue status is correctly changed when updated by the Admin.
-    * The issue is correctly saved in the database.
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -384,11 +359,15 @@ Score given by the lighthouse are very good for the exception of performance iss
 * The wishlist page is displayed correctly.
 * The user can remove an item from the wishlist.
   * Feedback is given to the user for successfully removing the item from the wishlist.
-* The user can buy an item by clicking buy know.??????????????????????????????????????????????????????????????????????????????????
-  * When clicking buy now, the user is directed to the shopping bag page correctly and the item is correctly added to the bag.
+  * ![Removed from wishlist](documentation/features/removed-from-wishlist.png)
 * The user can add an item to the bag by clicking the add to bag button.
   * When clicking on add to bag button, the item is successfully added to the bag.
   * A feedback popup gives information to the user with the product name.
+  * ![Added to bag from wishlist](documentation/features/added-to-bag-from-wishlist.png)
+
+  * ![Wishlist](documentation/features/wishlist.png)
+  * ![Wishlist content and options](documentation/features/wishlist-content.png)
+  * ![Add to wishlist](documentation/features/add-to-wishlist.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -396,101 +375,54 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 When clicking on the profile icon, if the user is a superuser/Admin an extra link is displayed: Products management.
 
-* Clicking on the products management link directs the superuser to the products management page correctly.
-  * The products management page is displayed correctly.
+* ![Admin profile options](documentation/features/admin-profile-options.png)
+
+* Clicking on the store management link directs the superuser to the store management page correctly.
+  * The store management page is displayed correctly.
+  * ![Store management](documentation/features/store-management.png)
   * Options are presented to the superuser:
-    * Category: Add category / Manage category
-    * Product: Add product / Manage product
-    * Orders: All orders / Reported issues
-
-[**:back:** *Table of Content*](#Table-of-Content)
-
-##### Category
-
-* When add category is selected, the superuser is correctly directed to the add category page.
-  * If the form is not filled correctly the superuser will not be able to submit.
-    * Feedback is given to the superuser for requested fields and incorrect values.
-  * When the form is filled in correctly the superuser can submit.
-    * Feedback is given for successfully adding category.
-    * The category is correctly created in the database.
-    * Superuser is directed to products management page.
-
-* When manage category is selected, the superuser is correctly directed to the manage category page.
-* The page displayed all categories correctly.
-* If a category is selected the superuser is correctly directed to the category details page.
-* The category can be modified or deleted by clicking on Modify or Delete button.
-  * If the form is modified and not filled correctly the superuser will not be able to submit.
-    * Feedback is given to the superuser for requested fields and incorrect values.
-  * When the form is filled in correctly the superuser can submit.
-    * Feedback is given for successfully modifying category.
-    * The category is correctly modified in the database.
-    * Superuser is directed to the manage category page.
-  * When clicking on the delete button, the superuser will be prompted with a modal (defensive design) for confirming the action.
-    * The superuser can delete or cancel the action taken.
-    * If delete is selected, feedback is given for successfully deleting category.
-    * The category is correctly deleted from the database.
-    * Superuser is directed to the manage category page.
+    * Add product
+    * See messages
+    * ![See messages](documentation/features/messages.png)
+      * Superuser can delete messages.
+      * Extra step is taken to confirm the deletion of a message.
+      * ![Message defensive design](documentation/features/message-defensive-design.png)
+    * Stock alert
+    * ![Stock alert](documentation/features/stock-alert.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
 ##### Product
 
-When clicking on the manage product button, the superuser is directed to the all products page of the website. The search and sort options are the same as a user, so the superuser can browse the products exactly the same way. The difference is that with superuser credentials, when selecting a product, other options are available: Modify and Delete.
+The search and sort options for a superuser are the same as a user, so the superuser can browse the products exactly the same way. The difference is that with superuser credentials, when selecting a product, other options are available: Edit/Modify and Delete.
 
-* When add product is selected, the superuser is correctly directed to the add product page.
+* ![Admin product options](documentation/features/admin-product-options.png)
+
+* When clicking on add product button the superuser is correctly directed to the add product page.
+* ![Add product](documentation/features/add-product.png)
   * If the form is not filled correctly the superuser will not be able to submit.
-    * Feedback is given to the superuser for requested fields and incorrect values.
+  * Feedback is given to the superuser for requested fields and incorrect values.
   * When the form is filled in correctly the superuser can submit.
-    * Feedback is given for successfully adding product.
-    * The product is correctly created in the database.
-    * Superuser is directed to products management page.
+  * Feedback is given for successfully adding product.
+  * The product is correctly created in the database.
+  * Superuser is directed to products details page.
 
-* When manage product is selected, the superuser is correctly directed to the all products page.
-* The page displayed all products correctly.
-* If a product is selected the superuser is correctly directed to the product details page.
-* The product can be modified or deleted by clicking on Modify or Delete button.
-  * When clicking on the Modify button, the superuser is correctly directed to the modify product page.
+* A product can be modified or deleted by clicking on Edit or Delete links.
+  * ![Edit product](documentation/features/edit-product.png)
+  * When clicking on the edit link, the superuser is correctly directed to edit product page.
   * If the form is not filled correctly the superuser will not be able to submit.
-    * Feedback is given to the superuser for requested fields and incorrect values.
+  * Feedback is given to the superuser for requested fields and incorrect values.
   * When the form is filled in correctly the superuser can submit.
-    * Feedback is given for successfully modifying product.
-    * The product is correctly modified in the database.
-    * Superuser is directed to the product details page.
-  * When clicking on the delete button, the superuser will be prompted with a modal (defensive design) for confirming the action.
-    * The superuser can delete or cancel the action taken.
-    * If delete is selected, feedback is given for successfully deleting the product.
-    * The product is correctly deleted from the database.
-    * Superuser is directed to the all products page or the category of the current search.
+  * Feedback is given for successfully modifying product.
+  * The product is correctly modified in the database.
+  * Superuser is directed to the product details page.
 
-[**:back:** *Table of Content*](#Table-of-Content)
-
-##### Orders
-
-* When selecting all orders, the superuser is correctly directed to all orders page.
-  * Orders are displayed correctly with all the relevant information.
-  * When selecting an order, the superuser is directed to the order details page.
-    * Order details are displayed correctly.
-
-* When selecting reported issues, the superuser is correctly directed to the Reported order page.
-  * All order with an issue status other than "none" or "resolved" is displayed correctly.
-  * When selecting an order, the superuser is directed to the order details page.
-    * Order details are displayed correctly.
-    * The superuser can modify the order and change the issue status of the order.
-    * The superuser can select "solving" or "resolved"
-    * Changing the issue status updates the order details of the user accordingly.
-    * If changed to "resolved", the order is correctly moved from all orders.
-
-[**:back:** *Table of Content*](#Table-of-Content)
-
-### Conclusions and Notations
-
-All the features and functionality works very well across browser.
-
-Noted issues on ...:
-
-Noted general issue:
-
-All those points are not major bugs to fix and will be implemented in the near future with the support section of the website.
+* When clicking on the delete button, the superuser will be prompted with a modal (defensive design) for confirming the action.
+  * The superuser can delete or cancel the action taken.
+  * If delete is selected, feedback is given for successfully deleting the product.
+  * The product is correctly deleted from the database.
+  * Superuser is directed to the all products page or the category of the current search.
+  * ![Delete product defensive design](documentation/features/delete-product-defensive-design.png)
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
@@ -522,6 +454,7 @@ All those points are not major bugs to fix and will be implemented in the near f
       * The colours are a visual clue for plants and nature.
       * The statement and phrasing on the home page indicates what is the website content in a clear manner.
       * The callout button invites customers to find what they need.
+      * ![Home cues](documentation/features/home-cues.png)
 
 4. As a user, I want to search products by category.
 
@@ -530,6 +463,7 @@ All those points are not major bugs to fix and will be implemented in the near f
       * A clear title.
       * An image/icon for content representation.
       * Products number providing the number of items per category.
+      * ![Search options](documentation/features/search-options.png)
 
 5. As a user, I want to search for specific products.
 
@@ -545,50 +479,47 @@ All those points are not major bugs to fix and will be implemented in the near f
       * Description
       * Availability
       * Reviews
+    * ![Product card options](documentation/features/product-card-options.png)
+    * ![Write reviews](documentation/features/write-reviews.png)
 
 #### Shopping experience
 
 1. As a customer, I want to easily identify what is the price of the product.
+
 2. As a customer, I want to easily identify if the product is available.
     * When browsing products, the user can find the most important information about an item without clicking on details:
       * Price / Rating / Stock availability.
+      * ![In stock](documentation/features/in_stock.png)
+      * ![Low stock](documentation/features/low-stock.png)
+      * ![Out of stock](documentation/features/out-of-stock.png)
 
-3. As a customer, I want to choose the size and quantity of a product.
-
-    * Most of the products are available in two sizes: small and large.
-    * Users can choose their prefer size on the product details page or in the shopping bag.
-
-4. As a customer, I want to add/remove/edit product(s) in my shopping bag.
-
+3. As a customer, I want to add/remove/edit product(s) in my shopping bag.
     * The shopping bag provides the user with all the features needed.
     * Users can add items to their bag from products, product details and wishlist page.
     * Users can modify the quantity of an item using plus or minus button or by direct input and clicking update.
     * Users can remove product from their bag with the remove button.
+    * ![Shopping bag](documentation/features/shopping-bag.png)
 
-5. As a customer, I want to easily access my shopping bag.
-
+4. As a customer, I want to easily access my shopping bag.
     * The shopping bag is accessible via the navigation menu in one click.
+    * ![Bag icon](documentation/features/bag-not-empty.png)
 
-6. As a customer, I want to make a purchase.
-7. As a customer, I want the purchase process to be easy and secure.
-
+5. As a customer, I want to make a purchase.
+6. As a customer, I want the purchase process to be easy and secure.
     * The website provides a full payment system implemented with stripe payment system.
     * By clicking on the Secure Checkout button of the shopping bag, the user will access the checkout payment and delivery page.
     * Completing the checkout by clicking on Complete Order on the checkout page will place the order and process the payment.
     * The process is secure and quick.
     * All relevant information will be prefilled if the user is register, signed-in and had previously provided and saved those details. This will potentially be true for a second purchase or purchase made after searching the website content.
 
-8. As a customer, I want to be notified of the purchase I have made and be provided with a receipt.
-
+7. As a customer, I want to be notified of the purchase I have made and be provided with a receipt.
     * Feedback is provided via a popup message to the user on a successful purchase.
     * An email confirmation is sent to the user with the order details and delivery address.
 
-9. As a customer, I want to contact the website owner about a past order.
-
+8. As a customer, I want to contact the website owner about a past order.
     * A contact us section is available on the home page or via the home button in the navigation menu.
     * An unregistered user can report an issue by answering the email confirmation of the order received when purchasing a product.
     * If the user is registered and signed-in, orders history is accessible via the profile button in the navigation menu.
-      * Report an issue button is available on the order details for the user to report any queries or issue regarding this order.
 
 #### Sign-in and registration
 
@@ -596,59 +527,54 @@ All those points are not major bugs to fix and will be implemented in the near f
   * Those features have been implemented and user can securely create/access an account.
 
 1. As a user, I want to create an account.
-
     * Create an account is accessible from the profile button of the navigation menu.
 
 2. As registered user, I want to sign-in and sign-out easily.
-
     * Signing-in and out of the website is easily accessible from the profile button of the navigation menu.
 
 3. As registered user, I want to change my password if forgotten or not safe anymore.
-
     * When signing-in, the user have the option to click on reset password in order to generate a different password if it became unsecure or forgotten.
 
 4. As signed-in user, I want to save/update information to my profile for a better and easier experience.
-
     * Account details is accessible from the profile button of the navigation menu.
     * The account details page stores all the delivery information about the user and prefilled all relevant fields accordingly when the user is signed-in.
 
 5. As signed-in user, I want to save products I like for a future purchase.
-
     * Signed-in users have the possibility to saved products to their wishlist by clicking the heart icon available on a product.
 
 6. As signed-in user, I want to see/edit my wishlist.
-
     * Signed-in user can access their wishlist via the profile button of the navigation menu.
     * Users can delete item from their wishlist.
+    * Users can create different wishlist.
+    * User can add to their bag from the wishlist
 
 7. As signed-in user, I want to access my previous orders.
-
     * Signed-in users can access their order history via the profile button of the navigation menu.
 
 8. As signed-in user, I want to leave a review on a product.
-
     * Signed-in users can write review on a product from the review form available on the product details page.
 
 ### Site owner/Admin stories
 
-* When a user with admin credentials sign-in, a Product management page is accessible from the profile button of the navigation menu.
+* When a user with admin credentials sign-in, a Store management page is accessible from the profile button of the navigation menu.
   * The admin/superuser status provides access to extra features.
 
 1. As an Admin, I want to add/edit/delete products.
-
     * Admin can access modify or delete features from the product details page.
-    * Admin can add a product with the add product button of the Product management page.
+    * Admin can add a product with the add product button of the Store management page.
 
-2. As an Admin, I want to add/edit/delete categories.
+2. As an Admin, I want to see orders.
+    * Admin can see orders from the Django admin interface.
 
-    * Admin can add a category with the add category button of the Product management page.
-    * Admin can edit or delete a category from the category list of category section of the Product management page.
+3. As an Admin, I want to manage customer queries.
+    * Admin can access and deal with customer queries from see messages button of the Store management page.
 
-3. As an Admin, I want to see orders.
-4. As an Admin, I want to manage customer queries.
+[**:back:** *Table of Content*](#Table-of-Content)
 
-    * Admin can access and deal with customer queries from the orders section of the Product management page.
-    * Admin can select from all orders or reported issue.
-    * Reported issue will provide all order with an issue status other than "none" and "resolved".
+## Further Testing
+
+* The website has been tested by fellow students, slack community, friends and family.
+
+* All the issues raised have been addressed.
 
 [**:back:** *Table of Content*](#Table-of-Content)
