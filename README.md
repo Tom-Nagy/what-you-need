@@ -29,10 +29,10 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
   * [Wireframes](#Wireframes)
   * [Different Design](#Different-Design)
 * [Features](#Features)
+* [Future features to implement](#Future-features-to-implement)
 * [Flowchart](#Flowchart)
 * [Database](#Database)
   * [Database Design](#Database-Design)
-  * [Database Structure](#Database-Structure)
 * [Code Structure/Organisation](#Code-Structure/Organisation)
 * [Technologies Used](#Technologies-Used)
 * [Testing](#Testing) [:fast_forward: TESTING.md](TESTING.md)
@@ -329,6 +329,17 @@ It is important to note that ohter fucntionalities are available throught the ur
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
+## Future features to implement
+
+* Order issue.
+It was part of the original design and will be implemented in future version. The idea is for a logged in customer to be able to file a request on a specific order. This order will then be assigned a status that will be updated by the admin as the request is treated. It would offer a nice advantage for a user to create an account and for a user and store owner to treat demands individually with ease while giving a real time feed back to rhe user on the order request status.
+
+* Redirect user when adding to a wishlist.
+As mentionned in the bug section, there was a misconception on my part on how the request.path worked. Updating this feature to redirect the user exactly where he was located on the website will be great betterment of the user experience.
+
+* Product liked.
+In a future version I would like to implement a relationship between a wishlist, a wishlist item and a user in order to be able to display specifically where a user has saved a product when clicking on it. For exemple if a user has two different wishlist. at the moment if a product is in a wishlist there are no feedback for the user to know in wich one it is unless he tries to save it or checks in the wishlist itself. With my experience and knowledge it needs a lot of loops and statement, but I am sure with a bit more time a solution will provide the user with its feature.
+
 ## Flowchart
 
 ![Website flowchart](documentation/data-design/flowchart.png)
@@ -410,8 +421,6 @@ Userhave to be register to create a wishlist. If no wishlist is created and a us
   * When a review is posted, a signal update automatically the product rating score. It is worth noting that a review will not be deleted if even if a user profile is. This is choice made in order to keep the product score for better accuracy. Though if an admin wished to delete on, the score will be updated accordingly.
   * The liked field on the product model is updated each time a query is made on a product. This allows a user to have a real time feedback on his liked items.
   * Selling price field on the product model is used to diplay product sorted by price. Intead of comparing two fields (on_sale and price), the selling_price field is updated automatically when a product is either created or edited/updated.
-
-
 
 ## Technologies Used
 
