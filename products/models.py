@@ -114,7 +114,6 @@ class ProductReview(models.Model):
                                 related_name='reviews')
     review_rating = models.PositiveSmallIntegerField(
         choices=rating_options,
-        default=5,
         validators=[
             MaxValueValidator(5),
             MinValueValidator(0)],
