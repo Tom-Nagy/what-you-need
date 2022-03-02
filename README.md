@@ -344,8 +344,8 @@ The database design used is a relational database.
 * During **development**, sqlite3 was used. It is the database provided by Django and only use for development.
 * For **Production**, Postgres is used. It is the database provided by Heroku when deploying the website live.
 
-Below is a representation of the database used for this project.
-![Database Design](documentation/data-design/database-design.png)
+Below is a representation of the database used for this project. It has been updated to the current database models. If you wish you can see the previouse version here: [Database Design](documentation/data-design/database-design.png)
+![Database Design](documentation/data-design/updated-db-design.png)
 
 ### Database Structure
 
@@ -353,43 +353,65 @@ Django, the framework used for the production of this project, is an MVP: Model 
 The models define the data-structure.
 
 * In this project, the following models have been developed:
-  * Product
   * Category
+  * Product
+  * ProductReview
   * Order
   * OrderLineItem
-  * OrderIssue
-  * User
-  * UserAccount
-  * Review
-They can be grouped into three main models : Product, Order, UserAccount
+  * UserProfile
+  * ContactUs
+  * Wihslist
+  * WihslistItem
+  * User (being a "default" model provided by django and allauth)
 
-* Models relationship:
-  * Product :left_right_arrow: Category: **Many to Many**
-    * A Product can be related to many Category, and a Category can be related to many Product.
-  
-  * Product :left_right_arrow: OrderLineItem: **Many to One**
-    * A Product can be related to many OrderLineItem, but an OrderLineItem can be related to one Product.
-  
-  * Product :left_right_arrow: Review: **Many to One**
-    * A Product can be related to many Review, but a Review can be related to one Product.
-  
-  * Order :left_right_arrow: UserAccount: **One to Many**
-    * A Order can be related to one UserAccount, but a UserAccount can be related to many Order.
-  
-  * Order :left_right_arrow: OrderLineItem: **Many to One**
-    * An Order can be related to many OrderLineItem, but an OrderLineItem can be related to one Order.
-  
-  * Order :left_right_arrow: OrderIssue: **Many to One**
-    * An Order can be related to many OrderIssue, but an OrderIssue can be related to one Order.
-  
-  * UserAccount :left_right_arrow: Review: **Many to One**
-    * A UserAccount can be related to many Review, but a Review can be related to one UserAccount.
-  
-  * UserAccount :left_right_arrow: User: **One to One**
-    * A UserAccount can be related to one User, and a User can be related to one UserAccount.
-  
-  * UserAccount :left_right_arrow: OrderIssue: **Many to One**
-    * An UserAccount can be related to many OrderIssue, but an OrderIssue can be related to one UserAccount.
+#### Models relationship:
+
+* Product :left_right_arrow: Category: **One to Many**
+  * A product can be related to one category, and a category can be related to many products.
+
+Upon creating a product the admin has to associate it to a category. All the category are not available though. At the moment we can associate a product to Indoor, Outdoor and Exclusive plants. The other categories are populated depending on different factors. They are created as categories in order to render them dynamically on the website, but they really act as a sorting options.  
+Best seller is populated by a queryset returning the 5 most sold plants. This is available with the quantity_sold filed that is automatically updated in the webhook_handler each time a successful order is created.  
+Newly added is populated by comparing the creation date of a product date_added field to "today" and checkimg if the value is greater than two months.  
+Special deals is populated by querying on the on_sale field of a product returning all products on sale.
+
+* Product :left_right_arrow: OrderLineItem: **Many to One**
+  * A product can be related to many OrderLineItem, but an OrderLineItem can be related to one product.
+
+* Product :left_right_arrow: ProductReview: **Many to One**
+  * A product can be related to many reviews, but a review can be related to one product.
+
+ProductReview as you can see has two different date filed that allow a precise tracking for when a review is created with the date_time field, but allow as well to display a more user-friendly with date field.
+
+* Order :left_right_arrow: UserProfile: **One to Many**
+  * A Order can be related to one user, but a user can have many orders.
+
+* Order :left_right_arrow: OrderLineItem: **Many to One**
+  * An Order can be related to many OrderLineItem, but an OrderLineItem can be related to one Order.
+
+* UserProfile :left_right_arrow: ProductReview: **Many to One**
+  * A user can be related to many reviews, but a review can be related to one user.
+
+User have to be register to create a review.
+
+* UserProfile :left_right_arrow: User: **One to One**
+  * A UserProfile can be related to one User, and a User can be related to one UserProfile.
+
+* UserProfile :left_right_arrow: Wishlist: **Many to One**
+  * An user can be related to many wishlist, but a wishlist can be related to one user.
+
+Userhave to be register to create a wishlist. If no wishlist is created and a user wants to save an item, a default wishlist is created automatically.
+
+* Wishlist :left_right_arrow: WishlistItem: **Many to One**
+  * An wishlist can be related to many wishlistItems, but a wishlistItem can be related to one wishlist.
+
+* ContactUs is basically an inbox that saves messages sent by customer. It proposes a choise of subjects and when a message is succesfully saved, an email confirmation is automatically sent to the customer with the details of his/her request.
+
+* Related notes:
+  * When a review is posted, a signal update automatically the product rating score. It is worth noting that a review will not be deleted if even if a user profile is. This is choice made in order to keep the product score for better accuracy. Though if an admin wished to delete on, the score will be updated accordingly.
+  * The liked field on the product model is updated each time a query is made on a product. This allows a user to have a real time feedback on his liked items.
+  * Selling price field on the product model is used to diplay product sorted by price. Intead of comparing two fields (on_sale and price), the selling_price field is updated automatically when a product is either created or edited/updated.
+
+
 
 ## Technologies Used
 
@@ -509,7 +531,7 @@ The project is deployed on Heroku using Postgres database and linked to s3 bucke
 ### Code
 
 * Navigation menu for small screen:
-  * Navigation menu done with a tutorial from and adapted to the project. [Online Tutorials](https://www.youtube.com/watch?v=ArTVfdHOB-M&list=PLKmECQB4ukRQPKzgKL1zpx3NeE-YlYF4o&index=62&t=51s)
+  * Navigation menu done with a tutorial from [Online Tutorials](https://www.youtube.com/watch?v=ArTVfdHOB-M&list=PLKmECQB4ukRQPKzgKL1zpx3NeE-YlYF4o&index=62&t=51s) and adapted to the project.
 
 * For scrolling back to saved position:
   * Credit to Joonas from [Satckoverflow post](https://stackoverflow.com/questions/12744145/how-to-remember-scroll-position-of-page/12744617)
