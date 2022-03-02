@@ -1,7 +1,7 @@
 <!-- large screen order display -->
 <tr>
     <td>
-        <a href="{% url 'view_past_order_history' order.order_number %}" title="{{ order.order_number }}"
+        <a href="{% url 'view_past_order_history' order.order_number %}" class="text-info" title="{{ order.order_number }}"
         aria-label="Link to past order number {{order.order_number}}">
             {{ order.order_number|truncatechars:12 }}
         </a>
