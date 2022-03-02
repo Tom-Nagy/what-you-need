@@ -23,7 +23,7 @@ Visit the live Website : **[What You Need :arrow_right:](https://what-you-need.h
     * [Search](#Search)
     * [Shopping Bag](#Shopping-Bag)
     * [Checkout](#Checkout)
-    * [Create an account / Sign in](#Create-an-account)
+    * [Create an account / Sign in](#Create-an-account-and-sign-in)
     * [Account details](#Account-details)
     * [Orders history](#Orders-history)
     * [Wishlist](#Wishlist)
@@ -279,7 +279,7 @@ Score given by the lighthouse are very good for the exception of performance iss
 
 [**:back:** *Table of Content*](#Table-of-Content)
 
-#### Create an account / Sign in
+#### Create an account and sign in
 
 * Clicking on the profile icon toggles different options depending on the user status:
   * If unregistered or logged-out customer: the options of Creating an account or signing-in are given.
